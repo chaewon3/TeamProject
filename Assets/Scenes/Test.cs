@@ -6,7 +6,7 @@ public class Test : MonoBehaviour
 {
     private void Start()
     {
-        print("æ»≥Á«œººø‰");
+        print("æ»≥Á«œººø‰f ~!<");
         print("≥◊ æ»≥Á«ÿø‰");
     }
 

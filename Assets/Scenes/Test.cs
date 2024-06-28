@@ -17,5 +17,6 @@ public class Test : MonoBehaviour
         print("제일먼저 안녕하세요");
 
         a = (float)3d;
+        int a = 0;
     }
 }

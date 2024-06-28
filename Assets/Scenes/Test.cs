@@ -9,4 +9,9 @@ public class Test : MonoBehaviour
         print("안녕하세요");
         print("네 안녕해요");
     }
+
+    private void Awake()
+    {
+        print("제일먼저 안녕하세요");
+    }
 }

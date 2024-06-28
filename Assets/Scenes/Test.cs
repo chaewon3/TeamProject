@@ -10,8 +10,10 @@ public class Test : MonoBehaviour
         print("네 안녕해요");
     }
 
+    int a;
+
     private void Awake()
     {
-        print("제일먼저 안녕하세요");
+        int a = 0;
     }
 }

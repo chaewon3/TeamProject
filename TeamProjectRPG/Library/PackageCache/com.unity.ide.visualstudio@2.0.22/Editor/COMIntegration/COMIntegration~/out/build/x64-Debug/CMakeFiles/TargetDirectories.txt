@@ -1,3 +1,0 @@
-C:/Users/VR/Desktop/TeamProject/TeamProjectRPG/Library/PackageCache/com.unity.ide.visualstudio@2.0.22/Editor/COMIntegration/COMIntegration~/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/VR/Desktop/TeamProject/TeamProjectRPG/Library/PackageCache/com.unity.ide.visualstudio@2.0.22/Editor/COMIntegration/COMIntegration~/out/build/x64-Debug/CMakeFiles/COMIntegration.dir
-C:/Users/VR/Desktop/TeamProject/TeamProjectRPG/Library/PackageCache/com.unity.ide.visualstudio@2.0.22/Editor/COMIntegration/COMIntegration~/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MineCartMove : MonoBehaviour
 {
-    public Transform MineCart;
+    public GameObject MineCart;
     public Transform lever;
     bool isTrigger;
+    float speed = 5f;
 
     private void Update()
     {
@@ -18,17 +19,14 @@ public class MineCartMove : MonoBehaviour
         }
     }
     IEnumerator LeverOn()
-    {
-        float speed = 4f;
-        
-        
-        speed = 3f;
+    {        
         float time = 0;
         while (time <= 3)
         {
-            MineCart.Translate(MineCart.transform.forward * speed * Time.deltaTime, Space.Self);
+            MineCart.transform.Translate(-MineCart.transform.forward * speed * Time.deltaTime);
             time += Time.deltaTime;
             yield return null;
         }
+        Destroy(MineCart, 0);
     }
 }

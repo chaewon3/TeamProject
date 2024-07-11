@@ -4,68 +4,79 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 0f; // 10
-    public float rotateSpeed = 10f;
-    private float gravity = 20f;
-    private Vector3 targetPos;
-    private Vector3 playerPos;
-    [SerializeField]
-    private bool canMove = false;
-    private CharacterController playerControllor;
-    private Animator playerAnimator;
+    #region 전역 변수
+    float moveSpeed = 3f;
+    CharacterController charCont;
+    Vector3 playerPos;
+    Vector3 movePos;
+
+
+    float gravity = -3f;
+    bool isGrounded;
+    LayerMask groundMask;
+    Transform transGroundCheckPoint;
+
+    float mouseSensitivity = 200f;
+    float dirX;
+    float dirY;
+    #endregion
+
 
     private void Awake()
     {
-        playerPos = Vector3.zero;
-        playerControllor = GetComponent<CharacterController>();
-        playerAnimator = GetComponent<Animator>();
+        charCont = GetComponent<CharacterController>();
+        
+        transGroundCheckPoint = transform;
+        groundMask = (1 << LayerMask.NameToLayer("Ground"));
     }
 
-    void Update()
+    private void Update()
     {
-        if(playerControllor.isGrounded)
+        float z = Input.GetAxisRaw("Vertical");
+        charCont.Move(transform.forward * z * moveSpeed * Time.deltaTime);
+
+        float x = Input.GetAxisRaw("Horizontal");
+        charCont.Move(transform.right * x * moveSpeed * Time.deltaTime);
+
+        #region 중력 
+        isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
+
+        if (!isGrounded)
         {
-            
-            if (Input.GetMouseButtonDown(0))
-            {
-                
-            }
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100f))
-            {
-                if (hit.collider.tag == "Enemy")
-                {
-                    playerAnimator.SetTrigger("Attack");
-                    return;
-                }
-
-                targetPos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                //targetPos = hit.point;
-                canMove = true;
-                playerAnimator.SetFloat("Speed", 1f);
-            }
-
-            if (canMove)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(targetPos - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-
-                if (transform.position == targetPos)
-                {
-                    canMove = false;
-                }
-
-            }
+            charCont.Move(transform.up * gravity * Time.deltaTime);
         }
-        else
-        {
-            playerPos.y -= gravity * Time.deltaTime;
+        #endregion
 
-            playerControllor.Move(playerPos * Time.deltaTime);
-        }
+        #region 마우스 방향 회전
+        dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+        dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        dirY = Mathf.Clamp(dirY, -90f, 90f);
+        transform.localRotation = Quaternion.Euler(0, dirX, 0f);
+        //Vector3 mousePos = Input.mousePosition;
+
+        //Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        //if (Physics.Raycast(ray, out var hit, 100, groundMask))
+        //{
+        //    playerPos = hit.point;
+        //};
+
+        ////transform.LookAt(playerPos);
+        //transform.rotation = Quaternion.LookRotation(playerPos, Vector3.up);
+        #endregion
 
     }
 }
+
+
+/*
+         float z = Input.GetAxisRaw("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+
+        movePos = transform.position;
+        movePos += transform.forward * z;
+        movePos += transform.right * x;
+
+        charCont.Move(movePos * Time.deltaTime);
+ */

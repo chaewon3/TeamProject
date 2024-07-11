@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,15 +8,31 @@ public class MoveTest : MonoBehaviour
     float moveSpeed = 3f;
     float rotateDegree;
     CharacterController charCont;
+    Vector3 playerPos;
 
     private void Awake()
     {
         charCont = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
     {
-        //if (Input.GetMouseButton(1))
+        Vector3 mousePos = Input.mousePosition;
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out var hit, 100, 1 << LayerMask.NameToLayer("Default")))
+        {
+            playerPos = hit.point;
+        };
+
+        transform.LookAt(playerPos);
+    }        
+}
+
+/*
+ //if (Input.GetMouseButton(1))
         //{
         //    transform.Rotate(0f, Input.GetAxis("Mouse X") * dirSpeed, 0f, Space.World);
         //}
@@ -26,6 +42,7 @@ public class MoveTest : MonoBehaviour
 
         //charCont.Move(Direction * moveSpeed * Time.deltaTime);
 
+
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerPos = transform.position;
 
@@ -33,30 +50,37 @@ public class MoveTest : MonoBehaviour
 
         Vector3 target = Camera.main.ScreenToWorldPoint(mousePos);
 
-        float dirX = target.x - playerPos.x;
-        float dirZ = target.z - playerPos.z;
+        //float dirX = target.x - playerPos.x;
+        //float dirZ = target.z - playerPos.z;
 
-        if(mousePos.x > playerPos.x)
-        {
-            rotateDegree = Mathf.Atan2(dirX, dirZ) * Mathf.Rad2Deg * -1;
-        }
-        else
-        {
-            rotateDegree = Mathf.Atan2(dirX, dirZ) * Mathf.Rad2Deg;
-        }
-        
+        //if (target.z > playerPos.z)
+        //{
+        //    print("플레이어 위");
+        //    rotateDegree = Mathf.Atan2(dirX, dirZ) * Mathf.Rad2Deg - 180;
+        //}
+        //else
+        //{
+        //    print("플레이어 아래");
+        //    rotateDegree = Mathf.Atan2(dirX, dirZ) * Mathf.Rad2Deg;
+        //}
 
-        transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+        //transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+
+        target.y = 0;
+        transform.LookAt(target);
+
+
 
         if(Input.GetMouseButtonDown(0))
         {
-            print(dirX);
-            print(playerPos.x);
-            print(dirZ);
-            print(playerPos.z);
+            //print($"dirX: {dirX}");
+            ////print($"playerPos.x: {playerPos.x}");
+            //print($"dirZ: {dirZ}");
+            print($"playerPos.z: {playerPos.z}");
             //print(mousePos.x);
             //print(playerPos.x);
         }
+
         //Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         //moveDir = moveDir * moveSpeed * Time.deltaTime;
 
@@ -91,6 +115,4 @@ public class MoveTest : MonoBehaviour
         //        transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
         //    }
         //}
-
-    }        
-}
+ */

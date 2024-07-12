@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     float moveSpeed = 3f;
     CharacterController charCont;
     Animator PlayerAnimator;
+    bool canMove = true;
 
     float gravity = -3f;
     bool isGrounded;
@@ -31,34 +32,48 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        Vector3 moveDir = Vector3.zero;
-        moveDir.z = Input.GetAxisRaw("Vertical");
-        moveDir.x = Input.GetAxisRaw("Horizontal");
-
-        charCont.Move(transform.forward * moveDir.z * moveSpeed * Time.deltaTime);
-        charCont.Move(transform.right * moveDir.x * moveSpeed * Time.deltaTime);
-
-        PlayerAnimator.SetFloat("Xposition", moveDir.x);
-        PlayerAnimator.SetFloat("Yposition", moveDir.z);
-        PlayerAnimator.SetFloat("Speed", moveDir.magnitude);
-
-        #region 중력 
-        isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
-
-        if (!isGrounded)
+        if(canMove)
         {
-            charCont.Move(transform.up * gravity * Time.deltaTime);
+            Vector3 moveDir = Vector3.zero;
+            moveDir.z = Input.GetAxisRaw("Vertical");
+            moveDir.x = Input.GetAxisRaw("Horizontal");
+
+            charCont.Move(transform.forward * moveDir.z * moveSpeed * Time.deltaTime);
+            charCont.Move(transform.right * moveDir.x * moveSpeed * Time.deltaTime);
+
+            PlayerAnimator.SetFloat("Xposition", moveDir.x);
+            PlayerAnimator.SetFloat("Yposition", moveDir.z);
+            PlayerAnimator.SetFloat("Speed", moveDir.magnitude);
+
+            #region 중력 
+            isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
+
+            if (!isGrounded)
+            {
+                charCont.Move(transform.up * gravity * Time.deltaTime);
+            }
+            #endregion
+
+            #region 마우스 방향 회전
+            dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+            dirY = Mathf.Clamp(dirY, -90f, 90f);
+            transform.localRotation = Quaternion.Euler(0, dirX, 0f);
+            #endregion
         }
-        #endregion
+    }
 
-        #region 마우스 방향 회전
-        dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-        dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        dirY = Mathf.Clamp(dirY, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(0, dirX, 0f);
-        #endregion
-
+    public void MoveChange()
+    {
+        if(canMove)
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 }
 

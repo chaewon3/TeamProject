@@ -2,37 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerSwordAttack : MonoBehaviour
 {
     Animator playerAnimator;
     bool comboing = false;
     public AnimationClip[] attakClip;
     Coroutine coroutine;
+    PlayerMove player;
 
     void Awake()
     {
-        playerAnimator = GetComponent<Animator>();    
+        playerAnimator = GetComponent<Animator>();
+        player = GetComponent<PlayerMove>();
     }
 
     void Start()
     {
         playerAnimator.SetBool("SwordForm", true);
         playerAnimator.SetBool("CanAtk", true);
-
-        //print(attakClip[0].length);
-        //print(attakClip[1].length);
-        //print(attakClip[2].length);
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            print("근접 공격");
-
             if(comboing)
             {
-                print("코루틴 정지 ");
                 StopCoroutine(coroutine);     
             }
             else
@@ -45,19 +40,28 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 연속기 발동 코루틴 :
+    /// 현재 공격 애니메이션이 끝나기 전에 공격 시 콤보 공격 발동
+    /// </summary>
     IEnumerator AddCombo()
     {
-        print("콤보 시작");
+        player.MoveChange(false);
         playerAnimator.SetBool("Combo", comboing);
         yield return new WaitForSeconds(attakClip[1].length);
 
-        print("콤보 끝");
         comboing = false;
         playerAnimator.SetBool("Combo", comboing);
         playerAnimator.SetBool("CanAtk", true);
-        
+        yield return new WaitForSeconds(0.7f);
+
+        print("걷기 가능");
+        player.MoveChange(true);
     }
 
+    /// <summary>
+    /// 첫 공격과 콤보 공격을 제어
+    /// </summary>
     IEnumerator StartAttack()
     {
         playerAnimator.SetTrigger("Attack");

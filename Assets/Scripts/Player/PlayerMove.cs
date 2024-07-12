@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     #endregion
 
 
-    private void Awake()
+    void Awake()
     {
         charCont = GetComponent<CharacterController>();
         PlayerAnimator = GetComponent<Animator>();
@@ -30,10 +30,12 @@ public class PlayerMove : MonoBehaviour
         groundMask = (1 << LayerMask.NameToLayer("Ground"));
     }
 
-    private void Update()
+    void Update()
     {
         if(canMove)
         {
+            #region 이동
+         
             Vector3 moveDir = Vector3.zero;
             moveDir.z = Input.GetAxisRaw("Vertical");
             moveDir.x = Input.GetAxisRaw("Horizontal");
@@ -44,8 +46,10 @@ public class PlayerMove : MonoBehaviour
             PlayerAnimator.SetFloat("Xposition", moveDir.x);
             PlayerAnimator.SetFloat("Yposition", moveDir.z);
             PlayerAnimator.SetFloat("Speed", moveDir.magnitude);
+            #endregion
 
             #region 중력 
+
             isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
 
             if (!isGrounded)
@@ -55,6 +59,7 @@ public class PlayerMove : MonoBehaviour
             #endregion
 
             #region 마우스 방향 회전
+
             dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
             dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -64,9 +69,9 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void MoveChange()
+    public void MoveChange(bool bValue)
     {
-        if(canMove)
+        if(!bValue)
         {
             canMove = false;
         }
@@ -76,13 +81,3 @@ public class PlayerMove : MonoBehaviour
         }
     }
 }
-
-//float z = Input.GetAxisRaw("Vertical");
-//charCont.Move(transform.forward * z * moveSpeed * Time.deltaTime);
-//if (z != 0)
-//{
-//    PlayerAnimator.SetFloat("Speed", 1f);
-//}
-
-//float x = Input.GetAxisRaw("Horizontal");
-//charCont.Move(transform.right * x * moveSpeed * Time.deltaTime);

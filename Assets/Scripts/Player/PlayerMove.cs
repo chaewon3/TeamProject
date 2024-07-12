@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     #region 전역 변수
-    float moveSpeed = 3f;
+    public float moveSpeed = 3f;
     CharacterController charCont;
     Animator PlayerAnimator;
     bool canMove = true;

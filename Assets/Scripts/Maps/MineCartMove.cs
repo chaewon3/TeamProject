@@ -15,7 +15,7 @@ public class MineCartMove : MonoBehaviour
 
     private void Update()
     {
-        // 트리커 캐릭터로 옮기면서 컷씬 진행동안 플레이어 움직임 막기
+        // todo 트리커 캐릭터로 옮기면서 컷씬 진행동안 플레이어 움직임 막기
         if(Input.GetKeyDown(KeyCode.G) && !isTrigger)
         {
             lever.Rotate(-104, 0, 0);
@@ -23,6 +23,9 @@ public class MineCartMove : MonoBehaviour
             isTrigger = true;
         }
     }
+    /// <summary>
+    /// 광차 애니메이션과 Virtual Camera 이벤트 컷씬 제어
+    /// </summary>
     IEnumerator LeverOn()
     {
         cutScenecam.Priority = 11;

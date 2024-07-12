@@ -9,7 +9,7 @@ public class CameraMove : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked; // 게임 매니저로 옮기기
+        Cursor.lockState = CursorLockMode.Locked; // todo 게임 매니저로 옮기기
     }
 
     private void LateUpdate()

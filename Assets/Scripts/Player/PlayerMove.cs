@@ -7,9 +7,7 @@ public class PlayerMove : MonoBehaviour
     #region 전역 변수
     float moveSpeed = 3f;
     CharacterController charCont;
-    Vector3 playerPos;
-    Vector3 movePos;
-
+    Animator PlayerAnimator;
 
     float gravity = -3f;
     bool isGrounded;
@@ -25,18 +23,24 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         charCont = GetComponent<CharacterController>();
-        
+        PlayerAnimator = GetComponent<Animator>();
+
         transGroundCheckPoint = transform;
         groundMask = (1 << LayerMask.NameToLayer("Ground"));
     }
 
     private void Update()
     {
-        float z = Input.GetAxisRaw("Vertical");
-        charCont.Move(transform.forward * z * moveSpeed * Time.deltaTime);
+        Vector3 moveDir = Vector3.zero;
+        moveDir.z = Input.GetAxisRaw("Vertical");
+        moveDir.x = Input.GetAxisRaw("Horizontal");
 
-        float x = Input.GetAxisRaw("Horizontal");
-        charCont.Move(transform.right * x * moveSpeed * Time.deltaTime);
+        charCont.Move(transform.forward * moveDir.z * moveSpeed * Time.deltaTime);
+        charCont.Move(transform.right * moveDir.x * moveSpeed * Time.deltaTime);
+
+        PlayerAnimator.SetFloat("Xposition", moveDir.x);
+        PlayerAnimator.SetFloat("Yposition", moveDir.z);
+        PlayerAnimator.SetFloat("Speed", moveDir.magnitude);
 
         #region 중력 
         isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
@@ -53,30 +57,17 @@ public class PlayerMove : MonoBehaviour
 
         dirY = Mathf.Clamp(dirY, -90f, 90f);
         transform.localRotation = Quaternion.Euler(0, dirX, 0f);
-        //Vector3 mousePos = Input.mousePosition;
-
-        //Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        //if (Physics.Raycast(ray, out var hit, 100, groundMask))
-        //{
-        //    playerPos = hit.point;
-        //};
-
-        ////transform.LookAt(playerPos);
-        //transform.rotation = Quaternion.LookRotation(playerPos, Vector3.up);
         #endregion
 
     }
 }
 
+//float z = Input.GetAxisRaw("Vertical");
+//charCont.Move(transform.forward * z * moveSpeed * Time.deltaTime);
+//if (z != 0)
+//{
+//    PlayerAnimator.SetFloat("Speed", 1f);
+//}
 
-/*
-         float z = Input.GetAxisRaw("Vertical");
-        float x = Input.GetAxisRaw("Horizontal");
-
-        movePos = transform.position;
-        movePos += transform.forward * z;
-        movePos += transform.right * x;
-
-        charCont.Move(movePos * Time.deltaTime);
- */
+//float x = Input.GetAxisRaw("Horizontal");
+//charCont.Move(transform.right * x * moveSpeed * Time.deltaTime);

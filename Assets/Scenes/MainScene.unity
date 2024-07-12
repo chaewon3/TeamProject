@@ -28617,6 +28617,7 @@ GameObject:
   - component: {fileID: 520719541}
   - component: {fileID: 520719540}
   - component: {fileID: 520719539}
+  - component: {fileID: 520719543}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -28694,6 +28695,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &520719543
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520719538}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: c85608400a5d3164c80d4df8b845015b, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &521342459
 GameObject:
   m_ObjectHideFlags: 0

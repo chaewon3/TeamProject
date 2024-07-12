@@ -4,11 +4,20 @@ using UnityEngine;
 
 public abstract class MonsterInfo : MonoBehaviour, IHitable
 {
-    // 인스펙터에서 설정할 수 있는 거
-    protected float _maxHP;
-    protected float _currentHP;
-    protected float _attackDamage;
+    //MonsterInfo와 몬스터가 가져야할 함수들을 MonsterBehaviour로 나누는 게 나을 것 같다.
 
+
+    Coroutine _rotationCoroutine;
+
+
+
+    // 인스펙터에서 설정할 수 있는 거
+    public float _maxHP;
+    public float _currentHP;
+    public float _attackDamage;
+
+    public float _attackDetectRange;
+    public float _returnStopRange;
 
     // _characterGotIntoArea가 true가 되고, _isMove가 true 가 될 때
     // 움직일 수 있게 사용
@@ -48,7 +57,7 @@ public abstract class MonsterInfo : MonoBehaviour, IHitable
     }
 
 
-    // Start 코루틴에서 move의 여부와 스킬이나 공격을 쓸 건지만  정하고 update는 캐릭터의 위치가 null이 아니고 move가 true일 때 움직이가
+    // Start 코루틴에서 move의 여부와 스킬이나 공격을 쓸 건지만  정하고 update는 캐릭터의 위치가 null이 아니고 move가 true일 때 움직이게
     /*
     private IEnumerator Start()
     {
@@ -82,17 +91,97 @@ public abstract class MonsterInfo : MonoBehaviour, IHitable
     }
     */
 
-    private void Update()
+    // 스타트가 아닌 trigger enter되었을 때 활성화하게 만드는 게 좋을 것 같음
+    // 스타트에 해버리면 멀리있는 객체도 사용하지 않음에도 돌아가서 성능에 영향을 줄 것 같음
+    // 멀리 있으면 비활성화해 사용하면 되지만 안함
+    private IEnumerator Start()
     {
-        
+        while (true)
+        {
+            // 체크를 해야 하나? 
+            // 트리거에서 들어갔을 때 시작하고 나갈 때 stop할건데? 
+
+            // 우선 캐릭터가 범위 안에 들어와 있나 체크
+            if (_characterGotIntoArea)
+            {
+                // 캐릭터 위치 받아오기
+                LoadCharacterTransform();
+
+                // isMove가 활성화되어 있나 체크
+                if (_isMove)
+                {
+                    // 움직이고 있다면 1초 후 위치 찾으러 가기
+                    yield return new WaitForSeconds(1.0f);
+                }
+                else
+                {
+                    // 여기서 스킬 체크
+                    yield return new WaitForSeconds(5.0f);
+                }
+
+
+            }
+        }
+
+
     }
 
+
+    private void Update()
+    {
+        if (_isMove && _characterGotIntoArea)
+        {
+            // 캐릭터 트랜스폼을 찾아 움직이는 함수
+            // 자기 자리로 돌아갈 때는 _isMove는 true이고 null일때로 하려 했지만
+            // 그냥 얘는 찾았을 때 움직임만 관여하고 start에서 1초마다 찾을 때 캐릭터의 위치가 null이면
+            // 원래 자리로 가는 함수를 실행하는 것이 더 좋아보임
+            // 그럼 null을 여기서 매번 체크는 안해도 될 것 같음
+            if (_rotationCoroutine != null)
+            {
+                StopCoroutine(_rotationCoroutine);
+                _rotationCoroutine = null;
+
+            }
+
+            MonsterMove(_characterTransfrom, _attackDetectRange);
+        }
+
+        if(_isMove &&!_characterGotIntoArea && (Vector3.SqrMagnitude(transform.position - _monsterOriginTransform.position) > 1))
+        {
+            MonsterMove(_monsterOriginTransform, _returnStopRange);
+
+            if (!_isMove)
+            {
+
+                if (_rotationCoroutine == null)
+                {
+                    _rotationCoroutine = StartCoroutine(RotateWhenReturn());
+                }
+            }
+
+        }
+    }
+
+    void MonsterMove(Transform target, float stopRange)
+    {
+        Vector3 currentPosition = transform.position;
+        Vector3 targetPosition = target.position;
+
+        // 델타 타임 앞에 1은 speed로 
+        transform.position = Vector3.MoveTowards(currentPosition, new Vector3(targetPosition.x, currentPosition.y, targetPosition.z), 1 * Time.deltaTime);
+
+        if (Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange))
+        {
+            _isMove = false;
+        }
+    }
 
     // trigger Enter에서 호출할 함수
     // 닭 무리 할 때처럼 한 방에서 모두 활성화 시키게 만들기
     public void CharacterGotIntoArea()
     {
         _characterGotIntoArea = true;
+        // 이게 아니라 지금 start인 코루틴을 호출
         StartCoroutine(SearchingCharacter());
     }
 
@@ -102,12 +191,34 @@ public abstract class MonsterInfo : MonoBehaviour, IHitable
     {
         _characterGotIntoArea = false;
 
-        // 이게 null일 때 몬스터들이 자신의 원래 위치로 이동하게 만들기
-        _characterTransfrom = null;
+        // 위에 있는 transform을 null로 여기서 하지말고 
         
     }
     
 
+    // 캐릭터 위치를 불러오는 함수
+    void LoadCharacterTransform()
+    {
+
+    }
+
+    // 캐릭터가 트리거 밖으로 나갔을 때 호출할 함수
+    // 자신의 위치까지 이동한다.
+    // bool 변수하나 더 만들고 update에서 처리하기
+    // 그냥 intoArea를 false면 실행되게 하는게 맞는거 아닌가
+    // 굳이 이건 필요 없고 false일 때 target이 본인의 origin으로 
+    // 필요없진 않고 exit할때 한번 호출해서 사용하면 될 듯
+    void SetCharacterTransformNull()
+    {
+        // 이게 null일 때 몬스터들이 자신의 원래 위치로 이동하게 만들기
+        // 근데 굳이 null로 바꾸어야 하나 
+        // 바꾸어야 한다 메모리가 잡혀있기 떄문에 가비지 컬렉션을 통해 메모리를 회수해 와야 함
+        
+        _characterTransfrom = null;
+    }
+
+
+    // 쓸모없는 코드 얜 사용하지 않음
     // _characterGotIntoArea가 true가 되었을 때 한번 호출
     // 게임 매니저에서 플레이어의 위치를 받아올 수 있도록 하고
     // 그걸 1초마다 불러오기
@@ -126,4 +237,18 @@ public abstract class MonsterInfo : MonoBehaviour, IHitable
         yield return null;
     }
 
+    // 회전하는 코루틴
+    // 제자리에서 걸어서 회전하게 만들어야 함
+    // 혹은 내가 IK를 조절하고 애니메이션 재설정
+    // 혹은 그냥 어색하게 회전하기
+    IEnumerator RotateWhenReturn()
+    {
+        while (true)
+        {
+
+            yield return null;
+        }
+
+        
+    }
 }

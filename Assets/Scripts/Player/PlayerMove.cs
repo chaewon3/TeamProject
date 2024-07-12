@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     Animator PlayerAnimator;
     bool canMove = true;
 
+    public float dirSpeed; // 나중에 지울거 
+
     float gravity = -3f;
     bool isGrounded;
     LayerMask groundMask;
@@ -64,7 +66,7 @@ public class PlayerMove : MonoBehaviour
             dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
             dirY = Mathf.Clamp(dirY, -90f, 90f);
-            transform.localRotation = Quaternion.Euler(0, dirX, 0f);
+            transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
             #endregion
         }
     }

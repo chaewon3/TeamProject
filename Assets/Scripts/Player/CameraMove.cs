@@ -7,11 +7,6 @@ public class CameraMove : MonoBehaviour
     public Transform player;
     public Transform lookTarget;
 
-    void Awake()
-    {
-        Cursor.lockState = CursorLockMode.Locked; // todo 게임 매니저로 옮기기
-    }
-
     void LateUpdate()
     {
         transform.position = player.position;

@@ -6,19 +6,38 @@ using Cinemachine;
 public class MapCameraEvent : MonoBehaviour
 {
     public CinemachineVirtualCamera MapCam;
-        
+
+    bool onTrigger;
+    private void Update()
+    {
+        if(onTrigger)
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                GameManager.Instance.MouseLock(false);
+                MapCam.Priority = 11;
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.Instance.MouseLock(true);
+                MapCam.Priority = 9;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        onTrigger = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        onTrigger = false;
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        // todo 지도 볼때 캐릭터 움직임 제어, 마우스 중앙 풀기(게임매니저에서 관리)
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            MapCam.Priority = 11;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            MapCam.Priority = 9;
-        }
+        // todo 캐릭터에서 입력 신호 넣고 ontrigger bool값에 따라 실행되게 만들기
     }
 
 }

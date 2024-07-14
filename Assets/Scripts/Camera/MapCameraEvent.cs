@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class MapCameraEvent : MonoBehaviour
+public class MapCameraEvent : MonoBehaviour, IInteractable
 {
     public CinemachineVirtualCamera MapCam;
 
     bool onTrigger;
     private void Update()
     {
+        // todo 플레이어 쪽으로 넣어버리기
         if(onTrigger)
         {
             if (Input.GetKeyDown(KeyCode.G))
@@ -34,10 +35,10 @@ public class MapCameraEvent : MonoBehaviour
     {
         onTrigger = false;
     }
-
-    private void OnTriggerStay(Collider other)
+    
+    public void interaction()
     {
-        // todo 캐릭터에서 입력 신호 넣고 ontrigger bool값에 따라 실행되게 만들기
+        GameManager.Instance.MouseLock(false);
+        MapCam.Priority = 11;        
     }
-
 }

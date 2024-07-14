@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
 
-public class MineCartMove : MonoBehaviour
+public class MineCartMove : MonoBehaviour, IInteractable
 {
     public GameObject MineCart;
     public GameObject MineCartCollapse;
@@ -15,7 +15,7 @@ public class MineCartMove : MonoBehaviour
 
     private void Update()
     {
-        // todo 트리커 캐릭터로 옮기면서 컷씬 진행동안 플레이어 움직임 막기
+        // todo 상호작용키 플레이어로 옮김
         if(Input.GetKeyDown(KeyCode.G) && !isTrigger)
         {
             lever.Rotate(-104, 0, 0);
@@ -44,5 +44,15 @@ public class MineCartMove : MonoBehaviour
         cutScenecam.enabled = false;
         MineCartCollapse.SetActive(true);
         Destroy(MineCart, 0);
+    }
+
+    public void interaction()
+    {
+        if (!isTrigger)
+        {
+            lever.Rotate(-104, 0, 0);
+            StartCoroutine(LeverOn());
+            isTrigger = true;
+        }
     }
 }

@@ -652,7 +652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 2046255942}
 --- !u!114 &113292553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,7 +1317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 103756838}
 --- !u!114 &307369112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,7 +1617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 369872497}
 --- !u!114 &367014192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2170,7 +2167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 157067655}
 --- !u!1 &561758650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,10 +2325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06dbc9977de7432488194daefa7380b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1933779939}
-  defaultIconImage: {fileID: 1123334182}
-  playerEquip: {fileID: 840533997}
-  handIndex: 1
 --- !u!1 &616071682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,22 +2476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865612d2cc8d0f84da56ce3d9f90523a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invenPage: {fileID: 400167610}
-  invencontent: {fileID: 437790241}
-  focusedSlot: {fileID: 0}
-  selectedSlot: {fileID: 0}
-  tempItems: []
-  tempWeaponAs:
-  - iconSprite: {fileID: 21300000, guid: 6b9aa6d63ead4fa48a4f09be59bba044, type: 3}
-    name: "\uAC80"
-    damage: 0
-    objPrefab: {fileID: 5610884078883986163, guid: 9fbe61d1f4bc091439f25f985dd189a5, type: 3}
-  tempWeaponBs:
-  - iconSprite: {fileID: 21300000, guid: 9f2ce66686ad88f4bb6697cabef14836, type: 3}
-    name: "\uD65C"
-    damage: 0
-    objPrefab: {fileID: 5852022265233604280, guid: dd87da2630f334642ae1947503232524, type: 3}
-  tempArmors: []
 --- !u!4 &620664527
 Transform:
   m_ObjectHideFlags: 0
@@ -2515,6 +2491,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &631709824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 631709825}
+  - component: {fileID: 631709826}
+  m_Layer: 0
+  m_Name: ItemMAnager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &631709825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631709824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 827.87994, y: 487.74857, z: -368.30878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &631709826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631709824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb69342519b90341b57f93f091bc644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemdatas:
+    id: 0
+    name: 
+    nameSpr: 
+    desc: 
+    price: 0
+    classification: 0
 --- !u!1 &634205179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,9 +3317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e87e42553678794c8c5beb5bb3a6ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotateSpeed: 10
-  canMove: 0
 --- !u!143 &840533995
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3323,8 +3347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e555d4be8483141bac239b52fac31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invenPage: {fileID: 400167609}
-  hpBar: {fileID: 1082901176}
 --- !u!114 &840533997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3337,10 +3359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c85495034a0efc418a3cf6b46ac35d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hands:
-  - {fileID: 313339768}
-  - {fileID: 643173250}
-  - {fileID: 1757798211}
 --- !u!1 &845202874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3432,10 +3450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179ef1c5254227540ab1217ecd8174d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1032137292}
-  defaultIconImage: {fileID: 1064400853}
-  playerEquip: {fileID: 840533997}
-  handIndex: 2
 --- !u!1 &870422441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3833,7 +3847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1039729401}
 --- !u!114 &930223436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4000,7 +4013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 279068818}
 --- !u!114 &959766547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4175,7 +4187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1170826174}
 --- !u!114 &995133637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4494,7 +4505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1828347010}
 --- !u!114 &1044188331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5177,7 +5187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1637219290}
 --- !u!114 &1141336576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5614,7 +5623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 2065945835}
 --- !u!1 &1244824146
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,7 +6260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 958074221}
 --- !u!114 &1319105329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6636,7 +6643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 91282806}
 --- !u!114 &1400822081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6959,7 +6965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1943794069}
 --- !u!114 &1420065535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7807,7 +7812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1562678384}
 --- !u!114 &1645023635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8051,7 +8055,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 2034039610}
 --- !u!114 &1737924722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8212,11 +8215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584c76340c9bf1941a606c04f742bbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1439111161}
-  defaultIconImage: {fileID: 840282357}
-  playerEquip: {fileID: 840533997}
-  handIndex: 0
-  invenPage: {fileID: 400167609}
 --- !u!1 &1792320607
 GameObject:
   m_ObjectHideFlags: 0
@@ -8597,7 +8595,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 1295439654}
 --- !u!114 &1921092822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9110,7 +9107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 498837744}
 --- !u!1 &2012574680
 GameObject:
   m_ObjectHideFlags: 0
@@ -9898,7 +9894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa74d69dacae704f9f3bfc2a31ea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 729817434}
 --- !u!114 &2073596446
 MonoBehaviour:
   m_ObjectHideFlags: 0

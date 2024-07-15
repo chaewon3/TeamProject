@@ -24,7 +24,7 @@ public class PlayerSwordAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (player.state == State.Sword && Input.GetMouseButtonDown(0))
         {
             if(comboing)
             {
@@ -55,7 +55,6 @@ public class PlayerSwordAttack : MonoBehaviour
         playerAnimator.SetBool("CanAtk", true);
         yield return new WaitForSeconds(0.7f);
 
-        print("°È±â °¡´É");
         player.MoveChange(true);
     }
 

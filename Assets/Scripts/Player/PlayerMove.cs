@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     #region 전역 변수
     public float moveSpeed = 3f;
     CharacterController charCont;
-    Animator PlayerAnimator;
+    Animator playerAnimator;
     bool canMove = true;
 
     public float dirSpeed; // 나중에 지울거 
@@ -20,16 +20,23 @@ public class PlayerMove : MonoBehaviour
     float mouseSensitivity = 200f;
     float dirX;
     float dirY;
+
+    public State state;
     #endregion
 
 
     void Awake()
     {
         charCont = GetComponent<CharacterController>();
-        PlayerAnimator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
 
         transGroundCheckPoint = transform;
         groundMask = (1 << LayerMask.NameToLayer("Ground"));
+    }
+
+    void Start()
+    {
+        state = State.Sword;
     }
 
     void Update()
@@ -45,9 +52,9 @@ public class PlayerMove : MonoBehaviour
             charCont.Move(transform.forward * moveDir.z * moveSpeed * Time.deltaTime);
             charCont.Move(transform.right * moveDir.x * moveSpeed * Time.deltaTime);
 
-            PlayerAnimator.SetFloat("Xposition", moveDir.x);
-            PlayerAnimator.SetFloat("Yposition", moveDir.z);
-            PlayerAnimator.SetFloat("Speed", moveDir.magnitude);
+            playerAnimator.SetFloat("Xposition", moveDir.x);
+            playerAnimator.SetFloat("Yposition", moveDir.z);
+            playerAnimator.SetFloat("Speed", moveDir.magnitude);
             #endregion
 
             #region 중력 
@@ -69,6 +76,8 @@ public class PlayerMove : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
             #endregion
         }
+
+        StateController(state);
     }
 
     public void MoveChange(bool bValue)
@@ -82,4 +91,26 @@ public class PlayerMove : MonoBehaviour
             canMove = true;
         }
     }
+
+    void StateController(State state)
+    {
+        switch (state)
+        {
+            case State.Sword:
+                playerAnimator.SetBool("BowForm", false);
+                playerAnimator.SetBool("SwordForm", true);
+                break;
+            case State.Bow:
+                playerAnimator.SetBool("SwordForm", false);
+                playerAnimator.SetBool("BowForm", true);
+                break;
+        }
+    }
+}
+
+public enum State
+{
+    Sword,
+    Bow,
+    Incentory
 }

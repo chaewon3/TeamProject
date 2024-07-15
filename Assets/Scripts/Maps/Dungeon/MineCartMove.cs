@@ -13,16 +13,6 @@ public class MineCartMove : MonoBehaviour, IInteractable
     bool isTrigger;
     float speed = 5f;
 
-    private void Update()
-    {
-        // todo 상호작용키 플레이어로 옮김
-        if(Input.GetKeyDown(KeyCode.G) && !isTrigger)
-        {
-            lever.Rotate(-104, 0, 0);
-            StartCoroutine(LeverOn());
-            isTrigger = true;
-        }
-    }
     /// <summary>
     /// 광차 애니메이션과 Virtual Camera 이벤트 컷씬 제어
     /// </summary>
@@ -46,9 +36,9 @@ public class MineCartMove : MonoBehaviour, IInteractable
         Destroy(MineCart, 0);
     }
 
-    public void interaction()
+    public void interaction(bool OnOff)
     {
-        if (!isTrigger)
+        if (!isTrigger && OnOff)
         {
             lever.Rotate(-104, 0, 0);
             StartCoroutine(LeverOn());

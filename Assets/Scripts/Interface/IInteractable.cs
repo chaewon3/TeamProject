@@ -1,4 +1,4 @@
 public interface IInteractable
 {
-    void interaction();
+    void interaction(bool OnOff);
 }

@@ -24,7 +24,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (other.TryGetComponent<IInteractable>(out IInteractable interact))
         {
-            print("???");
             interactable = interact;
         }
     }

@@ -8,6 +8,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     public PlayerData playerData;
+    public Dictionary<int, Inventory> dicInventory;
 
     void Awake()
     {
@@ -69,4 +70,13 @@ public class PlayerData
     public float maxHP;
     public float damage;
     public float experience;
+}
+
+[System.Serializable]
+public class Inventory
+{
+    public int[] equipSlots = new int[3];
+    public int[] ArtifactsSlots = new int[3];
+    //public List<Item> InvenSlots = new List<Item>();
+
 }

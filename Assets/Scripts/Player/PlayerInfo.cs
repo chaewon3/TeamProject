@@ -10,6 +10,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
     float currentHealth;
     float damage;
     float experience;
+    List<PlayerData> asd = new List<PlayerData>(); 
 
     void Awake()
     {

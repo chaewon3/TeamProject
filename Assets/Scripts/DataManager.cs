@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
             Instance = this;
 
         playerData = PlayerFileLoad("PlayerInfo");
+
     }
 
     void Start()
@@ -31,6 +32,13 @@ public class DataManager : MonoBehaviour
         string json = JsonUtility.ToJson(playerData);
         File.WriteAllText(path, json);
     }
+
+    //void Save()
+    //{
+    //    string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
+    //    string json = JsonUtility.ToJson(playerData);
+    //    File.WriteAllText(path, json);
+    //}
 
     public PlayerData PlayerFileLoad(string fileName)
     {

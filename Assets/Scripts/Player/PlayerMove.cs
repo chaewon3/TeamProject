@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     float dirY;
 
     public State state;
+    public GameObject[] weapon;
     #endregion
 
 
@@ -98,11 +99,15 @@ public class PlayerMove : MonoBehaviour
         {
             case State.Sword:
                 playerAnimator.SetBool("BowForm", false);
+                weapon[1].SetActive(false);
                 playerAnimator.SetBool("SwordForm", true);
+                weapon[0].SetActive(true);
                 break;
             case State.Bow:
                 playerAnimator.SetBool("SwordForm", false);
+                weapon[0].SetActive(false);
                 playerAnimator.SetBool("BowForm", true);
+                weapon[1].SetActive(true);
                 break;
         }
     }

@@ -6,6 +6,8 @@ public class PlayerBowAttack : MonoBehaviour
 {
     Animator playerAnimator;
     PlayerMove player;
+    public AnimationClip shootClip;
+    Coroutine arrow;
 
     void Awake()
     {
@@ -19,26 +21,29 @@ public class PlayerBowAttack : MonoBehaviour
         {
             print("누르고 있는중");
             player.state = State.Bow;
+            
         }
 
-        if(Input.GetMouseButtonUp(1))
+        if(Input.GetMouseButtonDown(1))
+            playerAnimator.SetTrigger("Charge");
+
+        if (Input.GetMouseButtonUp(1))
         {
-            player.state = State.Sword;
+            playerAnimator.SetTrigger("Attack");
+
+            if(arrow == null)
+                arrow = StartCoroutine(Arrow());
         }
     }
 
-    //void StateController(State state)
-    //{
-    //    switch(state)
-    //    {
-    //        case State.Sword:
-    //            playerAnimator.SetBool("BowForm", false);
-    //            playerAnimator.SetBool("SwordForm", true);  
-    //            break;
-    //        case State.Bow:
-    //            playerAnimator.SetBool("SwordForm", false);
-    //            playerAnimator.SetBool("BowForm", true);
-    //            break;
-    //    }
-    //}
+    IEnumerator Arrow()
+    {
+        print("arrow 코루틴 들어옴");
+        //playerAnimator.SetTrigger("Attack");
+        yield return new WaitForSeconds(shootClip.length);
+
+        playerAnimator.SetBool("Charge", false);
+        player.state = State.Sword;
+        arrow = null;
+    }
 }

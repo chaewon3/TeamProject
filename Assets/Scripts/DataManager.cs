@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
         if(Instance == null)
             Instance = this;
 
-        playerData = FileLoad("PlayerInfo");
+        playerData = PlayerFileLoad("PlayerInfo");
     }
 
     void Start()
@@ -22,7 +22,7 @@ public class DataManager : MonoBehaviour
         
     }
 
-    public void Save(float maxHP, float dmg, float exp)
+    public void PlayerInfoSave(float maxHP, float dmg, float exp)
     {
         string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
         playerData.maxHP = maxHP;
@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(path, json);
     }
 
-    public PlayerData FileLoad(string fileName)
+    public PlayerData PlayerFileLoad(string fileName)
     {
         DirectoryInfo di = new DirectoryInfo(Application.streamingAssetsPath);
 

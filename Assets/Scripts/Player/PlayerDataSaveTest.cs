@@ -8,7 +8,7 @@ public class PlayerDataSaveTest : MonoBehaviour
 
     void Start()
     {
-        playerData = DataManager.Instance.FileLoad("PlayerInfo");
+        playerData = DataManager.Instance.PlayerFileLoad("PlayerInfo");
         //print($"PlayerDataSet => maxHP: {playerData.maxHP}, damage: {playerData.damage}, experience: {playerData.experience}");
     }
 
@@ -16,7 +16,7 @@ public class PlayerDataSaveTest : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            DataManager.Instance.Save(100f, 10f, 0f);
+            DataManager.Instance.PlayerInfoSave(100f, 10f, 0f);
 
             //playerData = DataManager.Instance.FileLoad("PlayerInfo");
             //print($"PlayerDataSet => maxHP: {playerData.maxHP}, damage: {playerData.damage}, experience: {playerData.experience}");

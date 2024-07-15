@@ -30,8 +30,6 @@ public class PlayerInfo : MonoBehaviour, IHitable
 /*
  죽음 - MW@Death04
 
-공격 - 1H-RH@Attack01 , 02, 03
-
 피격 - 1H@TakeDamage02, 05
  */
 

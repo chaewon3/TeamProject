@@ -4,11 +4,13 @@ using UnityEngine;
 
 public abstract class MonsterInfo : MonoBehaviour
 {
+    public static MonsterInfo instance;
 
     // 인스펙터에서 설정할 수 있는 거
     public float _maxHP;
     public float _currentHP;
     public float _attackDamage;
+    public float _moveSpeed;
 
     public float _attackDetectRange;
     public float _returnStopRange;
@@ -19,7 +21,7 @@ public abstract class MonsterInfo : MonoBehaviour
     // 배열 설정
     protected virtual void Awake()
     {
-
+        instance = this;
     }
 
 

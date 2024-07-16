@@ -8,21 +8,22 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     public PlayerData playerData;
-    public Dictionary<int, Inventory> dicInventory;
+    public Inventory inventoryData;
 
     void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
 
         playerData = PlayerFileLoad("PlayerInfo");
-
+        inventoryData = InventoryFileLoad("inventoryData");
     }
 
-    void Start()
-    {
-        
-    }
 
     public void PlayerInfoSave(float maxHP, float dmg, float exp)
     {
@@ -34,12 +35,13 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(path, json);
     }
 
-    //void Save()
-    //{
-    //    string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
-    //    string json = JsonUtility.ToJson(playerData);
-    //    File.WriteAllText(path, json);
-    //}
+    
+    public void InventorySave()
+    {
+        string path = $"{Application.streamingAssetsPath}/inventoryData.json";
+        string json = JsonUtility.ToJson(inventoryData);
+        File.WriteAllText(path, json);
+    }
 
     public PlayerData PlayerFileLoad(string fileName)
     {
@@ -59,6 +61,26 @@ public class DataManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public Inventory InventoryFileLoad(string fileName)
+    {
+        DirectoryInfo di = new DirectoryInfo(Application.streamingAssetsPath);
+
+        foreach(FileInfo file in di.GetFiles())
+        {
+            if(file.Name == $"{fileName}Data.Json")
+            {
+                string path = $"{Application.streamingAssetsPath}/{fileName}Data.json";
+
+                if(File.Exists(path) && file.Extension == ".json")
+                {
+                    string json = File.ReadAllText(path);
+                    return JsonUtility.FromJson<Inventory>(json);
+                }
+            }
+        }
+        return new Inventory();
     }
 
     //void firstDataSave()
@@ -83,8 +105,11 @@ public class PlayerData
 [System.Serializable]
 public class Inventory
 {
+    // 인벤토리나 장비 슬롯 등 가지고 있는 아이템은 ID로만 구별
     public int[] equipSlots = new int[3];
     public int[] ArtifactsSlots = new int[3];
-    //public List<Item> InvenSlots = new List<Item>();
+    public List<int> InvenSlots = new List<int>();
+    // 인벤토리 List에 들어있는 아이템 ID를 키워드로 저장해 둔 고유 ItemData를 불러옴
+    public Dictionary<int, ItemData> Items = new Dictionary<int, ItemData>();
 
 }

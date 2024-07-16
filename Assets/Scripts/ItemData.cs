@@ -2,41 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemData : MonoBehaviour
+// 플래그 쓸지 조금더 생각해봐야 할 듯
+[System.Flags]
+public enum ItemType
 {
-    public Item itemdatas;
-    private Dictionary<int, Item> dicItemDatas;
-    private void Awake()
-    {
-        
-    }
+    /// <summary>
+    /// 0b는 숫자는 10진수와 구분하기 위함
+    /// 인벤토리 토글/장착슬롯을 위해 분류했음
+    /// </summary>
+    Equipment_ARMOR     = 0b1,
+    Equipment_SWORD     = 0b10,
+    Equipment_BOW       = 0b100,
+
+    Consumable          = 0b1000,
+    Artifact            = 0b10000,
+    Etc                 = 0b100000
 }
 
-[System.Serializable]
-public class Item
+public enum InchantType
 {
+    Test1,
+    Test2,
+    Test3
+}
+
+public enum effect
+{
+    Test1,
+    Test2,
+    Test3
+}
+
+public abstract class ItemData : ScriptableObject
+{
+    public ItemType type;
     public int id;
     public string name;
-    public string nameSpr;
-    public string desc;
-    public int price;
-    public int classification;
+    public Sprite ItemSpr;
+    [TextArea(5, 10)]
+    public string description;
+    public bool CanOverlap;
 }
 
-public class Equipment : Item
+[CreateAssetMenu(fileName = "Item", menuName = "Add Item/Equipment")]
+public class Equipment : ItemData
 {
     public int DEF;
     public int ATK;
-    public int Inchant;
+    public InchantType Inchant;
 }
 
-public class Artipacts : Item
+[CreateAssetMenu(fileName = "Item", menuName = "Add Item/Consumable")]
+public class Consumable : ItemData
 {
     public int count;
+    public float coolTime;
+    public effect effect;
 }
 
-public class Expendables : Item
-{
-    public int count;
-    public int efficacy;
-}
+

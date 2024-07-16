@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour, IHitable
 {
     PlayerData playerData;
-    // todo json에서 가져온 값으로 maxHp, dmg 초기화
     float maxHealth; 
     float currentHealth;
     float damage;
     float experience;
+    int level;
     List<PlayerData> asd = new List<PlayerData>(); 
 
     void Awake()
@@ -19,7 +19,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
         currentHealth = maxHealth;
         damage = playerData.damage;
         experience = playerData.experience;
-        print($"PlayerDataSet => maxHP: {maxHealth}, damage: {damage}, experience: {experience}");
+        level = playerData.level;
+        print($"PlayerDataSet => maxHP: {maxHealth}, damage: {damage}, experience: {experience}, level: {level}");
     }
 
     public void Hit(float damage)

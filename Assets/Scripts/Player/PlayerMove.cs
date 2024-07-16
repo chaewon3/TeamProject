@@ -102,12 +102,14 @@ public class PlayerMove : MonoBehaviour
                 weapon[1].SetActive(false);
                 playerAnimator.SetBool("SwordForm", true);
                 weapon[0].SetActive(true);
+                playerAnimator.SetLayerWeight(1, 0);
                 break;
             case State.Bow:
                 playerAnimator.SetBool("SwordForm", false);
                 weapon[0].SetActive(false);
                 playerAnimator.SetBool("BowForm", true);
                 weapon[1].SetActive(true);
+                playerAnimator.SetLayerWeight(1, 1);
                 break;
         }
     }

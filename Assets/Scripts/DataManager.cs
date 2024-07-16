@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
+    [HideInInspector]
     public PlayerData playerData;
     public Inventory inventoryData;
 
@@ -25,12 +26,13 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void PlayerInfoSave(float maxHP, float dmg, float exp)
+    public void PlayerInfoSave(float maxHP, float dmg, float exp, int level)
     {
         string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
         playerData.maxHP = maxHP;
         playerData.damage = dmg;
         playerData.experience = exp;
+        playerData.level = level;
         string json = JsonUtility.ToJson(playerData);
         File.WriteAllText(path, json);
     }
@@ -100,6 +102,7 @@ public class PlayerData
     public float maxHP;
     public float damage;
     public float experience;
+    public int level;
 }
 
 [System.Serializable]

@@ -17,15 +17,13 @@ public class PlayerBowAttack : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(1))
-        {
-            print("누르고 있는중");
-            player.state = State.Bow;
-            
-        }
-
         if(Input.GetMouseButtonDown(1))
+        {
+            if (player.state != State.Bow)
+                player.state = State.Bow;
+
             playerAnimator.SetTrigger("Charge");
+        }           
 
         if (Input.GetMouseButtonUp(1))
         {
@@ -38,8 +36,7 @@ public class PlayerBowAttack : MonoBehaviour
 
     IEnumerator Arrow()
     {
-        print("arrow 코루틴 들어옴");
-        //playerAnimator.SetTrigger("Attack");
+
         yield return new WaitForSeconds(shootClip.length);
 
         playerAnimator.SetBool("Charge", false);
@@ -47,3 +44,14 @@ public class PlayerBowAttack : MonoBehaviour
         arrow = null;
     }
 }
+
+/*
+ if(Input.GetMouseButton(1))
+        {
+            if(player.state != State.Bow)
+                player.state = State.Bow;
+        }
+
+        if(Input.GetMouseButtonDown(1))
+            playerAnimator.SetTrigger("Charge");
+ */

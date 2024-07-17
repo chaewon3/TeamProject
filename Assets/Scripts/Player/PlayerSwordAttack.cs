@@ -30,22 +30,38 @@ public class PlayerSwordAttack : MonoBehaviour
         {
             if (comboing)
             {
-                playerAnimator.SetBool("CanAtk", false);
+                //playerAnimator.SetBool("CanAtk", false);
 
-                //if (attackCoroutine != null)
-                //    StopCoroutine(attackCoroutine);
+                if (attackCoroutine != null)
+                {
+                    StopCoroutine(attackCoroutine);
+                    playerAnimator.SetBool("CanAtk", false);
+                    attackCoroutine = null;
+                }
+                    
 
                 if (comboCoroutine != null && comboCount < 2)
                 {
                     StopCoroutine(comboCoroutine);
+                    playerAnimator.SetBool("CanAtk", false);
                     comboCoroutine = null;
                 }
 
-                if (comboCoroutine == null)//&& comboCount < 2
+                if (comboCoroutine == null)
+                {
+                    
+                        
+
                     comboCoroutine = StartCoroutine(AddCombo());
+                }
+                    
             }
             else
             {
+                //comboing = true;
+                //if (comboCoroutine == null)
+                //    comboCoroutine = StartCoroutine(AddCombo());
+
                 if (attackCoroutine == null)
                     attackCoroutine = StartCoroutine(StartAttack());
             }
@@ -61,19 +77,19 @@ public class PlayerSwordAttack : MonoBehaviour
     /// 현재 공격 애니메이션이 끝나기 전에 공격 시 콤보 공격 발동
     /// </summary>
     IEnumerator AddCombo()
-    {
-        print("콤보");
-        
+    {   
         player.MoveChange(false);
         playerAnimator.SetBool("Combo", comboing);
         comboCount++;
         yield return new WaitForSeconds(attakClip[comboCount].length);
-        print($"comboCount: {comboCount}, attakClip.Length: {attakClip[comboCount].length}");
+        //print($"comboCount: {comboCount}, attakClip.Length: {attakClip[comboCount].length}");
 
         comboing = false;
         comboCount = -1;
         playerAnimator.SetBool("Combo", comboing);
         print("아닛! 벌써 여기까지 도달했다고");
+
+        yield return new WaitForEndOfFrame();
         playerAnimator.SetBool("CanAtk", true);
 
         player.MoveChange(true);
@@ -85,12 +101,13 @@ public class PlayerSwordAttack : MonoBehaviour
     /// </summary>
     IEnumerator StartAttack()
     {
-        print("첫 공격");
         comboing = true;
         yield return new WaitForEndOfFrame();
-        playerAnimator.SetBool("CanAtk", false);
 
+        playerAnimator.SetBool("CanAtk", false);
         yield return new WaitForSeconds(attakClip[0].length);
+
+        print("다시 때릴 수 있어");
         playerAnimator.SetBool("CanAtk", true);
         comboing = false;
         attackCoroutine = null;
@@ -159,5 +176,38 @@ public class PlayerSwordAttack : MonoBehaviour
 
         //yield return new WaitForSeconds(attakClip[0].length);
         attackCoroutine = null;
+    }
+==============================
+
+void Update()
+    {
+        if (player.state == State.Sword && Input.GetMouseButtonDown(0))
+        {
+            if (comboing)
+            {
+                playerAnimator.SetBool("CanAtk", false);
+
+                //if (attackCoroutine != null)
+                //    StopCoroutine(attackCoroutine);
+
+                if (comboCoroutine != null && comboCount < 2)
+                {
+                    StopCoroutine(comboCoroutine);
+                    comboCoroutine = null;
+                }
+
+                if (comboCoroutine == null)//&& comboCount < 2
+                    comboCoroutine = StartCoroutine(AddCombo());
+            }
+            else
+            {
+                if (attackCoroutine == null)
+                    attackCoroutine = StartCoroutine(StartAttack());
+            }
+
+            
+
+            playerAnimator.SetTrigger("Attack");
+        }
     }
  */

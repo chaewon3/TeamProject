@@ -42,6 +42,7 @@ public class PlayerSwordAttack : MonoBehaviour
 
                 if (comboCoroutine != null && comboCount < 2)
                 {
+                    print("마지막 공격");
                     StopCoroutine(comboCoroutine);
                     playerAnimator.SetBool("CanAtk", false);
                     comboCoroutine = null;
@@ -49,9 +50,6 @@ public class PlayerSwordAttack : MonoBehaviour
 
                 if (comboCoroutine == null)
                 {
-                    
-                        
-
                     comboCoroutine = StartCoroutine(AddCombo());
                 }
                     

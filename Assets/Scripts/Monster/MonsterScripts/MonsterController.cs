@@ -30,14 +30,14 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     GameObject PlayerObject;
     Transform _characterTransfrom;
 
-
+    Animator animator;
 
     // 상속받은 스크립트에서 재정의할 것 다 하고 base.Awake() 해야 함
     // 본인의 위치와 각자의 MaxHp만큼 현재 체력을 설정하게 해놓음
     // ㄴ start에서 
     protected virtual void Awake()
     {
-
+        animator = GetComponent<Animator>();
     }
 
 
@@ -179,6 +179,9 @@ public abstract class MonsterController : MonoBehaviour, IHitable
             // 여기서 isMove = false를 하지 않고 스킬이나 공격 쪽에서 해당 애니메이션동안 false로 바꾸기만 하면 될 듯
 
             _isMove = false;
+
+            animator.SetBool("IsMove", false);
+
             int rndValue = SelectPattern();
 
             StartCoroutine(doSomething(rndValue));
@@ -241,6 +244,8 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         _characterTransfrom = PlayerObject.transform;
 
         _isMove = true;
+
+        animator.SetBool("IsMove", true);
     }
 
     // 캐릭터가 트리거 밖으로 나갔을 때 호출할 함수

@@ -14,7 +14,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
     public MONSTER_TYPE monster_type;
 
-    public List<int> patturnIndexes;
+    public List<System.Enum> patturnIndexes;
 
     // _characterGotIntoArea가 true가 되고, _isMove가 true 가 될 때
     // 움직일 수 있게 사용

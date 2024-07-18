@@ -9,7 +9,6 @@ public class MeleeAttackState : EnemyAttackState
     public override void Enter()
     {
         print("Bossattackstate");
-        monsterController.StartCoroutine(Attack());
     }
 
     public override void Update()
@@ -25,13 +24,17 @@ public class MeleeAttackState : EnemyAttackState
         // 상태 종료 시의 처리
     }
 
-    private IEnumerator Attack()
-    {
-        while (true)
-        {
 
-            // 공격 로직
-            yield return new WaitForSeconds(5.0f);
+    protected override void PatternCooltime(System.Enum @enum)
+    {
+        REGULAR_MONSTER_ATTACK_BEHAVIOUR regularPattern = (REGULAR_MONSTER_ATTACK_BEHAVIOUR)@enum;
+
+        switch (regularPattern)
+        {
+            case REGULAR_MONSTER_ATTACK_BEHAVIOUR.REGULAR_MONSTER_ATTACK:
+                break;
+            default:
+                break;
         }
     }
 }

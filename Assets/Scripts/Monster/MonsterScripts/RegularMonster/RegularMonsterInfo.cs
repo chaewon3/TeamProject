@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class RegularMonsterInfo : MonsterInfo
 {
-
-
     protected override void Awake()
     {
         base.Awake();
-        // °ø°Ý¸¸?
-        _monsterBehaviourPool = new bool[] { true };
     }
+
+    void InitializeBehaviourPool()
+    {
+        _monsterBehaviourPool[REGULAR_MONSTER_ATTACK_BEHAVIOUR.REGULAR_MONSTER_ATTACK] = true;
+    }
+}
+
+
+public enum REGULAR_MONSTER_ATTACK_BEHAVIOUR
+{
+    REGULAR_MONSTER_ATTACK
 }

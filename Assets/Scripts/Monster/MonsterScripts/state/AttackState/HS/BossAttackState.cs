@@ -24,13 +24,20 @@ public class BossAttackState : EnemyAttackState
         // 상태 종료 시의 처리
     }
 
-    private IEnumerator Attack()
+    protected override void PatternCooltime(System.Enum @enum)
     {
-        while (true)
-        {
+        BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-            // 공격 로직
-            yield return new WaitForSeconds(5.0f);
+        switch (bossPattern)
+        {
+            case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK:
+                break;
+            case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
+                break;
+            case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2:
+                break;
+            default:
+                break;
         }
     }
 }

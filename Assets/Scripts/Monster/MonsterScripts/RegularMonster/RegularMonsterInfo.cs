@@ -10,6 +10,6 @@ public class RegularMonsterInfo : MonsterInfo
     {
         base.Awake();
         // °ø°Ý¸¸?
-        _monsterBehaviourPool = new int[] { 0 };
+        _monsterBehaviourPool = new bool[] { true };
     }
 }

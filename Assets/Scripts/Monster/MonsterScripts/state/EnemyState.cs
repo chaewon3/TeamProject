@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class EnemyState : MonoBehaviour
 {
-    protected MonsterController monsterState;
+    protected MonsterController monsterController;
 
     public EnemyState(MonsterController monsterState)
     {
-        this.monsterState = monsterState;
+        this.monsterController = monsterState;
     }
 
     public abstract void Enter();

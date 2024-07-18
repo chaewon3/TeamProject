@@ -14,9 +14,10 @@ public abstract class MonsterInfo : MonoBehaviour
 
     public float _attackDetectRange;
     public float _returnStopRange;
+    public float _MaxChasingRange;
 
     // 상속받는 몬스터나 보스 몬스터 스크립트에서 재정의 (패턴의 개수만큼)
-    public int[] _monsterBehaviourPool;
+    public bool[] _monsterBehaviourPool;
 
     // 배열 설정
     protected virtual void Awake()

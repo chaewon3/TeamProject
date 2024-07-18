@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class CharaterEnterTriggerTest : MonoBehaviour
 {
-    public GameObject aa;
+    public GameObject[] aa;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            //print("Player In");
-            aa.GetComponent<MonsterController>().LoadCharacterObject(other.gameObject);
-            aa.GetComponent<MonsterController>().CharacterGotIntoArea();
+
+            for (int i = 0; i < aa.Length; i++)
+            {
+                aa[i].GetComponent<MonsterController>().LoadCharacterObject(other.gameObject);
+                aa[i].GetComponent<MonsterController>().CharacterGotIntoArea();
+            }
         }
     }
 
@@ -21,8 +24,13 @@ public class CharaterEnterTriggerTest : MonoBehaviour
         if (other.tag == "Player")
         {
             //print("Player Out");
-            aa.GetComponent<MonsterController>().CharacterGotOutArea();
-            aa.GetComponent<MonsterController>().SetCharacterTransformNull();
+
+            for (int i = 0; i < aa.Length; i++)
+            {
+
+                aa[i].GetComponent<MonsterController>().CharacterGotOutArea();
+                aa[i].GetComponent<MonsterController>().SetCharacterTransformNull();
+            }
         }
     }
 

@@ -42,9 +42,9 @@ public class BossMonsterController : MonsterController
         print($"{index}번 index");
 
         yield return new WaitForSeconds(2.0f);
-        monsterInfo._monsterBehaviourPool[index] = 0;
+        MonsterInfo.instance._monsterBehaviourPool[index] = true;
 
-        print($"{index}번 index 값{monsterInfo._monsterBehaviourPool[index]}");
+        print($"{index}번 index 값{MonsterInfo.instance._monsterBehaviourPool[index]}");
     }
 
 }

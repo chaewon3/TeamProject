@@ -44,6 +44,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        // todo canmove gameManager로 뺴도 될지
         if(canMove)
         {
             #region 이동

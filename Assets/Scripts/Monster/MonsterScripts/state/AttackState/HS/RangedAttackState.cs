@@ -9,9 +9,6 @@ public class RangedAttackState : EnemyAttackState
     public override void Enter()
     {
         print("Bossattackstate");
-        monsterController.StartCoroutine(Attack());
-
-
     }
 
     public override void Update()
@@ -27,15 +24,16 @@ public class RangedAttackState : EnemyAttackState
         // 상태 종료 시의 처리
     }
 
-    private IEnumerator Attack()
+    protected override void PatternCooltime(System.Enum @enum)
     {
-        while (true)
-        {
+        REGULAR_MONSTER_ATTACK_BEHAVIOUR regularPattern = (REGULAR_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-            // 공격 로직
-            yield return new WaitForSeconds(5.0f);
+        switch (regularPattern)
+        {
+            case REGULAR_MONSTER_ATTACK_BEHAVIOUR.REGULAR_MONSTER_ATTACK:
+                break;
+            default:
+                break;
         }
     }
-
-    
 }

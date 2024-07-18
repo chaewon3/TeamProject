@@ -10,10 +10,21 @@ public class BossMonsterInfo : MonsterInfo
     {
         base.Awake();
 
-        // 행동의 개수 만큼 (공격1, 공격2, 스킬1 등)(움직이는 행동은 여기에 넣지 말고 일정 거리 이상 멀어졌을 때는 무조건 이동?) 배열 인덱스 개수 설정
-        _monsterBehaviourPool = new bool[] { true, true, true, true};
-
+        InitializeBehaviourPool();
     }
 
+    void InitializeBehaviourPool()
+    {
+        _monsterBehaviourPool[BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK] = true;
+        _monsterBehaviourPool[BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1] = true;
+        _monsterBehaviourPool[BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2] = true;
+    }
 
+}
+
+public enum BOSS_MONSTER_ATTACK_BEHAVIOUR
+{
+    BOSS_MONSTER_ATTACK,
+    BOSS_MONSTER_SKILL_1,
+    BOSS_MONSTER_SKILL_2
 }

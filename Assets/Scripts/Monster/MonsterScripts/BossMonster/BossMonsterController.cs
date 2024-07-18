@@ -5,47 +5,47 @@ using UnityEngine;
 public class BossMonsterController : MonsterController
 {
 
-    protected override IEnumerator doSomething(int index)
-    {
-        _doingSomeAction = true;
+    //protected override IEnumerator doSomething(int index)
+    //{
+    //    _doingSomeAction = true;
 
-        print(index);
-        switch (index)
-        {
-            case 0:
-                StartCoroutine(attack(index));
-                break;
-            case 1:
-                StartCoroutine(attack(index)); 
-                break;
-            case 2:
-                StartCoroutine(attack(index)); 
-                break;
-            case 3:
-                StartCoroutine(attack(index)); 
-                break;
-            case 4:
-                StartCoroutine(attack(index)); 
-                break;
-            default:
-                print("other Something");
-                break;
-        }
+    //    print(index);
+    //    switch (index)
+    //    {
+    //        case 0:
+    //            StartCoroutine(attack(index));
+    //            break;
+    //        case 1:
+    //            StartCoroutine(attack(index)); 
+    //            break;
+    //        case 2:
+    //            StartCoroutine(attack(index)); 
+    //            break;
+    //        case 3:
+    //            StartCoroutine(attack(index)); 
+    //            break;
+    //        case 4:
+    //            StartCoroutine(attack(index)); 
+    //            break;
+    //        default:
+    //            print("other Something");
+    //            break;
+    //    }
 
-        yield return new WaitForSeconds(2.0f);
-        _doingSomeAction = false;
-    }
+    //    yield return new WaitForSeconds(2.0f);
+    //    _doingSomeAction = false;
+    //}
 
 
-    IEnumerator attack(int index)
-    {
-        print($"{index}번 index");
+    //IEnumerator attack(int index)
+    //{
+    //    print($"{index}번 index");
 
-        yield return new WaitForSeconds(2.0f);
-        MonsterInfo.instance._monsterBehaviourPool[index] = true;
+    //    yield return new WaitForSeconds(2.0f);
+    //    MonsterInfo.instance._monsterBehaviourPool[index] = true;
 
-        print($"{index}번 index 값{MonsterInfo.instance._monsterBehaviourPool[index]}");
-    }
+    //    print($"{index}번 index 값{MonsterInfo.instance._monsterBehaviourPool[index]}");
+    //}
 
 }
 

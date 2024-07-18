@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour, IHitable
 {
+    #region 전역 변수 
     PlayerData playerData;
-    float maxHealth; 
+    float maxHealth;
     float currentHealth;
     float damage;
     float experience;
     int level;
-    List<PlayerData> asd = new List<PlayerData>(); 
+
+    [HideInInspector]
+    public int ArrowCount;
+    #endregion
+    // 플레이어 정보를 json으로 세이브 할때 화살은 playerBowAttack에서 따로 받아 와야함 
 
     void Awake()
     {
@@ -21,6 +26,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
         experience = playerData.experience;
         level = playerData.level;
         print($"PlayerDataSet => maxHP: {maxHealth}, damage: {damage}, experience: {experience}, level: {level}");
+
+        ArrowCount = playerData.ArrowCount;
     }
 
     public void Hit(float damage)

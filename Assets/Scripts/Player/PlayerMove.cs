@@ -20,7 +20,9 @@ public class PlayerMove : MonoBehaviour
     float mouseSensitivity = 200f;
     float dirX;
     float dirY;
+    Coroutine dushCoroutine;
 
+    [HideInInspector]
     public State state;
     public GameObject[] weapon;
     #endregion
@@ -76,9 +78,33 @@ public class PlayerMove : MonoBehaviour
             dirY = Mathf.Clamp(dirY, -90f, 90f);
             transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
             #endregion
+
+            #region 대시
+            if(Input.GetKeyDown(KeyCode.Space))// isground 조건 추가?
+            {
+                print("구릅니닷");
+                playerAnimator.SetTrigger("Dush"); 
+
+                if(dushCoroutine == null)
+                    dushCoroutine = StartCoroutine(Dush());
+            }
+            #endregion //누른 방향키에 따라 캐릭을 회전? 다른 애니메이션 찾기?
         }
 
         StateController(state);
+    }
+
+    IEnumerator Dush()
+    {
+        moveSpeed = 6;
+        charCont.height = 1f;
+        charCont.center = new Vector3(0, 0.54f, 0);
+        yield return new WaitForSeconds(0.8f); //AniClip.Length = 0.833f
+
+        moveSpeed = 3;
+        charCont.height = 1.88f;
+        charCont.center = new Vector3(0, 0.93f, 0);
+        dushCoroutine = null;
     }
 
     public void MoveChange(bool bValue)

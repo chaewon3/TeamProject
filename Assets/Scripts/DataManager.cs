@@ -26,13 +26,14 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void PlayerInfoSave(float maxHP, float dmg, float exp, int level)
+    public void PlayerInfoSave(float maxHP, float dmg, float exp, int level, int arrow) //todo 이거 배열로 파라미터 변경 할건지?
     {
         string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
         playerData.maxHP = maxHP;
         playerData.damage = dmg;
         playerData.experience = exp;
         playerData.level = level;
+        playerData.ArrowCount = arrow;
         string json = JsonUtility.ToJson(playerData);
         File.WriteAllText(path, json);
     }
@@ -110,6 +111,7 @@ public class PlayerData
     public float damage;
     public float experience;
     public int level;
+    public int ArrowCount;
 }
 
 [System.Serializable]

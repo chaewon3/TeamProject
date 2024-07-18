@@ -5,28 +5,31 @@ using UnityEngine;
 public class PlayerDataSaveTest : MonoBehaviour
 {
     PlayerData playerData;
+    Inventory inven;
 
     private void Awake()
     {
     }
     void Start()
     {
-        //playerData = DataManager.Instance.PlayerFileLoad("PlayerInfo");
-        //print($"PlayerDataSet => maxHP: {playerData.maxHP}, damage: {playerData.damage}, experience: {playerData.experience}");
-        //print(DataManager.Instance.inventoryData.Items[1]);
+        inven = DataManager.Instance.inventoryData;
+
     }
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             //DataManager.Instance.PlayerInfoSave(100f, 10f, 0f);
-
             //playerData = DataManager.Instance.FileLoad("PlayerInfo");
             //print($"PlayerDataSet => maxHP: {playerData.maxHP}, damage: {playerData.damage}, experience: {playerData.experience}");
-            ItemData item = Instantiate(ITemList.instance.ItemList[0]);
-            item.price = 500;
-            DataManager.Instance.inventoryData.Items.Add(1, item);
+            int num = Random.Range(0, 6);
+            //var json = JsonUtility.ToJson(ITemList.instance.ItemList[num]);
+            //var clone = ScriptableObject.CreateInstance<ItemData>();
+            //JsonUtility.FromJsonOverwrite(json, clone);
+            ItemDataSO item = Instantiate(ITemList.instance.ItemList[num]) as ItemDataSO;
+            print(item);
+            DataManager.Instance.inventoryData.Items.Add(inven.Items.Count, item);
         }
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -35,7 +38,7 @@ public class PlayerDataSaveTest : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.G))
         {
-            print(DataManager.Instance.inventoryData.Items[1].price);
+            print(DataManager.Instance.inventoryData.Items[1].name);
         }
     }
 }

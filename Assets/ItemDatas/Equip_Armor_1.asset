@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Equipment
   type: 0
   tableId: 1
-  name: "\uB098\uBB34\uAC11\uC637"
-  price: 100
+  name: "\uAE30\uBCF8\uAC11\uC637"
+  price: 50
   ItemSpr: {fileID: 21300000, guid: e7dcaa16f45e9734ab8be253fdfe6aa7, type: 3}
-  description: "\uD3C9\uBC94\uD55C \uB098\uBB34 \uAC11\uC637"
+  description: 
   DEF: 10
   ATK: 0
   Inchant: 000000000000000000000000

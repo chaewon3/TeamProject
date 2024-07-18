@@ -12,9 +12,9 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
     // _characterGotIntoArea가 true가 되고, _isMove가 true 가 될 때
     // 움직일 수 있게 사용
-    bool _isMove = false;
+    public bool _isMove = false;
 
-    protected bool _doingSomeAction = false;
+    public bool _doingSomeAction = false;
 
     // 맨 처음에 본인 참조하게
     //protected Transform _monsterOriginTransform;
@@ -22,15 +22,23 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     Vector3 _monsterOriginPosition;
     Quaternion _monsterOriginRotation;
 
+    EnemyState currentState;
+
 
     // trigger가 설정할 것 ()
     // 캐릭터 위치가 null 일때 본래 자리로 돌아가게 짜야할 듯
     // 얘네도 굳이 상속받은 애가 건들 필욘없을 것 같음
-    bool _characterGotIntoArea = false;
-    GameObject PlayerObject;
+    public bool _characterGotIntoArea = false;
+    public GameObject PlayerObject;
     Transform _characterTransfrom;
 
-    Animator animator;
+    public Animator animator;
+
+    public EnemyIdleState idleState;
+    public EnemyMoveState moveState;
+    public EnemyAttackState attackState;
+
+
 
     // 상속받은 스크립트에서 재정의할 것 다 하고 base.Awake() 해야 함
     // 본인의 위치와 각자의 MaxHp만큼 현재 체력을 설정하게 해놓음
@@ -210,6 +218,12 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
     }
 
+    public void TransitionToState(EnemyState newState)
+    {
+        currentState.Exit();
+        currentState = newState;
+        currentState.Enter();
+    }
 
     // trigger Enter에서 호출할 함수
     // 닭 무리 할 때처럼 한 방에서 모두 활성화 시키게 만들기
@@ -317,7 +331,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
                 if (_isMove)
                 {
                     // 움직이고 있다면 1초 후 위치 찾으러 가기
-                    //print("Searching Character");
+                    print("Searching Character");
 
                     yield return new WaitForSeconds(1.0f);
                 }
@@ -349,9 +363,14 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     {
         while (true)
         {
-            print("Monster Ratating");
-            transform.rotation = Quaternion.Slerp(transform.rotation, _monsterOriginRotation, 3.0f * Time.deltaTime);
-            yield return new WaitForSeconds(0.01f);
+            if (Quaternion.Angle(transform.rotation, _monsterOriginRotation) < 10.0f)
+            {
+                yield break;
+            }
+
+            print("Monster Rotating");
+            transform.rotation = Quaternion.Slerp(transform.rotation, _monsterOriginRotation, Time.deltaTime * 3.0f);
+            yield return null; // 매 프레임마다 대기
         }
     }
 }

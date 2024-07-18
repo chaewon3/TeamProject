@@ -14,7 +14,6 @@ public class BossMonsterController : MonsterController
         {
             case 0:
                 StartCoroutine(attack(index));
-
                 break;
             case 1:
                 StartCoroutine(attack(index)); 
@@ -32,18 +31,6 @@ public class BossMonsterController : MonsterController
                 print("other Something");
                 break;
         }
-
-        //switch (index)
-        //{
-        //    case (int)MonsterState.ONATTACK:
-        //        break;
-        //    case MonsterState.ONSKILL:
-        //        break;
-        //    default:
-        //        break;
-        //}
-
-
 
         yield return new WaitForSeconds(2.0f);
         _doingSomeAction = false;

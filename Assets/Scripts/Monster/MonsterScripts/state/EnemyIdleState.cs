@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyState
 {
-    //public EnemyIdleState(MonsterController character) : base(monsterState)
-    //{
-    //}
+    public EnemyIdleState(MonsterController character) : base(character)
+    {
+    }
 
     public override void Enter()
     {

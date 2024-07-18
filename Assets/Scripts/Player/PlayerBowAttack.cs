@@ -11,7 +11,6 @@ public class PlayerBowAttack : MonoBehaviour
     Coroutine ArrowCoroutine;
     ArrowPooling pool;
     int arrow;
-    int speed = 1200;
 
     public AnimationClip shootClip;
     public TextMeshProUGUI arrowText;
@@ -45,7 +44,7 @@ public class PlayerBowAttack : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 playerAnimator.SetTrigger("Attack");
-                Shoot();
+                pool.GetObj();
 
                 if (ArrowCoroutine == null)
                     ArrowCoroutine = StartCoroutine(Arrow());
@@ -53,23 +52,14 @@ public class PlayerBowAttack : MonoBehaviour
         } 
     }
 
-    void Shoot()
-    {
-        GameObject arrowObj = pool.GetObj();
-        if(arrowObj != null)
-        {
-            if (arrowObj.TryGetComponent(out Rigidbody rigidBody))
-                ApplyForce(rigidBody);
-            StartCoroutine(Despawn(arrowObj));
-            //또는 몬스터에 닿으면 set false
-        }
-    }
-
-    void ApplyForce(Rigidbody rigid)
-    {
-        Vector3 force = transform.forward * speed;
-        rigid.AddForce(force);
-    }
+    //void Shoot()
+    //{
+    //    GameObject arrowObj = pool.GetObj();
+    //    if(arrowObj != null)
+    //    {
+    //        StartCoroutine(Despawn(arrowObj));
+    //    }
+    //}
 
     IEnumerator Arrow()
     {
@@ -82,11 +72,11 @@ public class PlayerBowAttack : MonoBehaviour
         ArrowCoroutine = null;
     }
 
-    IEnumerator Despawn(GameObject obj)
-    {
-        yield return new WaitForSeconds(3f);
-        pool.ReturnObj(obj);
-    }
+    //IEnumerator Despawn(GameObject obj)
+    //{
+    //    yield return new WaitForSeconds(3f);
+    //    pool.ReturnObj(obj);
+    //}
 }
 
 /*
@@ -99,3 +89,5 @@ public class PlayerBowAttack : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
             playerAnimator.SetTrigger("Charge");
  */
+//if (arrowObj.TryGetComponent(out Rigidbody rigidBody))
+//    ApplyForce(rigidBody);

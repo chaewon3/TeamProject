@@ -6,7 +6,7 @@ public class ITemList : MonoBehaviour
 {
     public static ITemList instance;
 
-    public List<ItemData> ItemList;
+    public List<ItemDataSO> ItemList;
 
     private void Awake()
     {

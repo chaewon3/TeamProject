@@ -2,67 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+/// <summary>
+/// 플레이어가 습득하면 고유 ID를 가지며 
+/// 가변 데이터들을 저장가능하게 만든 데이터클래스
+/// </summary>
+public abstract class ItemData : MonoBehaviour
 {
-    Equipment_ARMOR     = 0b1,
-    Equipment_SWORD     = 0b10,
-    Equipment_BOW       = 0b100,
+    //가변데이터
+    public int UniqueID;
 
-    Consumable          = 0b1000,
-    Artifact            = 0b10000,
-    Etc                 = 0b100000
-}
-
-// todo 나중에 이름과 종류는 바꿔야 함
-public enum InchantType
-{
-    Test1,
-    Test2,
-    Test3
-}
-
-public enum effect
-{
-    Test1,
-    Test2,
-    Test3
-}
-
-// id 장비 1~10 소비 101~110 유물 201~210
-public abstract class ItemData : ScriptableObject
-{
+    //원본데이터
     public ItemType type;
     public int tableId;
     public string name;
     public int price;
-    public Sprite ItemSpr;
+   // sprite는 저장 못하므로 어떻게 해야할지 생각 필요
+    //public Sprite ItemSpr;
     [TextArea(5, 10)]
     public string description;
     protected bool CanOverlap;
+
+    public void SetData(ItemDataSO SO)
+    {
+        type = SO.type;
+        tableId = SO.tableId;
+        name = SO.name;
+        price = SO.price;
+        description = SO.description;
+    }
 }
 
-[CreateAssetMenu(fileName = "Item", menuName = "Add Item/Equipment")]
 public class Equipment : ItemData
 {
     public int DEF;
     public int ATK;
-    public InchantType[] Inchant = new InchantType[3];
-    private void Awake()
-    {
-        CanOverlap = false;
-    }
+    public InchantType Inchant;
 }
 
-[CreateAssetMenu(fileName = "Item", menuName = "Add Item/Consumable")]
 public class Consumable : ItemData
 {
+    //가변 데이터
     public int count;
+
+    // 원본 데이터
     public float coolTime;
     public effect effect;
-    private void Awake()
+
+    public void SetData(ConsumableDataSO SO)
     {
-        CanOverlap = true;
+        base.SetData(SO);
+        coolTime = SO.coolTime;
+        effect = SO.effect;
     }
 }
-
-

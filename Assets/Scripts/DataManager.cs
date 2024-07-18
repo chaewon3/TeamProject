@@ -41,7 +41,9 @@ public class DataManager : MonoBehaviour
     
     public void InventorySave()
     {
+        inventoryData.Save();
         string path = $"{Application.streamingAssetsPath}/inventoryData.json";
+        print(inventoryData.Items[1].name);
         string json = JsonUtility.ToJson(inventoryData);
         File.WriteAllText(path, json);
     }
@@ -68,21 +70,26 @@ public class DataManager : MonoBehaviour
 
     public Inventory InventoryFileLoad(string fileName)
     {
+        inventoryData.Load();
         DirectoryInfo di = new DirectoryInfo(Application.streamingAssetsPath);
-
-        foreach(FileInfo file in di.GetFiles())
+        foreach (FileInfo file in di.GetFiles())
         {
-            if(file.Name == $"{fileName}Data.Json")
+            if (file.Name == $"{fileName}.json")
             {
-                string path = $"{Application.streamingAssetsPath}/{fileName}Data.json";
+                print("2");
+
+                string path = $"{Application.streamingAssetsPath}/{fileName}.json";
 
                 if(File.Exists(path) && file.Extension == ".json")
                 {
+                    print("3");
+
                     string json = File.ReadAllText(path);
                     return JsonUtility.FromJson<Inventory>(json);
                 }
             }
         }
+        print("못찾았음");
         return new Inventory();
     }
 
@@ -113,8 +120,29 @@ public class Inventory
     // 인벤토리나 장비 슬롯 등 가지고 있는 아이템은 ID로만 구별
     public int[] equipSlots = new int[3];
     public int[] ArtifactsSlots = new int[3];
-    public List<int> InvenSlots = new List<int>();
+    public List<int> ItemId = new List<int>();
+    public List<ItemDataSO> ItemList = new List<ItemDataSO>();
+
     // 인벤토리 List에 들어있는 아이템 ID를 키워드로 저장해 둔 고유 ItemData를 불러옴
-    public Dictionary<int, ItemData> Items = new Dictionary<int, ItemData>();
+    public Dictionary<int, ItemDataSO> Items = new Dictionary<int, ItemDataSO>();
+
+    public void Load()
+    {
+        for(int i = 0; i< ItemId.Count;i++)
+        {
+            Items.Add(ItemId[i], ItemList[i]);
+        }
+    }
+
+    public void Save()
+    {
+        ItemId.Clear();
+        ItemList.Clear();
+        for(int i = 0; i< Items.Count; i++)
+        {
+            ItemId.Add(i);
+            ItemList.Add(Items[i]);
+        }
+    }
 
 }

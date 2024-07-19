@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         Player = FindObjectOfType<PlayerMove>();
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         if (Instance == null)
         {
             Instance = this;
@@ -32,11 +33,15 @@ public class GameManager : MonoBehaviour
     public void MouseLock(bool Lock)
     {
         if (Lock)
+        {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         else
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
     }
 

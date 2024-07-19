@@ -12,18 +12,23 @@ public class Arrow : MonoBehaviour
     int speed = 1200;//1200
     ArrowPooling pool;
 
+    bool end = false;
+    LayerMask targetMask;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
         pool = FindObjectOfType<ArrowPooling>();
+
+        targetMask = (1 << LayerMask.NameToLayer("Enemy"));
     }
 
     void OnEnable()
     {
         collider.enabled = true;
-        Vector3 force = transform.up * speed;
-        rigid.AddForce(force);
+        //Vector3 force = transform.up * speed;
+        //rigid.AddForce(force);
         StartCoroutine(Despawn());
     }
 
@@ -33,45 +38,71 @@ public class Arrow : MonoBehaviour
         rigid.isKinematic = false;
     }
 
-    //void OnTriggerEnter(Collider obj)
-    //{
-    //    print("명중");
-    //    if ((targetLayer | (1 << obj.gameObject.layer)) != targetLayer)
-    //    {
-    //        print("너에게 줄건 아무것도 없다.");
-    //        return;
-    //    }
-
-    //    if (obj.TryGetComponent<IHitable>(out IHitable hitable))
-    //    {
-    //        hitable.Hit(dmg);
-    //    }
-
-    //    rigid.isKinematic = true;
-    //    rigid.velocity = Vector3.zero;
-    //    transform.SetParent(obj.transform);
-    //    collider.enabled = false;
-
-    //}
-
-    void OnCollisionEnter(Collision obj)
+    void Update()
     {
-        print("명중");
-        if ((targetLayer | (1 << obj.collider.gameObject.layer)) != targetLayer)
+        //Ray ray = new Ray(transform.position, transform.forward);
+        //RaycastHit hit;
+
+        //if (Physics.Raycast(ray, out hit, speed * Time.deltaTime))
+        //{
+        //    // 충돌 지점으로 화살 이동
+        //    transform.position = hit.point;
+        //    // 화살 멈추기
+        //    rigid.velocity = Vector3.zero;
+        //}
+        //else
+        //{
+        //    // 화살 이동
+        //    transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //}
+
+        end = Physics.Raycast(transform.position, Vector3.forward, 0.2f, targetMask);
+
+        if (!end)
+        {
+            print("화살 레이어 마스크 작동중");
+            Vector3 force = transform.up * speed;
+            rigid.AddForce(force);
+        }
+    }
+
+    void OnTriggerEnter(Collider obj)
+    {
+        if ((targetLayer | (1 << obj.gameObject.layer)) != targetLayer)
         {
             print("너에게 줄건 아무것도 없다.");
             return;
         }
 
-        if (obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
+        if (obj.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
         }
 
+        rigid.isKinematic = true;
+        rigid.velocity = Vector3.zero;
         transform.SetParent(obj.transform);
         collider.enabled = false;
-        rigid.isKinematic = true;
     }
+
+    //void OnCollisionEnter(Collision obj)
+    //{
+    //    print("명중");
+    //    if ((targetLayer | (1 << obj.collider.gameObject.layer)) != targetLayer)
+    //    {
+    //        print("너에게 줄건 아무것도 없다.");
+    //        return;
+    //    }
+
+    //    if (obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
+    //    {
+    //        hitable.Hit(dmg);
+    //    }
+
+    //    transform.SetParent(obj.transform);
+    //    collider.enabled = false;
+    //    rigid.isKinematic = true;
+    //}
 
     IEnumerator Despawn()
     {

@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 3f;
     CharacterController charCont;
     Animator playerAnimator;
+
+    [HideInInspector]
     public bool canMove = true;
 
     public float dirSpeed; // 나중에 지울거 
@@ -122,26 +124,30 @@ public class PlayerMove : MonoBehaviour
 
     void StateController(State state)
     {
-        if(canMove)
+        switch (state)
         {
-            switch (state)
-            {
-                case State.Sword:
-                    playerAnimator.SetBool("BowForm", false);
-                    weapon[1].SetActive(false);
-                    playerAnimator.SetBool("SwordForm", true);
-                    weapon[0].SetActive(true);
-                    playerAnimator.SetLayerWeight(1, 0);
-                    break;
-                case State.Bow:
-                    playerAnimator.SetBool("SwordForm", false);
-                    weapon[0].SetActive(false);
-                    playerAnimator.SetBool("BowForm", true);
-                    weapon[1].SetActive(true);
-                    playerAnimator.SetLayerWeight(1, 1);
-                    break;
-            }
-        } 
+            case State.Sword:
+                playerAnimator.SetBool("BowForm", false);
+                weapon[1].SetActive(false);
+                playerAnimator.SetBool("SwordForm", true);
+                weapon[0].SetActive(true);
+                playerAnimator.SetLayerWeight(1, 0);
+                break;
+            case State.Bow:
+                playerAnimator.SetBool("SwordForm", false);
+                weapon[0].SetActive(false);
+                playerAnimator.SetBool("BowForm", true);
+                weapon[1].SetActive(true);
+                playerAnimator.SetLayerWeight(1, 1);
+                break;
+            case State.Town:
+                playerAnimator.SetBool("BowForm", false);
+                playerAnimator.SetBool("SwordForm", false);
+                weapon[0].SetActive(false);
+                weapon[1].SetActive(false);
+                playerAnimator.SetLayerWeight(1, 0);
+                break;
+        }
     }
 }
 
@@ -149,5 +155,5 @@ public enum State
 {
     Sword,
     Bow,
-    Incentory
+    Town
 }

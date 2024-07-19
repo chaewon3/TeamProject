@@ -64,8 +64,6 @@ public class PlayerSwordAttack : MonoBehaviour
                     attackCoroutine = StartCoroutine(StartAttack());
             }
 
-            
-
             playerAnimator.SetTrigger("Attack");
         }
     }

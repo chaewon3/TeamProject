@@ -13,22 +13,19 @@ public class Arrow : MonoBehaviour
     ArrowPooling pool;
 
     bool end = false;
-    LayerMask targetMask;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
         pool = FindObjectOfType<ArrowPooling>();
-
-        targetMask = (1 << LayerMask.NameToLayer("Enemy"));
     }
 
     void OnEnable()
     {
         collider.enabled = true;
-        //Vector3 force = transform.up * speed;
-        //rigid.AddForce(force);
+        Vector3 force = transform.up * speed;
+        rigid.AddForce(force);
         StartCoroutine(Despawn());
     }
 
@@ -38,31 +35,14 @@ public class Arrow : MonoBehaviour
         rigid.isKinematic = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        //Ray ray = new Ray(transform.position, transform.forward);
-        //RaycastHit hit;
+        end = Physics.Raycast(transform.position, transform.up, 0.3f, targetLayer);
 
-        //if (Physics.Raycast(ray, out hit, speed * Time.deltaTime))
-        //{
-        //    // 충돌 지점으로 화살 이동
-        //    transform.position = hit.point;
-        //    // 화살 멈추기
-        //    rigid.velocity = Vector3.zero;
-        //}
-        //else
-        //{
-        //    // 화살 이동
-        //    transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        //}
-
-        end = Physics.Raycast(transform.position, Vector3.forward, 0.2f, targetMask);
-
-        if (!end)
+        if (end)
         {
-            print("화살 레이어 마스크 작동중");
-            Vector3 force = transform.up * speed;
-            rigid.AddForce(force);
+            print("화살 멈춰!");
+            rigid.velocity = Vector3.zero;
         }
     }
 
@@ -85,25 +65,6 @@ public class Arrow : MonoBehaviour
         collider.enabled = false;
     }
 
-    //void OnCollisionEnter(Collision obj)
-    //{
-    //    print("명중");
-    //    if ((targetLayer | (1 << obj.collider.gameObject.layer)) != targetLayer)
-    //    {
-    //        print("너에게 줄건 아무것도 없다.");
-    //        return;
-    //    }
-
-    //    if (obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
-    //    {
-    //        hitable.Hit(dmg);
-    //    }
-
-    //    transform.SetParent(obj.transform);
-    //    collider.enabled = false;
-    //    rigid.isKinematic = true;
-    //}
-
     IEnumerator Despawn()
     {
         yield return new WaitForSeconds(3f);
@@ -111,22 +72,3 @@ public class Arrow : MonoBehaviour
     }
 
 }
-
-// 화살에 트리거 활성화하고 ray로 벽에 쏴서 판정으로 하기 싫어도 바꾸기 
-/*
- void Update() {
-    Ray ray = new Ray(transform.position, transform.forward);
-    RaycastHit hit;
-
-    if (Physics.Raycast(ray, out hit, speed * Time.deltaTime)) {
-        // 충돌 지점으로 화살 이동
-        transform.position = hit.point;
-        // 화살 멈추기
-        rb.velocity = Vector3.zero;
-    }
-    else {
-        // 화살 이동
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
-}
- */

@@ -8,7 +8,10 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 3f;
     CharacterController charCont;
     Animator playerAnimator;
-    public bool canMove = false;
+
+    
+    public bool canMove = true;
+    public bool canRotat = true;
 
     public float dirSpeed; // 나중에 지울거 
 
@@ -60,25 +63,6 @@ public class PlayerMove : MonoBehaviour
             playerAnimator.SetFloat("Speed", moveDir.magnitude);
             #endregion
 
-            #region 중력 
-
-            isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
-
-            if (!isGrounded)
-            {
-                charCont.Move(transform.up * gravity * Time.deltaTime);
-            }
-            #endregion
-
-            #region 마우스 방향 회전
-
-            dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
-            
-            dirY = Mathf.Clamp(dirY, -90f, 90f);
-            transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
-            #endregion
-
             #region 대시
             if (Input.GetKeyDown(KeyCode.Space))// isground 조건 추가?
             {
@@ -89,6 +73,29 @@ public class PlayerMove : MonoBehaviour
                     dushCoroutine = StartCoroutine(Dush());
             }
             #endregion //누른 방향키에 따라 캐릭을 회전? 다른 애니메이션 찾기?
+        }
+
+        #region 중력 
+
+        isGrounded = Physics.Raycast(transGroundCheckPoint.position, Vector3.down, 0.2f, groundMask);
+        Debug.DrawRay(transGroundCheckPoint.position - Vector3.down * 0.05f, Vector3.down, Color.red ,0.2f);
+
+        if (!isGrounded)
+        {
+            charCont.Move(transform.up * gravity * Time.deltaTime);
+        }
+        #endregion
+
+        if(canRotat)
+        {
+            #region 마우스 방향 회전
+
+            dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+            dirY = Mathf.Clamp(dirY, -90f, 90f);
+            transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
+            #endregion
         }
 
         StateController(state); //이거 계속 호출하는거 뭔가 이상함 낭비 같은?

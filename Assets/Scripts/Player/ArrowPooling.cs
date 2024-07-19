@@ -12,9 +12,6 @@ public class ArrowPooling : MonoBehaviour
     List<GameObject> pool = new List<GameObject>();
     int count;
     int poolSize = 12;
-
-    Vector3 testPoint;
-    Vector3 testRota;
     #endregion
 
     void Awake()
@@ -25,15 +22,6 @@ public class ArrowPooling : MonoBehaviour
             arrowObj.SetActive(false);
             pool.Add(arrowObj);
         }
-    }
-
-    void Start()
-    {
-        testPoint = new Vector3(48.14f, 3.86f, -1.52f);
-        testRota = new Vector3(270f, 180f, 0f);
-
-        Vector3 test = prefab.transform.rotation.eulerAngles;
-        print(test);
     }
 
     public GameObject GetObj()
@@ -66,7 +54,5 @@ public class ArrowPooling : MonoBehaviour
     {
         obj.SetActive(false);
         obj.transform.SetParent(spawnObj.transform);
-        //obj.transform.position = testPoint;
-        //obj.transform.Rotate(testRota);
     }
 }

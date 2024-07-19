@@ -12,11 +12,6 @@ public class StartScene : MonoBehaviour
     public AnimationClip StandUp;
     public GameObject Stool;
 
-    private void Awake()
-    {
-        // 임시 나중에 canMove자체를 막을 것
-        Move.dirSpeed = 0;
-    }
     private void Start()
     {
         Cam1.Priority = 3;
@@ -30,8 +25,6 @@ public class StartScene : MonoBehaviour
         }
     }
 
-    // todo 여기 어딘가에서 나무통 뒤로 밀어야 할듯?
-    // 공격 애니메이션 좀 이상함
     IEnumerator gamestart()
     {
         Player.GetComponent<Animator>().SetTrigger("StandUp");
@@ -42,7 +35,7 @@ public class StartScene : MonoBehaviour
         Player.GetComponent<CharacterController>().enabled = true;
         Player.GetComponent<Animator>().SetLayerWeight(2, 0);
         yield return new WaitForSeconds(0.3f);
-        Move.dirSpeed = 2;
+        GameManager.Instance.CanMove(true);
         Destroy(this);
     }
 }

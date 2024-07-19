@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Player = GetComponent<PlayerMove>();
+        Player = FindObjectOfType<PlayerMove>();
         Cursor.lockState = CursorLockMode.Locked;
         if (Instance == null)
         {
@@ -26,10 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void CanMove(bool move)
     {
-        if (move)
-            Player.canMove = move;
-        else
-            Player.canMove = move;
+        Player.canMove = move;
     }
 
     public void MouseLock(bool Lock)

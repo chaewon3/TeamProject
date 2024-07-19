@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 3f;
     CharacterController charCont;
     Animator playerAnimator;
-    public bool canMove = true;
+    public bool canMove = false;
 
     public float dirSpeed; // 나중에 지울거 
 
@@ -74,13 +74,13 @@ public class PlayerMove : MonoBehaviour
 
             dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
             dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
+            
             dirY = Mathf.Clamp(dirY, -90f, 90f);
             transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
             #endregion
 
             #region 대시
-            if(Input.GetKeyDown(KeyCode.Space))// isground 조건 추가?
+            if (Input.GetKeyDown(KeyCode.Space))// isground 조건 추가?
             {
                 print("구릅니닷");
                 playerAnimator.SetTrigger("Dush"); 

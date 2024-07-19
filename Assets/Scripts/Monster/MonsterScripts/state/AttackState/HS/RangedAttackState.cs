@@ -8,20 +8,12 @@ public class RangedAttackState : EnemyAttackState
 
     public override void Enter()
     {
-        print("Bossattackstate");
-    }
-
-    public override void Update()
-    {
-        if (!monsterController._characterGotIntoArea)
-        {
-            monsterController.TransitionToState(monsterController.idleState);
-        }
+        base.Enter();
     }
 
     public override void Exit()
     {
-        // 상태 종료 시의 처리
+        base.Exit();
     }
 
     protected override void PatternCooltime(System.Enum @enum)

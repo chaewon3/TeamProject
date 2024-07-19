@@ -7,6 +7,8 @@ public class RegularMonsterInfo : MonsterInfo
     protected override void Awake()
     {
         base.Awake();
+
+        InitializeBehaviourPool();
     }
 
     void InitializeBehaviourPool()

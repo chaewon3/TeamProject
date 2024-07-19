@@ -19,14 +19,9 @@ public class EnemyIdleState : EnemyState
 
     public override void Update()
     {
-
-        if (monsterController._characterGotIntoArea)
+        if (monsterController._characterGotIntoArea || monsterController.monsterInfo._IsAttacked)
         {
-            print("character Got Into Area");
             monsterController.TransitionToState(monsterController.moveState);
         }
-
-
-
     }
 }

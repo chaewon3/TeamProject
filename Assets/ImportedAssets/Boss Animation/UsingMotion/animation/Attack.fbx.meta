@@ -389,7 +389,7 @@ ModelImporter:
     second: //RootNode
   - first:
       74: 7400000
-    second: Shield@ShieldAttack01
+    second: BossAttack
   - first:
       95: 9500000
     second: //RootNode
@@ -427,7 +427,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Shield@ShieldAttack01
+      name: BossAttack
       takeName: Shield@ShieldAttack01
       internalID: 0
       firstFrame: 0

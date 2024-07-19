@@ -8,14 +8,16 @@ public class EnemyAttackState : EnemyState
 {
     public EnemyAttackState(MonsterController character) : base(character) { }
 
+    static readonly int InPattern = Animator.StringToHash("InPattern");
+
     public override void Enter()
     {
-        SelectPattern();
+        monsterController.animator.SetBool(InPattern, true);
 
+        monsterController.animator.applyRootMotion = false;
+
+        PatternCooltime(SelectPattern());
     }
-
-    // 업데이트에선 아무것도 안하고 애니메이션에 있는 콜라이더를 활성화 해서 공격하기?
-    // 딱히 업데이트에서 할 건 없어보임
     public override void Update()
     {
         
@@ -23,11 +25,14 @@ public class EnemyAttackState : EnemyState
 
     public override void Exit()
     {
-        // 상태 종료 시의 처리
+        monsterController.animator.SetBool(InPattern, false);
+
+        monsterController.animator.applyRootMotion = true;
     }
 
     Enum SelectPattern()
     {
+        print("selected");
         monsterController.patturnIndexes = new List<Enum>();
         Enum randomKey = null;
 
@@ -40,7 +45,7 @@ public class EnemyAttackState : EnemyState
         {
             int randomIndex = UnityEngine.Random.Range(0, monsterController.patturnIndexes.Count);
             randomKey = monsterController.patturnIndexes[randomIndex];
-            monsterController.monsterInfo._monsterBehaviourPool[randomKey] = false;
+            
             return randomKey;
         }
 

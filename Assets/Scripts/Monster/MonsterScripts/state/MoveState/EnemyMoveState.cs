@@ -8,6 +8,7 @@ public class EnemyMoveState : EnemyState
 
     Coroutine searching;
 
+    static readonly int IsMove = Animator.StringToHash("IsMove");
 
     public override void Enter()
     {
@@ -16,13 +17,17 @@ public class EnemyMoveState : EnemyState
             searching = monsterController.StartCoroutine(SearchCharacter());
         }
 
+        monsterController.gameObject.transform.GetChild(0).transform.localPosition = new Vector3(0, 0, 0);
+        monsterController.gameObject.transform.GetChild(0).transform.localEulerAngles = new Vector3(0, 0, 0);
+
+
+        //print(monsterController.gameObject.transform.GetChild(0).name);
+
         monsterController.animator.applyRootMotion = false;
 
         monsterController._isMove = true;
 
-        monsterController.animator.SetBool("IsMove", true);
-
-        print("enter the Move State");
+        monsterController.animator.SetBool(IsMove, true);
     }
 
     public override void Update()
@@ -30,31 +35,55 @@ public class EnemyMoveState : EnemyState
 
         if (monsterController._isMove)
         {
-            if (monsterController._characterGotIntoArea && monsterController.PlayerObject != null && monsterController._characterTransfrom != null)
+            //monsterController.PlayerObject != null && monsterController._characterGotIntoArea && ↓
+            if (monsterController._characterTransfrom != null && (monsterController.monsterInfo._IsAttacked || monsterController._characterGotIntoArea))
             {
                 // 캐릭터에게로
-
-                if (monsterController.PlayerObject == null)
-                {
-                    print("wwww");
-                }
-
-                if (monsterController._characterTransfrom == null)
-                {
-                    print("sss");
-                }
+                //print("ToCharacter");
                 MonsterMove(monsterController._characterTransfrom.position, monsterController.monsterInfo._attackDetectRange, true);
+            }
+            else if((!monsterController.monsterInfo._IsAttacked || !monsterController._characterGotIntoArea))
+            {
+                // 원래 자리로
+                //print("ToOrigin");
+                MonsterMove(monsterController._monsterOriginPosition, monsterController.monsterInfo._returnStopRange, false);
+            }
+
+            if (!monsterController._characterGotIntoArea && monsterController.monsterInfo._IsAttacked && (Vector3.SqrMagnitude(monsterController._monsterOriginPosition - monsterController.transform.position) >= (monsterController.monsterInfo._MaxChasingRange * monsterController.monsterInfo._MaxChasingRange)))
+            {
+                monsterController.monsterInfo._IsAttacked = false;
+                monsterController._characterTransfrom = null;
+            }
+
+            if (!monsterController._characterGotIntoArea)
+            {
+                print("_characterGotIntoArea = false");
+            }
+            if (monsterController._characterTransfrom == null)
+            {
+                print("_characterTransfrom = null");
+            }
+            if (!monsterController.monsterInfo._IsAttacked)
+            {
+                print("_IsAttacked = false");
+            }
+            if (monsterController.PlayerObject == null)
+            {
+                print("po null");
             }
             else
             {
-                // 원래 자리로
-                MonsterMove(monsterController._monsterOriginPosition, monsterController.monsterInfo._returnStopRange, false);
+                print("po not null");
             }
+
+
         }
         else
         {
             monsterController.TransitionToState(monsterController.attackState);
         }
+
+        
 
     }
 
@@ -72,20 +101,23 @@ public class EnemyMoveState : EnemyState
 
         monsterController._isMove = false;
 
-        monsterController.animator.SetBool("IsMove", false);
+        monsterController.monsterInfo._IsAttacked = false;
+
+        monsterController.animator.SetBool(IsMove, false);
     }
 
+
+    // 플레이어가 때리고 몬스터가 다가올 때 영역안에 들어갔다 나오면 참조당해서 한번 움찔함
     private IEnumerator SearchCharacter()
     {
         while (true)
         {
+            
             if (monsterController.PlayerObject != null)
             {
+                print("searching");
                 LoadCharacterTransform();
             }
-
-            print("searching");
-
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -116,8 +148,6 @@ public class EnemyMoveState : EnemyState
 
         if ((IsTracing) && Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange))
         {
-            // 공격 스테이트로
-            print("attack");
             monsterController.TransitionToState(monsterController.attackState);
         }
 

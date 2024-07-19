@@ -479,7 +479,7 @@ ModelImporter:
     second: Mage@Attack05_C
   - first:
       74: 7400008
-    second: Mage@Attack05_D
+    second: BossSpellOne
   - first:
       95: 9500000
     second: //RootNode
@@ -516,7 +516,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mage@Attack05_D
+      name: BossSpellOne
       takeName: Mage@Attack05_D
       internalID: 0
       firstFrame: 0

@@ -16,6 +16,8 @@ public abstract class MonsterInfo : MonoBehaviour
     public float _returnStopRange;
     public float _MaxChasingRange;
 
+    public bool _IsAttacked;
+
     public Dictionary<System.Enum, bool> _monsterBehaviourPool;
 
     // 배열 설정

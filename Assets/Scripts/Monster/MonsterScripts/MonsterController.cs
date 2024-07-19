@@ -12,6 +12,9 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
     public Animator animator;
 
+    
+
+
     public MONSTER_TYPE monster_type;
 
     public List<System.Enum> patturnIndexes;
@@ -51,13 +54,13 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     // 상속받은 스크립트에서 재정의할 것 다 하고 base.Awake() 해야 함
     // 본인의 위치와 각자의 MaxHp만큼 현재 체력을 설정하게 해놓음
     // ㄴ start에서 
-    protected virtual void Awake()
+    protected void Awake()
     {
         animator = GetComponentInChildren<Animator>();
     }
 
 
-    protected virtual void Start()
+    protected void Start()
     {
         monsterInfo = GetComponent<MonsterInfo>();
 
@@ -66,6 +69,8 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         _monsterOriginPosition = transform.position;
 
         _monsterOriginRotation = transform.rotation;
+
+        PlayerObject = PlayerGameobjectManager.instance.playerObject;
 
         idleState = new EnemyIdleState(this);
 
@@ -90,13 +95,18 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     }
 
     // 플레이어나 몬스터가 참조할 수 있도록 public으로 
-    public void Hit(float damage)
+    public virtual void Hit(float damage)
     {
         monsterInfo._currentHP -= damage;
 
+        // 맞았을 때 움직임으로 바꾸게
+        // 처음부터 몬스터는 캐릭터의 오브젝트를 참조는 하고 있다가
+        // 맞았을 때 움직일 때 트랜스폼을 참조한다.
         if (currentState == idleState)
         {
             TransitionToState(moveState);
+
+            monsterInfo._IsAttacked = true;
         }
     }
 
@@ -182,7 +192,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     // 필요없진 않고 exit할때 한번 호출해서 사용하면 될 듯
     public void SetCharacterTransformNull()
     {
-        PlayerObject = null;
+        //PlayerObject = null;
         _characterTransfrom = null;
 
     }

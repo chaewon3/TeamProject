@@ -91,7 +91,7 @@ public class PlayerMove : MonoBehaviour
             #endregion //누른 방향키에 따라 캐릭을 회전? 다른 애니메이션 찾기?
         }
 
-        StateController(state);
+        StateController(state); //이거 계속 호출하는거 뭔가 이상함 낭비 같은?
     }
 
     IEnumerator Dush()
@@ -121,23 +121,26 @@ public class PlayerMove : MonoBehaviour
 
     void StateController(State state)
     {
-        switch (state)
+        if(canMove)
         {
-            case State.Sword:
-                playerAnimator.SetBool("BowForm", false);
-                weapon[1].SetActive(false);
-                playerAnimator.SetBool("SwordForm", true);
-                weapon[0].SetActive(true);
-                playerAnimator.SetLayerWeight(1, 0);
-                break;
-            case State.Bow:
-                playerAnimator.SetBool("SwordForm", false);
-                weapon[0].SetActive(false);
-                playerAnimator.SetBool("BowForm", true);
-                weapon[1].SetActive(true);
-                playerAnimator.SetLayerWeight(1, 1);
-                break;
-        }
+            switch (state)
+            {
+                case State.Sword:
+                    playerAnimator.SetBool("BowForm", false);
+                    weapon[1].SetActive(false);
+                    playerAnimator.SetBool("SwordForm", true);
+                    weapon[0].SetActive(true);
+                    playerAnimator.SetLayerWeight(1, 0);
+                    break;
+                case State.Bow:
+                    playerAnimator.SetBool("SwordForm", false);
+                    weapon[0].SetActive(false);
+                    playerAnimator.SetBool("BowForm", true);
+                    weapon[1].SetActive(true);
+                    playerAnimator.SetLayerWeight(1, 1);
+                    break;
+            }
+        } 
     }
 }
 

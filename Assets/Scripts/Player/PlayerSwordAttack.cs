@@ -26,7 +26,7 @@ public class PlayerSwordAttack : MonoBehaviour
 
     void Update()
     {
-        if (player.state == State.Sword && Input.GetMouseButtonDown(0))
+        if (player.canMove && player.state == State.Sword && Input.GetMouseButtonDown(0))
         {
             if (comboing)
             {

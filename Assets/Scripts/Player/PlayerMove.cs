@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 3f;
     CharacterController charCont;
     Animator playerAnimator;
-    bool canMove = true;
+    public bool canMove = true;
 
     public float dirSpeed; // 나중에 지울거 
 
@@ -44,7 +44,6 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        // todo canmove gameManager로 뺴도 될지
         if(canMove)
         {
             #region 이동
@@ -146,5 +145,5 @@ public enum State
 {
     Sword,
     Bow,
-    Incentory
+    disinteractable
 }

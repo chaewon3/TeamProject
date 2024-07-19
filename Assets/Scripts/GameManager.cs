@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    PlayerMove Player;
 
     [HideInInspector]
     public string currentScene;
 
     private void Awake()
     {
+        Player = GetComponent<PlayerMove>();
         Cursor.lockState = CursorLockMode.Locked;
         if (Instance == null)
         {
@@ -20,6 +22,14 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+    }
+
+    public void CanMove(bool move)
+    {
+        if (move)
+            Player.canMove = move;
+        else
+            Player.canMove = move;
     }
 
     public void MouseLock(bool Lock)

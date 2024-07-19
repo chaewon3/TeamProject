@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
     float dmg;
     public LayerMask targetLayer;
     Rigidbody rigid;
-    CapsuleCollider collider;
+    CapsuleCollider arrowcollider;
     int speed = 1200;//1200
     ArrowPooling pool;
 
@@ -17,13 +17,13 @@ public class Arrow : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        collider = GetComponent<CapsuleCollider>();
+        arrowcollider = GetComponent<CapsuleCollider>();
         pool = FindObjectOfType<ArrowPooling>();
     }
 
     void OnEnable()
     {
-        collider.enabled = true;
+        arrowcollider.enabled = true;
         Vector3 force = transform.up * speed;
         rigid.AddForce(force);
         StartCoroutine(Despawn());
@@ -41,7 +41,6 @@ public class Arrow : MonoBehaviour
 
         if (end)
         {
-            print("화살 멈춰!");
             rigid.velocity = Vector3.zero;
         }
     }
@@ -50,7 +49,6 @@ public class Arrow : MonoBehaviour
     {
         if ((targetLayer | (1 << obj.gameObject.layer)) != targetLayer)
         {
-            print("너에게 줄건 아무것도 없다.");
             return;
         }
 
@@ -62,7 +60,7 @@ public class Arrow : MonoBehaviour
         rigid.isKinematic = true;
         rigid.velocity = Vector3.zero;
         transform.SetParent(obj.transform);
-        collider.enabled = false;
+        arrowcollider.enabled = false;
     }
 
     IEnumerator Despawn()

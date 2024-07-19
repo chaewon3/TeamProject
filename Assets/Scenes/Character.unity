@@ -5998,7 +5998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675557279}
   m_LocalRotation: {x: 0.06888588, y: 0, z: 0, w: 0.9976246}
-  m_LocalPosition: {x: 0, y: 2.49, z: -2.9}
+  m_LocalPosition: {x: 0, y: 2.1, z: -2.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8316,7 +8316,8 @@ MonoBehaviour:
   inventoryData:
     equipSlots: 000000000000000000000000
     ArtifactsSlots: 000000000000000000000000
-    InvenSlots: 
+    ItemId: 
+    ItemList: []
 --- !u!4 &913401843
 Transform:
   m_ObjectHideFlags: 0
@@ -18877,7 +18878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030474239}
   m_LocalRotation: {x: 0.19936788, y: 0, z: 0, w: 0.97992474}
-  m_LocalPosition: {x: 0, y: 2.4, z: -2.9}
+  m_LocalPosition: {x: 0, y: 2.1, z: -2.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62117,7 +62118,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.88
+  m_Height: 1.75
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -62137,6 +62138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  canMove: 1
+  canRotat: 1
   dirSpeed: 0.7
   state: 0
   weapon:
@@ -62154,7 +62157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e051dd71cbe1a4ca232fb41039fcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attakClip:
+  attackClip:
   - {fileID: 7400000, guid: 3558db8e6c045c3418d8e7593f8a88de, type: 3}
   - {fileID: 7400000, guid: f9808de8e12794d468604280ad76ca36, type: 3}
   - {fileID: 7400000, guid: f5aa16e8d7347d14ba16d52fe4b7921c, type: 3}

@@ -76,20 +76,15 @@ public class DataManager : MonoBehaviour
         {
             if (file.Name == $"{fileName}.json")
             {
-                print("2");
-
                 string path = $"{Application.streamingAssetsPath}/{fileName}.json";
 
                 if(File.Exists(path) && file.Extension == ".json")
                 {
-                    print("3");
-
                     string json = File.ReadAllText(path);
                     return JsonUtility.FromJson<Inventory>(json);
                 }
             }
         }
-        print("못찾았음");
         return new Inventory();
     }
 

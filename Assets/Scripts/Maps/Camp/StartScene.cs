@@ -10,6 +10,7 @@ public class StartScene : MonoBehaviour
     public CinemachineVirtualCamera Cam1;
     public CinemachineVirtualCamera Cam2;
     public AnimationClip StandUp;
+    public GameObject Stool;
 
     private void Awake()
     {
@@ -34,11 +35,13 @@ public class StartScene : MonoBehaviour
     IEnumerator gamestart()
     {
         Player.GetComponent<Animator>().SetTrigger("StandUp");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         Cam2.Priority = 3;
         yield return new WaitForSeconds(StandUp.length);
+        Stool.transform.position = new Vector3(1.1f, -0.05f, -0.1f);
         Player.GetComponent<CharacterController>().enabled = true;
         Player.GetComponent<Animator>().SetLayerWeight(2, 0);
+        yield return new WaitForSeconds(0.3f);
         Move.dirSpeed = 2;
         Destroy(this);
     }

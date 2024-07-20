@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerInfo : MonoBehaviour, IHitable
 {
@@ -11,6 +13,10 @@ public class PlayerInfo : MonoBehaviour, IHitable
     float damage;
     float experience;
     int level;
+
+    public TextMeshProUGUI levelText;
+    public Slider hpBar;
+    public Slider expBar;
 
     [HideInInspector]
     public int ArrowCount;
@@ -25,9 +31,19 @@ public class PlayerInfo : MonoBehaviour, IHitable
         damage = playerData.damage;
         experience = playerData.experience;
         level = playerData.level;
-        print($"PlayerDataSet => maxHP: {maxHealth}, damage: {damage}, experience: {experience}, level: {level}");
+        //print($"PlayerDataSet => maxHP: {maxHealth}, damage: {damage}, experience: {experience}, level: {level}");
 
         ArrowCount = playerData.ArrowCount;
+    }
+
+    void Update()
+    {
+        // 업데이트말고 함수로 빼서 필요할때만 호출 하는거 생각해보기
+        levelText.text = level.ToString();
+        hpBar.maxValue = maxHealth;
+        hpBar.value = currentHealth;
+        expBar.maxValue = level * 100f; // 이거 비율 계산 조율하기 
+        expBar.value = experience;
     }
 
     public void Hit(float damage)
@@ -35,11 +51,5 @@ public class PlayerInfo : MonoBehaviour, IHitable
         currentHealth -= damage;
     }
 }
-
-/*
- 죽음 - MW@Death04
-
-피격 - 1H@TakeDamage02, 05
- */
 
 

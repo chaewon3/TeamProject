@@ -10,11 +10,14 @@ public class CharaterEnterTriggerTest : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            print("playerin");
             for (int i = 0; i < aa.Length; i++)
             {
-                aa[i].GetComponent<MonsterController>().LoadCharacterObject(other.gameObject);
-                aa[i].GetComponent<MonsterController>().CharacterGotIntoArea();
+                if (aa[i] != null && aa[i].activeInHierarchy)
+                {
+                    aa[i].GetComponent<MonsterController>().LoadCharacterObject(other.gameObject);
+                    aa[i].GetComponent<MonsterController>().CharacterGotIntoArea();
+                }
+
             }
         }
     }
@@ -23,13 +26,13 @@ public class CharaterEnterTriggerTest : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            print("Player Out");
-
             for (int i = 0; i < aa.Length; i++)
             {
-
-                aa[i].GetComponent<MonsterController>().CharacterGotOutArea();
-                aa[i].GetComponent<MonsterController>().SetCharacterTransformNull();
+                if (aa[i] != null && aa[i].activeInHierarchy)
+                {
+                    aa[i].GetComponent<MonsterController>().CharacterGotOutArea();
+                    aa[i].GetComponent<MonsterController>().SetCharacterTransformNull();
+                }
             }
         }
     }

@@ -12,9 +12,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
     public Animator animator;
 
-    
-
-
     public MONSTER_TYPE monster_type;
 
     public List<System.Enum> patturnIndexes;
@@ -48,6 +45,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     public EnemyIdleState idleState;
     public EnemyMoveState moveState;
     public EnemyAttackState attackState;
+    public EnemyDeadState deadState;
 
 
 
@@ -89,6 +87,8 @@ public abstract class MonsterController : MonoBehaviour, IHitable
                 break;
         }
 
+        deadState = new EnemyDeadState(this);
+
         currentState = idleState;
         currentState.Enter();
 
@@ -99,6 +99,14 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     {
         monsterInfo._currentHP -= damage;
 
+        if (monsterInfo._currentHP <= 0)
+        {
+            TransitionToState(deadState);
+
+            return;
+
+        }
+
         // 맞았을 때 움직임으로 바꾸게
         // 처음부터 몬스터는 캐릭터의 오브젝트를 참조는 하고 있다가
         // 맞았을 때 움직일 때 트랜스폼을 참조한다.
@@ -108,6 +116,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
             monsterInfo._IsAttacked = true;
         }
+
     }
 
     // 상대방의 체력에 영향을 줘야 하는데 함수 자체가 아직 애매해서 미정
@@ -169,7 +178,11 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     // loadTransform에서 오브젝트의 현재 위치를 참조하게 만듦
     public void LoadCharacterObject(GameObject targetObject)
     {
-        PlayerObject = targetObject;
+        if (PlayerObject == null)
+        {
+            PlayerObject = targetObject;
+        }
+        
     }
 
     // 캐릭터 위치를 불러오는 함수
@@ -181,73 +194,31 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
         animator.SetBool("IsMove", true);
 
-        //print(animator.gameObject.name);
     }
-
-    // 캐릭터가 트리거 밖으로 나갔을 때 호출할 함수
-    // 자신의 위치까지 이동한다.
-    // bool 변수하나 더 만들고 update에서 처리하기
-    // 그냥 intoArea를 false면 실행되게 하는게 맞는거 아닌가
-    // 굳이 이건 필요 없고 false일 때 target이 본인의 origin으로 
-    // 필요없진 않고 exit할때 한번 호출해서 사용하면 될 듯
     public void SetCharacterTransformNull()
     {
-        //PlayerObject = null;
         _characterTransfrom = null;
-
+        monsterInfo._IsAttacked = false;
     }
-
-    // 상속 받아서 나온 숫자에 따라 함수 설정하게 만들기
-    // 얘는 숫자만 뽑는거라 굳이 virtual이어야 할 이유는 없어 보임
-
-    
-    //void SelectPattern()
-    //{
-    //    patturnIndexes = new List<int>();
-    //    int randomIndex;
-
-    //    for (int i = 0; i < monsterInfo._monsterBehaviourPool.Length; ++i)
-    //    {
-    //        if (monsterInfo._monsterBehaviourPool[i] == true)
-    //        {
-    //            patturnIndexes.Add(i);
-    //        }
-    //    }
-
-    //    if (patturnIndexes.Count > 0)
-    //    {
-    //        randomIndex = patturnIndexes[Random.Range(0, patturnIndexes.Count)];
-    //        monsterInfo._monsterBehaviourPool[randomIndex] = false;
-    //    }
-    //    //else
-    //    //{
-    //    //    randomIndex = -1;
-    //    //}
-
-    //    //return randomIndex;
-    //}
-
-
     // 회전하는 코루틴
     // 제자리에서 걸어서 회전하게 만들어야 함
     // 혹은 내가 IK를 조절하고 애니메이션 재설정
     // 혹은 그냥 어색하게 회전하기
     // 걷는 애니메이션 활성화 및 
     // 회전을 안해도 될 것 같기도
-    IEnumerator RotateWhenReturn()
-    {
-        while (true)
-        {
-            if (Quaternion.Angle(transform.rotation, _monsterOriginRotation) < 10.0f)
-            {
-                yield break;
-            }
+    //IEnumerator RotateWhenReturn()
+    //{
+    //    while (true)
+    //    {
+    //        if (Quaternion.Angle(transform.rotation, _monsterOriginRotation) < 10.0f)
+    //        {
+    //            yield break;
+    //        }
 
-            print("Monster Rotating");
-            transform.rotation = Quaternion.Slerp(transform.rotation, _monsterOriginRotation, Time.deltaTime * 3.0f);
-            yield return null; // 매 프레임마다 대기
-        }
-    }
+    //        transform.rotation = Quaternion.Slerp(transform.rotation, _monsterOriginRotation, Time.deltaTime * 3.0f);
+    //        yield return null; // 매 프레임마다 대기
+    //    }
+    //}
 }
 public enum MONSTER_TYPE
 {

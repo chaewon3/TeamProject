@@ -19,6 +19,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     // _characterGotIntoArea가 true가 되고, _isMove가 true 가 될 때
     // 움직일 수 있게 사용
     public bool _isMove = false;
+    public bool _isDead = false;
 
     public bool _doingSomeAction = false;
 
@@ -101,7 +102,13 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
         if (monsterInfo._currentHP <= 0)
         {
-            TransitionToState(deadState);
+            
+
+            if (!_isDead)
+            {
+
+                TransitionToState(deadState);
+            }
 
             return;
 
@@ -112,6 +119,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         // 맞았을 때 움직일 때 트랜스폼을 참조한다.
         if (currentState == idleState)
         {
+            //print(currentState);
             TransitionToState(moveState);
 
             monsterInfo._IsAttacked = true;
@@ -128,6 +136,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     private void Update()
     {
         currentState.Update();
+        
     }
 
     protected virtual IEnumerator doSomething(int index)

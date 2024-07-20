@@ -23,6 +23,7 @@ public class RangedAttackState : EnemyAttackState
         switch (regularPattern)
         {
             case REGULAR_MONSTER_ATTACK_BEHAVIOUR.REGULAR_MONSTER_ATTACK:
+
                 break;
             default:
                 break;

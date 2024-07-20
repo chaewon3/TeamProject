@@ -25,7 +25,7 @@ public class BossAttackState : EnemyAttackState
     {
         BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-        bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2;
+        bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
 
         
 
@@ -50,14 +50,14 @@ public class BossAttackState : EnemyAttackState
     {
         monsterController.animator.SetTrigger(PatternAttack);
         yield return new WaitForSeconds(1f);
-        monsterController.TransitionToState(monsterController.idleState);
+        monsterController.TransitionToState(monsterController.moveState);
     }
 
     IEnumerator BossPatternSpellOne()
     {
         monsterController.animator.SetTrigger(PatternSpellOne);
         yield return new WaitForSeconds(2f);
-        monsterController.TransitionToState(monsterController.idleState);
+        monsterController.TransitionToState(monsterController.moveState);
     }
 
     IEnumerator BossPatternSpellOneCooltime(System.Enum @enum)
@@ -76,7 +76,7 @@ public class BossAttackState : EnemyAttackState
         monsterController.animator.SetTrigger(PatternSpellTwoShot);
         
         yield return new WaitForSeconds(1.1f);
-        monsterController.TransitionToState(monsterController.idleState);
+        monsterController.TransitionToState(monsterController.moveState);
     }
 
 

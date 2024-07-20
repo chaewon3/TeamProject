@@ -32,7 +32,6 @@ public class EnemyAttackState : EnemyState
 
     Enum SelectPattern()
     {
-        print("selected");
         monsterController.patturnIndexes = new List<Enum>();
         Enum randomKey = null;
 

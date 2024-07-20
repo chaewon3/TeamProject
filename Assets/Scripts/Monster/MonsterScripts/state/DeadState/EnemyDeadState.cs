@@ -11,13 +11,13 @@ public class EnemyDeadState : EnemyState
     public override void Enter()
     {
         monsterController.animator.SetTrigger(IsDead);
+        monsterController._isDead = true;
 
         DeadAnimationStart();
     }
 
     public override void Exit()
     {
-        
     }
 
     public override void Update()
@@ -33,23 +33,29 @@ public class EnemyDeadState : EnemyState
     {
         float time = 0;
 
-        yield return new WaitForSeconds(5.0f);
+        
 
 
         Collider collider = monsterController.GetComponentInChildren<CapsuleCollider>();
+        Rigidbody rigidbody = monsterController.GetComponent<Rigidbody>();
 
         if (collider != null)
         {
             collider.enabled = false;
         }
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = true;
+        }
+        yield return new WaitForSeconds(5.0f);
 
 
         while (true)
         {
-            time += 0.1f;
-            Vector3 downwardMovement = new Vector3(0, -0.1f, 0);
+            time += 0.01f;
+            Vector3 downwardMovement = new Vector3(0, -0.01f, 0);
             monsterController.transform.position += downwardMovement;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
 
             if (time >= 3.0f)
             {

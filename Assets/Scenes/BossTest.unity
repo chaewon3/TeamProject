@@ -3189,7 +3189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &687020531
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3231,6 +3231,7 @@ MonoBehaviour:
   idleState: {fileID: 0}
   moveState: {fileID: 0}
   attackState: {fileID: 0}
+  deadState: {fileID: 0}
 --- !u!114 &687020533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3243,7 +3244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4399d2559241b2b4e9b9605742bc0ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 200
+  _maxHP: 10
   _currentHP: 0
   _attackDamage: 0
   _moveSpeed: 3
@@ -3770,7 +3771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &753168525
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3828,6 +3829,7 @@ MonoBehaviour:
   idleState: {fileID: 0}
   moveState: {fileID: 0}
   attackState: {fileID: 0}
+  deadState: {fileID: 0}
 --- !u!114 &753168530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3840,7 +3842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 0
+  _maxHP: 10
   _currentHP: 0
   _attackDamage: 0
   _moveSpeed: 3
@@ -7846,6 +7848,7 @@ MonoBehaviour:
   idleState: {fileID: 0}
   moveState: {fileID: 0}
   attackState: {fileID: 0}
+  deadState: {fileID: 0}
 --- !u!114 &1397887645
 MonoBehaviour:
   m_ObjectHideFlags: 0

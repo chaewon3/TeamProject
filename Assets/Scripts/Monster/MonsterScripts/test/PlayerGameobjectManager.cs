@@ -16,7 +16,7 @@ public class PlayerGameobjectManager : MonoBehaviour
 
         if (playerObject != null)
         {
-            print(playerObject.name);
+            //print(playerObject.name);
         }
     }
 

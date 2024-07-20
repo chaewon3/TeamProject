@@ -42,7 +42,6 @@ public class BossAttackState : EnemyAttackState
                 break;
             default:
                 monsterController.TransitionToState(monsterController.idleState);
-                print("default");
                 break;
         }
     }

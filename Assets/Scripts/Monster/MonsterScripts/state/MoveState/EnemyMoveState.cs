@@ -21,8 +21,6 @@ public class EnemyMoveState : EnemyState
         monsterController.gameObject.transform.GetChild(0).transform.localEulerAngles = new Vector3(0, 0, 0);
 
 
-        //print(monsterController.gameObject.transform.GetChild(0).name);
-
         monsterController.animator.applyRootMotion = false;
 
         monsterController._isMove = true;
@@ -32,6 +30,7 @@ public class EnemyMoveState : EnemyState
 
     public override void Update()
     {
+
 
         if (monsterController._isMove)
         {
@@ -54,29 +53,6 @@ public class EnemyMoveState : EnemyState
                 monsterController.monsterInfo._IsAttacked = false;
                 monsterController._characterTransfrom = null;
             }
-
-            if (!monsterController._characterGotIntoArea)
-            {
-                print("_characterGotIntoArea = false");
-            }
-            if (monsterController._characterTransfrom == null)
-            {
-                print("_characterTransfrom = null");
-            }
-            if (!monsterController.monsterInfo._IsAttacked)
-            {
-                print("_IsAttacked = false");
-            }
-            if (monsterController.PlayerObject == null)
-            {
-                print("po null");
-            }
-            else
-            {
-                print("po not null");
-            }
-
-
         }
         else
         {
@@ -115,7 +91,6 @@ public class EnemyMoveState : EnemyState
             
             if (monsterController.PlayerObject != null)
             {
-                print("searching");
                 LoadCharacterTransform();
             }
             yield return new WaitForSeconds(1.0f);

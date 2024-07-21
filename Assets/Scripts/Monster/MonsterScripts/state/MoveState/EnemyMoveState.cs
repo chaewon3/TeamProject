@@ -7,6 +7,7 @@ public class EnemyMoveState : EnemyState
     public EnemyMoveState(MonsterController character) : base(character) { }
 
     Coroutine searching;
+    float angle;
 
     static readonly int IsMove = Animator.StringToHash("IsMove");
 
@@ -30,8 +31,6 @@ public class EnemyMoveState : EnemyState
 
     public override void Update()
     {
-
-
         if (monsterController._isMove)
         {
             //monsterController.PlayerObject != null && monsterController._characterGotIntoArea && ↓
@@ -58,9 +57,6 @@ public class EnemyMoveState : EnemyState
         {
             monsterController.TransitionToState(monsterController.attackState);
         }
-
-        
-
     }
 
     public override void Exit()
@@ -82,8 +78,6 @@ public class EnemyMoveState : EnemyState
         monsterController.animator.SetBool(IsMove, false);
     }
 
-
-    // 플레이어가 때리고 몬스터가 다가올 때 영역안에 들어갔다 나오면 참조당해서 한번 움찔함
     private IEnumerator SearchCharacter()
     {
         while (true)
@@ -118,12 +112,16 @@ public class EnemyMoveState : EnemyState
         }
 
 
-
         monsterController.transform.position = Vector3.MoveTowards(currentPosition, new Vector3(targetPosition.x, currentPosition.y, targetPosition.z), monsterController.monsterInfo._moveSpeed * Time.deltaTime);
 
-        if ((IsTracing) && Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange))
+        if (IsTracing && Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange))
         {
-            monsterController.TransitionToState(monsterController.attackState);
+            // 
+            angle = Vector3.Angle(monsterController.transform.forward, direction);
+            if (angle < 30f)
+            {
+                monsterController.TransitionToState(monsterController.attackState);
+            }
         }
 
         if ((!IsTracing) && (Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange)))

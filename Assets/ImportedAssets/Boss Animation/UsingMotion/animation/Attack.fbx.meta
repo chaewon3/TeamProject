@@ -458,7 +458,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5233291
+      - time: 0.3575682
         functionName: BossMonsterAfterAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}

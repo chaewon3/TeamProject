@@ -8,7 +8,7 @@ public class TestTakeDamage : MonoBehaviour
     
     private void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.P))
         {
             aa.GetComponent<MonsterController>().Hit(10);
         }

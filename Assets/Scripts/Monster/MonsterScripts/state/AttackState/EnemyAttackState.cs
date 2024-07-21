@@ -14,6 +14,8 @@ public class EnemyAttackState : EnemyState
     {
         monsterController.animator.SetBool(InPattern, true);
 
+        monsterController._isAttack = true;
+
         monsterController.animator.applyRootMotion = false;
 
         PatternCooltime(SelectPattern());
@@ -26,6 +28,8 @@ public class EnemyAttackState : EnemyState
     public override void Exit()
     {
         monsterController.animator.SetBool(InPattern, false);
+
+        monsterController._isAttack = false;
 
         monsterController.animator.applyRootMotion = true;
     }

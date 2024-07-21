@@ -116,7 +116,7 @@ public class EnemyMoveState : EnemyState
 
         if (IsTracing && Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange))
         {
-            // 
+            // 뒤에 있어도 거리안에 탐지되기 때문에 전방 기준으로 30도 안에 들어오면 공격
             angle = Vector3.Angle(monsterController.transform.forward, direction);
             if (angle < 30f)
             {

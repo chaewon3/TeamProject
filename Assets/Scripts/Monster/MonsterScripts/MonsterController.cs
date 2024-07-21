@@ -20,7 +20,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     // 움직일 수 있게 사용
     public bool _isMove = false;
     public bool _isDead = false;
-    public bool _isAttack = false;
 
     public bool _doingSomeAction = false;
 

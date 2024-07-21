@@ -451,14 +451,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000000000000000000
       curves: []
       events:
-      - time: 0
+      - time: 0.19293478
         functionName: BossMonsterOnAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3575682
+      - time: 0.33854645
         functionName: BossMonsterAfterAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}

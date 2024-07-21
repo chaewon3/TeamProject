@@ -8,6 +8,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
 {
     #region 전역 변수 
     PlayerData playerData;
+    PlayerMove player;
+    Animator playerAni;
     float maxHealth;
     float currentHealth;
     float damage;
@@ -18,6 +20,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
     public Slider hpBar;
     public Slider expBar;
 
+    bool hit = false;
+
     [HideInInspector]
     public int ArrowCount;
     #endregion
@@ -26,6 +30,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
     void Awake()
     {
         playerData = DataManager.Instance.playerData;
+        player = GetComponent<PlayerMove>();
+        playerAni = GetComponent<Animator>();
         maxHealth = playerData.maxHP;
         currentHealth = maxHealth;
         damage = playerData.damage;
@@ -44,11 +50,25 @@ public class PlayerInfo : MonoBehaviour, IHitable
         hpBar.value = currentHealth;
         expBar.maxValue = level * 100f; // 이거 비율 계산 조율하기 
         expBar.value = experience;
+
+        if(currentHealth <= 0)
+        {
+            player.canMove = false;
+            playerAni.SetBool("isDead", true);
+        }
     }
 
     public void Hit(float damage)
     {
         currentHealth -= damage;
+
+        if (hit)
+            hit = false;
+        else
+            hit = true;
+
+        playerAni.SetBool("HitBool", hit);
+        playerAni.SetTrigger("Hit");
     }
 }
 

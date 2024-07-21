@@ -102,14 +102,10 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
         if (monsterInfo._currentHP <= 0)
         {
-            
-
             if (!_isDead)
             {
-
                 TransitionToState(deadState);
             }
-
             return;
 
         }

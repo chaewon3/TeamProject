@@ -4,45 +4,29 @@ using UnityEngine;
 
 public class attckColliderEnableTest : MonoBehaviour
 {
+    int attackTimes;
 
-    bool alreadyAttack;
-    int a;
+    float damage;
+
+    private void Start()
+    {
+        damage = GetComponentInParent<MonsterController>().monsterInfo._attackDamage;
+    }
 
     private void OnEnable()
     {
-        a = 0;
+        attackTimes = 0;
     }
-
-    private void FixedUpdate()
-    {
-        if (alreadyAttack)
-        {
-            //print($"name {1} time {Time.realtimeSinceStartup}");
-            alreadyAttack = false;
-            return;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !alreadyAttack)
+        if (other.CompareTag("Player") && other.TryGetComponent<IHitable>(out IHitable hitable))
         {
-            alreadyAttack = true;
-            a += 1;
+            attackTimes += 1;
             
-            if (a == 1)
+            if (attackTimes == 1)
             {
-                print("a");
-            }
-            else
-            {
-                print($"name {1} time {Time.realtimeSinceStartup}");
+                hitable.Hit(damage);
             }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        alreadyAttack = false;
     }
 }

@@ -47,6 +47,8 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     public static void Refresh()
     {
+        if (Panel == null)
+            print("1");
         Panel.Refresh(Instance.items);
     }
 }

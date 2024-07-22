@@ -78,17 +78,17 @@ public class PlayerSwordAttack : MonoBehaviour
         comboCoroutine = null;
     }
 
-    public void OnCollider()
-    {
-        player.weapon[0].GetComponentInChildren<Collider>().enabled = true;
-        if (player.weapon[0].activeSelf)
-        { }
-        foreach (var item in player.weapon[0].gameObject)
-        {
-
-        }
-
-    }
+    //public void OnCollider()
+    //{
+    //    player.weapon[0].GetComponentInChildren<Collider>().enabled = true;
+    //    if (player.weapon[0].activeSelf)
+    //    { }
+    //    foreach (var item in player.weapon[0].gameObject)
+    //    {
+    //
+    //    }
+    //
+    //}
 
     public void OffCollider()
     {

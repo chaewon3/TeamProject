@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public int[] equipSlots = new int[3];
     public int[] ArtifactsSlots = new int[3];
 
+    public static InventoryPanel Panel => CanvasManager.inventoryPanel;
     public static InventoryManager Instance { get; private set; }
 
     // 저장을 위한 함수
@@ -25,6 +26,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item is ConsumableData)
         {
+
             foreach (ItemData data in Items)
             {
                 if (data.tableID == item.tableID)
@@ -39,9 +41,12 @@ public class InventoryManager : MonoBehaviour
             Instance.items.Add(item);
         }
     }
-
+    
+    /// <summary>
+    /// 인벤토리 새로고침
+    /// </summary>
     public static void Refresh()
     {
-        // 새로고침 할 함수
+        Panel.Refresh(Instance.items);
     }
 }

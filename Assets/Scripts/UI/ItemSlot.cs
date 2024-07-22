@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerUpHandler
+public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
     private Image icon;
     public ItemData item;
 
-    bool isDoubleClick;
     float interval = 0.25f;
-    float doubleClickTime = -1;
+    float lastClickTime = 0;
 
     private void Awake()
     {
@@ -33,26 +32,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerUpHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // 아이템 정보 보여주는 로직
+        Description.Instance.DescriptionsON(item);
 
-        if(isDoubleClick)
+        if (eventData.clickCount == 2 && (Time.time - lastClickTime <= interval))
         {
-            //장착
-            isDoubleClick = false;
-        }
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if ((Time.time - doubleClickTime) < interval)
-        {
-            isDoubleClick = true;
-            doubleClickTime = -1;
+            // todo 장착 만들어야 함
+            print("더블클릭");
         }
         else
-        {
-            isDoubleClick = false;
-            doubleClickTime = Time.time;
-        }
+            lastClickTime = Time.time;
     }
+
 }

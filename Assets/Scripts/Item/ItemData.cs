@@ -34,8 +34,7 @@ public class EquipmentData : ItemData
 {
     public EquipmentDataSO DataEquip { get => data as EquipmentDataSO; }
 
-    public int DEF;
-    public int ATK;
+    public int additionalAbility;
     public InchantType Inchant;
 
     /// <summary>
@@ -53,13 +52,10 @@ public class EquipmentData : ItemData
     /// 첫번째 생성자와 부모의 생성자가 같이 호출됨.
     /// </summary>
     /// <param name="data"></param>
-    /// <param name="DEF"></param>
-    /// <param name="ATK"></param>
     /// <param name="Inchant"></param>
-    public EquipmentData(EquipmentDataSO data, int DEF, int ATK, InchantType Inchant) : this(data)
+    public EquipmentData(EquipmentDataSO data, int additionalAbility, InchantType Inchant) : this(data)
     {
-        this.DEF = DEF;
-        this.ATK = ATK;
+        this.additionalAbility = additionalAbility;
         this.Inchant = Inchant;
     }
 

@@ -76,6 +76,7 @@ public class DataManager : MonoBehaviour
 
         File.WriteAllText(saveFilePath, JsonUtility.ToJson(save));
     }
+
     public void LoadData()
     {
         FileData save;

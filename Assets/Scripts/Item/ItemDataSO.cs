@@ -22,7 +22,7 @@ public enum InchantType
 
 public enum effect
 {
-    Test1,
+    None,
     Test2,
     Test3
 }

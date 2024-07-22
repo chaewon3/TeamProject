@@ -5,8 +5,5 @@ public class ConsumableDataSO : ItemDataSO
 {
     public float coolTime;
     public effect effect;
-    private void Awake()
-    {
-        CanOverlap = true;
-    }
+
 }

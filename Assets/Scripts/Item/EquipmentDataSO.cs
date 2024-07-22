@@ -1,10 +1,13 @@
 using UnityEngine;
 
+public enum EquipType
+{
+    Armor,
+    Weapon
+}
+
 [CreateAssetMenu(fileName = "Item", menuName = "Add Item/Equipment")]
 public class EquipmentDataSO : ItemDataSO
 {
-    private void Awake()
-    {
-        CanOverlap = false;
-    }
+    public EquipType equiptype;
 }

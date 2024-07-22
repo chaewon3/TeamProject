@@ -14,6 +14,7 @@ public enum ItemType
 // todo 나중에 이름과 종류는 바꿔야 함
 public enum InchantType
 {
+    None,
     Test1,
     Test2,
     Test3
@@ -25,18 +26,6 @@ public enum effect
     Test2,
     Test3
 }
-
-//[System.Serializable]
-//public class SerialItemData
-//{
-//    public ItemType type;
-//    public int tableId;
-//    public string name;
-//    public int price;
-//    public string description;
-//    protected bool CanOverlap;
-//}
-
 // tableid 장비 1~10 소비 101~110 유물 201~210
 public abstract class ItemDataSO : ScriptableObject
 {
@@ -44,24 +33,10 @@ public abstract class ItemDataSO : ScriptableObject
     public int tableId;
     public string name;
     public int price;
-    public Sprite ItemSpr;
+    public Sprite icon;
+    public GameObject ModelPrefab;
     [TextArea(5, 10)]
     public string description;
-    protected bool CanOverlap;
-    //public void SetData(SerialItemData data)
-    //{
-    //    type = data.type;
-    //
-    //}
-    //
-    //public SerialItemData GetData()
-    //{
-    //    var @return = new SerialItemData();
-    //    @return.type = type;
-    //
-    //    return @return;
-    //}
-    //
 }
 
 

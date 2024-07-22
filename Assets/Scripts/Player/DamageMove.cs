@@ -1,35 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DamageMove : MonoBehaviour
 {
-    Coroutine mainCoroutine;
     Coroutine moveCoroutine;
+    Vector3 startPos;
+    Vector3 endPos;
+    float duration = 3f;
+    float elapsedTime = 0.0f;
 
-    void Start()
+    void Awake()
     {
-        mainCoroutine = StartCoroutine(MainCoroutine());
-
+        startPos = new Vector3(0f, 0.5f, -0.5f);
+        endPos = new Vector3(0f, 0.7f, -0.5f);
     }
 
-    IEnumerator MainCoroutine()
+    void OnEnable()
     {
-        while (true)
-        {
-            moveCoroutine = StartCoroutine(MoveCoroutine());
-            yield return moveCoroutine;
-        }
+        transform.position = startPos;
+        moveCoroutine = StartCoroutine(DamageAnimation());
     }
 
-    IEnumerator MoveCoroutine()
+    void OnDisable()
     {
-        float endTime = Time.time + 5;
+        transform.position = startPos;
+    }
 
-        while (Time.time < endTime)
+    float EaseOutBack(float x)
+    {
+        float c1 = 1.70158f;
+        float c3 = c1 + 1;
+
+        return 1 + c3 * Mathf.Pow(x - 1, 3) + c1 * Mathf.Pow(x - 1, 2);
+    }
+
+    IEnumerator DamageAnimation()
+    {
+        while (elapsedTime < duration)
         {
-            transform.Translate(new Vector3(0, 1f * Time.deltaTime, 0));
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            float easedT = EaseOutBack(t);
+            transform.localPosition = Vector3.Lerp(startPos, endPos, easedT);
             yield return null;
         }
+        transform.localPosition = endPos;
     }
 }

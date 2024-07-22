@@ -10,15 +10,16 @@ public class Arrow : MonoBehaviour
     Rigidbody rigid;
     CapsuleCollider arrowcollider;
     int speed = 1200;//1200
-    ArrowPooling pool;
-
+    ArrowPool arrowPool;
+    DamageTextPool dmgPool;
     bool end = false;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         arrowcollider = GetComponent<CapsuleCollider>();
-        pool = FindObjectOfType<ArrowPooling>();
+        arrowPool = FindObjectOfType<ArrowPool>();
+        dmgPool = FindObjectOfType<DamageTextPool>();
     }
 
     void OnEnable()
@@ -26,7 +27,7 @@ public class Arrow : MonoBehaviour
         arrowcollider.enabled = true;
         Vector3 force = transform.up * speed;
         rigid.AddForce(force);
-        StartCoroutine(Despawn());
+        StartCoroutine(Despawn(gameObject));
     }
 
     void OnDisable()
@@ -55,6 +56,9 @@ public class Arrow : MonoBehaviour
         if (obj.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
+
+            GameObject dmgText = dmgPool.GetObj(obj.transform, dmg);
+            StartCoroutine(Despawn(dmgText));
         }
 
         rigid.isKinematic = true;
@@ -63,10 +67,10 @@ public class Arrow : MonoBehaviour
         arrowcollider.enabled = false;
     }
 
-    IEnumerator Despawn()
+    IEnumerator Despawn(GameObject obj)
     {
         yield return new WaitForSeconds(3f);
-        pool.ReturnObj(gameObject);
+        arrowPool.ReturnObj(gameObject);
     }
 
 }

@@ -5,22 +5,22 @@ using System.IO;
 
 public class FileData
 {
-    public List<PlayerData> playerData;
+    //public List<PlayerData> playerData;
     public List<EquipmentData> EquipData;
     public List<ConsumableData> consumData;
 
     public FileData()
     {
-        playerData = new List<PlayerData>();
+        //playerData = new List<PlayerData>();
         EquipData = new List<EquipmentData>();
         consumData = new List<ConsumableData>();
     }
 
     public void AddItem(ItemData item)
     {
-        if(item is EquipmentData)
+        if (item is EquipmentData)
             EquipData.Add(item as EquipmentData);
-        else if(item is ConsumableData)
+        else if (item is ConsumableData)
             consumData.Add(item as ConsumableData);
     }
 }
@@ -35,7 +35,7 @@ public class DataManager : MonoBehaviour
 
     //지워야함
     [HideInInspector]
-    public PlayerData playerData;
+    public PlayerData playerDataTest;
 
     void Awake()
     {
@@ -47,7 +47,7 @@ public class DataManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        playerData = PlayerFileLoad("PlayerInfo");
+        playerDataTest = PlayerFileLoad("PlayerInfo");
         LoadData();
     }
 
@@ -55,12 +55,12 @@ public class DataManager : MonoBehaviour
     public void PlayerInfoSave(float maxHP, float dmg, float exp, int level, int arrow) //todo 이거 배열로 파라미터 변경 할건지?
     {
         string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
-        playerData.maxHP = maxHP;
-        playerData.damage = dmg;
-        playerData.experience = exp;
-        playerData.level = level;
-        playerData.ArrowCount = arrow;
-        string json = JsonUtility.ToJson(playerData);
+        playerDataTest.maxHP = maxHP;
+        playerDataTest.damage = dmg;
+        playerDataTest.experience = exp;
+        playerDataTest.level = level;
+        playerDataTest.ArrowCount = arrow;
+        string json = JsonUtility.ToJson(playerDataTest);
         File.WriteAllText(path, json);
     }
 

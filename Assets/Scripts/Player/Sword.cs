@@ -22,15 +22,12 @@ public class Sword : MonoBehaviour
             return;
         }
 
-        GameObject dmgText = pool.GetObj(obj.transform, dmg);
-        StartCoroutine(Despawn(dmgText));
-
         if (obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
 
-            //GameObject dmgText = pool.GetObj(obj.transform, dmg);
-            //StartCoroutine(Despawn(dmgText));
+            GameObject dmgText = pool.GetObj(obj.transform, dmg);
+            StartCoroutine(Despawn(dmgText));
         }
     }
 

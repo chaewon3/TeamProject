@@ -32,7 +32,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New StateMachine
+  m_Name: BossPattern
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6176275591744172476}
@@ -535,11 +535,11 @@ AnimatorStateMachine:
     m_Position: {x: 370, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8818437538424836628}
-    m_Position: {x: 350, y: 350, z: 0}
+    m_Position: {x: 330, y: 300, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -6000446603635145846}
-    m_Position: {x: 690, y: 20, z: 0}
+    m_Position: {x: 690, y: 30, z: 0}
   m_AnyStateTransitions:
   - {fileID: -2189713457835199148}
   m_EntryTransitions: []

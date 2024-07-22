@@ -47,6 +47,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     public EnemyMoveState moveState;
     public EnemyAttackState attackState;
     public EnemyDeadState deadState;
+    public EnemyHitState hitState;
 
 
 
@@ -90,37 +91,25 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
         deadState = new EnemyDeadState(this);
 
+        if (monster_type != MONSTER_TYPE.BOSS_MONSTER)
+        {
+            hitState = new EnemyHitState(this);
+        }
+        else
+        {
+            hitState = null;
+        }
+
         currentState = idleState;
         currentState.Enter();
 
     }
 
     // 플레이어나 몬스터가 참조할 수 있도록 public으로 
+    // 보스 기준
     public virtual void Hit(float damage)
     {
         monsterInfo._currentHP -= damage;
-
-        if (monsterInfo._currentHP <= 0)
-        {
-            if (!_isDead)
-            {
-                TransitionToState(deadState);
-            }
-            return;
-
-        }
-
-        // 맞았을 때 움직임으로 바꾸게
-        // 처음부터 몬스터는 캐릭터의 오브젝트를 참조는 하고 있다가
-        // 맞았을 때 움직일 때 트랜스폼을 참조한다.
-        if (currentState == idleState)
-        {
-            //print(currentState);
-            TransitionToState(moveState);
-
-            monsterInfo._IsAttacked = true;
-        }
-
     }
 
     // 상대방의 체력에 영향을 줘야 하는데 함수 자체가 아직 애매해서 미정

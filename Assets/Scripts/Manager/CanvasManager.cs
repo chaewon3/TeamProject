@@ -15,8 +15,6 @@ public class CanvasManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        print("인스턴스");
-
         InvenUI = transform.Find("InventoryUI").GetComponent<InventoryPanel>();
         //PlayerUI = transform.Find("PlayerUI").GetComponent<RectTransform>();
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();

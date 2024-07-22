@@ -154,6 +154,72 @@ Transform:
   m_Father: {fileID: 1369329723}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &24219866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_Name
+      value: Mummy In Standing Coffin
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8120594
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.48656988
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+--- !u!1 &24219867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+  m_PrefabInstance: {fileID: 24219866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &31076684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,6 +3279,7 @@ MonoBehaviour:
   _characterGotIntoArea: 0
   PlayerObject: {fileID: 0}
   _characterTransfrom: {fileID: 0}
+  currentState: {fileID: 0}
   idleState: {fileID: 0}
   moveState: {fileID: 0}
   attackState: {fileID: 0}
@@ -3843,6 +3910,7 @@ MonoBehaviour:
   _characterGotIntoArea: 0
   PlayerObject: {fileID: 0}
   _characterTransfrom: {fileID: 0}
+  currentState: {fileID: 0}
   idleState: {fileID: 0}
   moveState: {fileID: 0}
   attackState: {fileID: 0}
@@ -5444,6 +5512,7 @@ GameObject:
   - component: {fileID: 929403576}
   - component: {fileID: 929403575}
   - component: {fileID: 929403577}
+  - component: {fileID: 929403578}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -5494,6 +5563,22 @@ MonoBehaviour:
   aa:
   - {fileID: 687020530}
   - {fileID: 753168524}
+--- !u!114 &929403578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929403574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b413c3c5e1117c4bb55f3b4892f507a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mummies:
+  - {fileID: 24219867}
+  - {fileID: 2038970545}
+  - {fileID: 998716653}
 --- !u!1 &931012611
 GameObject:
   m_ObjectHideFlags: 0
@@ -6084,6 +6169,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &998716652
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_Name
+      value: Mummy In Standing Coffin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+--- !u!1 &998716653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+  m_PrefabInstance: {fileID: 998716652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &999620046
 GameObject:
   m_ObjectHideFlags: 0
@@ -8035,6 +8186,7 @@ MonoBehaviour:
   _characterGotIntoArea: 0
   PlayerObject: {fileID: 0}
   _characterTransfrom: {fileID: 0}
+  currentState: {fileID: 0}
   idleState: {fileID: 0}
   moveState: {fileID: 0}
   attackState: {fileID: 0}
@@ -10518,6 +10670,72 @@ Transform:
   m_Father: {fileID: 580777214}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2038970544
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_Name
+      value: Mummy In Standing Coffin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+--- !u!1 &2038970545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8266179954968701706, guid: 8acfcd2ae515a6747b3bbf605928fbc7, type: 3}
+  m_PrefabInstance: {fileID: 2038970544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2052384807
 GameObject:
   m_ObjectHideFlags: 0

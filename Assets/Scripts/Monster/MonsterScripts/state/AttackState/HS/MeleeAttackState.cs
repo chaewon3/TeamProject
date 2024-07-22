@@ -37,6 +37,8 @@ public class MeleeAttackState : EnemyAttackState
         print("regularattack");
         monsterController.animator.SetTrigger(PatternAttack);
         yield return new WaitForSeconds(1f);
+
+        
         monsterController.TransitionToState(monsterController.moveState);
 
     }

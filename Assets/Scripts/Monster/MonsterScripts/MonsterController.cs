@@ -41,15 +41,13 @@ public abstract class MonsterController : MonoBehaviour, IHitable
 
     // State들
     // attack은 보스는 공격 1개 스킬 1개(2페이즈는 스킬이 하나 생김) 일반은 1개 중에 뽑기
-    EnemyState currentState;
+    public EnemyState currentState;
 
     public EnemyIdleState idleState;
     public EnemyMoveState moveState;
     public EnemyAttackState attackState;
     public EnemyDeadState deadState;
     public EnemyHitState hitState;
-
-
 
     // 상속받은 스크립트에서 재정의할 것 다 하고 base.Awake() 해야 함
     // 본인의 위치와 각자의 MaxHp만큼 현재 체력을 설정하게 해놓음
@@ -58,7 +56,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     {
         animator = GetComponentInChildren<Animator>();
     }
-
 
     protected void Start()
     {
@@ -112,37 +109,9 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         monsterInfo._currentHP -= damage;
     }
 
-    // 상대방의 체력에 영향을 줘야 하는데 함수 자체가 아직 애매해서 미정
-    void Attack()
-    {
-
-    }
-
     private void Update()
     {
         currentState.Update();
-        
-    }
-
-    protected virtual IEnumerator doSomething(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-
-            default:
-                break;
-        }
-
-        _doingSomeAction = true;
-        yield return new WaitForSeconds(2.0f);
-        _doingSomeAction = false;
-
     }
 
     public void TransitionToState(EnemyState newState)
@@ -166,7 +135,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         _characterGotIntoArea = false;
 
     }
-
 
     // 범위 안에 들어왔다면 캐릭터 오브젝트를 참조하게 만들어
     // loadTransform에서 오브젝트의 현재 위치를 참조하게 만듦
@@ -194,25 +162,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         _characterTransfrom = null;
         monsterInfo._IsAttacked = false;
     }
-    // 회전하는 코루틴
-    // 제자리에서 걸어서 회전하게 만들어야 함
-    // 혹은 내가 IK를 조절하고 애니메이션 재설정
-    // 혹은 그냥 어색하게 회전하기
-    // 걷는 애니메이션 활성화 및 
-    // 회전을 안해도 될 것 같기도
-    //IEnumerator RotateWhenReturn()
-    //{
-    //    while (true)
-    //    {
-    //        if (Quaternion.Angle(transform.rotation, _monsterOriginRotation) < 10.0f)
-    //        {
-    //            yield break;
-    //        }
-
-    //        transform.rotation = Quaternion.Slerp(transform.rotation, _monsterOriginRotation, Time.deltaTime * 3.0f);
-    //        yield return null; // 매 프레임마다 대기
-    //    }
-    //}
 }
 public enum MONSTER_TYPE
 {

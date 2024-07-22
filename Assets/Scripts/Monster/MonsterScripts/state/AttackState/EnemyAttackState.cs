@@ -4,16 +4,11 @@ using UnityEngine;
 using System;
 
 public class EnemyAttackState : EnemyState
-
 {
     public EnemyAttackState(MonsterController character) : base(character) { }
 
-    static readonly int InPattern = Animator.StringToHash("InPattern");
-
     public override void Enter()
     {
-        monsterController.animator.SetBool(InPattern, true);
-
         monsterController.animator.applyRootMotion = false;
 
         PatternCooltime(SelectPattern());
@@ -25,8 +20,6 @@ public class EnemyAttackState : EnemyState
 
     public override void Exit()
     {
-        monsterController.animator.SetBool(InPattern, false);
-
         monsterController.animator.applyRootMotion = true;
     }
 

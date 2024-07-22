@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attckColliderEnableTest : MonoBehaviour
+public class BossAttackColliderEnable : MonoBehaviour
 {
     int attackTimes;
 

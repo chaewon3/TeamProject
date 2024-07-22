@@ -53,10 +53,6 @@ public class EnemyMoveState : EnemyState
                 monsterController._characterTransfrom = null;
             }
         }
-        else
-        {
-            monsterController.TransitionToState(monsterController.attackState);
-        }
     }
 
     public override void Exit()
@@ -118,6 +114,7 @@ public class EnemyMoveState : EnemyState
         {
             // 뒤에 있어도 거리안에 탐지되기 때문에 전방 기준으로 30도 안에 들어오면 공격
             angle = Vector3.Angle(monsterController.transform.forward, direction);
+
             if (angle < 30f)
             {
                 monsterController.TransitionToState(monsterController.attackState);

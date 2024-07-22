@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1211693472922133178}
   - component: {fileID: 1211693472922133179}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488865}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MushroomRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488867}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MushroomPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488869}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488871}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488873}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488875}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488877}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488879}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488883}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Point011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488833}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488835}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488837}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488839}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488841}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488843}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488845}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488847}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488849}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488851}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Bone014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488853}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MushLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,9 @@ GameObject:
   - component: {fileID: 3277571988783488855}
   - component: {fileID: 3277571988783488858}
   - component: {fileID: 3277571988783488856}
-  m_Layer: 9
+  - component: {fileID: 2976909341202534958}
+  - component: {fileID: 1708507932536043103}
+  m_Layer: 8
   m_Name: Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +744,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &3277571988783488856
 CapsuleCollider:
@@ -758,6 +760,55 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &2976909341202534958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277571988783252343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 10
+  _currentHP: 0
+  _attackDamage: 5
+  _moveSpeed: 2
+  _attackDetectRange: 5
+  _returnStopRange: 1
+  _MaxChasingRange: 6
+  _IsAttacked: 0
+--- !u!114 &1708507932536043103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277571988783252343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3253a570addecc94dba05a34277e0052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterInfo: {fileID: 0}
+  animator: {fileID: 0}
+  monster_type: 2
+  _isMove: 0
+  _isDead: 0
+  _doingSomeAction: 0
+  _monsterOriginPosition: {x: 0, y: 0, z: 0}
+  _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}
+  _characterGotIntoArea: 0
+  PlayerObject: {fileID: 0}
+  _characterTransfrom: {fileID: 0}
+  currentState: {fileID: 0}
+  idleState: {fileID: 0}
+  moveState: {fileID: 0}
+  attackState: {fileID: 0}
+  deadState: {fileID: 0}
+  hitState: {fileID: 0}
 --- !u!1 &3277571988783252345
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,7 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488857}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MushLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488859}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MushLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3277571988783488861}
   - component: {fileID: 3277571988794822243}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Mushroom_Monster_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +1005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277571988783488863}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MushLeg04
   m_TagString: Untagged
   m_Icon: {fileID: 0}

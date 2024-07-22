@@ -2,13 +2,13 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Equipment_ARMOR     = 0b1,
-    Equipment_SWORD     = 0b10,
-    Equipment_BOW       = 0b100,
+    Equipment_ARMOR     = 1 << 0,
+    Equipment_SWORD     = 1 << 1,
+    Equipment_BOW       = 1 << 2,
 
-    Consumable          = 0b1000,
-    Artifact            = 0b10000,
-    Etc                 = 0b100000
+    Consumable          = 1 << 3,
+    Artifact            = 1 << 4,
+    Etc                 = 1 << 5
 }
 
 // todo 나중에 이름과 종류는 바꿔야 함

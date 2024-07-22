@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    #region 전역 변수
     float dmg;
     public LayerMask targetLayer;
     DamageTextPool pool;
+
+    //Collider ObjCollider;
+    //bool hitEnemy = false;
+    #endregion
 
     void Awake()
     {
         //dmg = PlayerInfo.damage; 
         pool = FindObjectOfType<DamageTextPool>();
+        //ObjCollider = GetComponent<Collider>();
     }
 
     void OnCollisionEnter(Collision obj)
@@ -22,13 +28,15 @@ public class Sword : MonoBehaviour
             return;
         }
 
-        if (obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
+        if ( obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
 
             GameObject dmgText = pool.GetObj(obj.transform, dmg);
             StartCoroutine(Despawn(dmgText));
         }
+
+        
     }
 
     IEnumerator Despawn(GameObject obj)
@@ -36,4 +44,6 @@ public class Sword : MonoBehaviour
         yield return new WaitForSeconds(3f);
         pool.ReturnObj(obj);
     }
+
+    
 }

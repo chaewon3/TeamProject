@@ -37,6 +37,7 @@ public class PlayerSwordAttack : MonoBehaviour
                 if (comboCoroutine != null && comboCount != 4)
                 {
                     StopCoroutine(comboCoroutine);
+                    player.MoveLimit(true);
                     comboCoroutine = null;
                 }
 
@@ -53,12 +54,14 @@ public class PlayerSwordAttack : MonoBehaviour
     IEnumerator ComboAttack()
     {
         yield return new WaitForEndOfFrame();
+        player.MoveLimit(false);
         playerAnimator.SetBool("CanAtk", false);
         //delray = false;
         comboCount++;
         playerAnimator.SetInteger("Combo", comboCount);
         yield return new WaitForSeconds(attackClip[comboCount-2].length / 1.5f);
 
+        player.MoveLimit(true);
         delray = true;
         playerAnimator.SetBool("CanAtk", true);
         if (comboCount == 4)
@@ -73,6 +76,23 @@ public class PlayerSwordAttack : MonoBehaviour
         comboCount = 1;
         playerAnimator.SetInteger("Combo", comboCount);
         comboCoroutine = null;
+    }
+
+    public void OnCollider()
+    {
+        player.weapon[0].GetComponentInChildren<Collider>().enabled = true;
+        if (player.weapon[0].activeSelf)
+        { }
+        foreach (var item in player.weapon[0].gameObject)
+        {
+
+        }
+
+    }
+
+    public void OffCollider()
+    {
+        player.weapon[0].GetComponent<Collider>().enabled = false;
     }
 }
 

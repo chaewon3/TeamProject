@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     public float dirSpeed; // 나중에 지울거 
 
     float gravity = -3f;
+    bool isDush = false;
     bool isGrounded;
     LayerMask groundMask;
     Transform transGroundCheckPoint;
@@ -28,6 +29,7 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public State state;
     public GameObject[] weapon;
+    //public List<GameObject> textWeapon = new List<GameObject>();
     #endregion
 
 
@@ -38,6 +40,11 @@ public class PlayerMove : MonoBehaviour
 
         transGroundCheckPoint = transform;
         groundMask = (1 << LayerMask.NameToLayer("Ground"));
+
+        //for(int i =0; i < weapon[0].transform.childCount; i++)
+        //{
+        //    textWeapon[i] = weapon[0].transform.GetChild(i).gameObject;
+        //}
     }
 
     void Start()
@@ -52,8 +59,17 @@ public class PlayerMove : MonoBehaviour
             #region 이동
          
             Vector3 moveDir = Vector3.zero;
-            moveDir.z = Input.GetAxisRaw("Vertical");
-            moveDir.x = Input.GetAxisRaw("Horizontal");
+            if(!isDush)
+            {
+                moveDir.z = Input.GetAxisRaw("Vertical");
+                moveDir.x = Input.GetAxisRaw("Horizontal");
+            }
+            else
+            {
+                moveDir.z = 1f;
+                moveDir.x = 0f;
+            }
+            
 
             charCont.Move(transform.forward * moveDir.z * moveSpeed * Time.deltaTime);
             charCont.Move(transform.right * moveDir.x * moveSpeed * Time.deltaTime);
@@ -64,13 +80,12 @@ public class PlayerMove : MonoBehaviour
             #endregion
 
             #region 대시
-            if (Input.GetKeyDown(KeyCode.Space))// isground 조건 추가?
+            if (Input.GetKeyDown(KeyCode.Space) && dushCoroutine == null)// isground 조건 추가?
             {
-                print("구릅니닷");
-                playerAnimator.SetTrigger("Dush"); 
-
-                if(dushCoroutine == null)
-                    dushCoroutine = StartCoroutine(Dush());
+                playerAnimator.SetTrigger("Dush");
+                dushCoroutine = StartCoroutine(Dush());
+                //if (dushCoroutine == null)
+                    
             }
             #endregion //누른 방향키에 따라 캐릭을 회전? 다른 애니메이션 찾기?
         }
@@ -104,25 +119,29 @@ public class PlayerMove : MonoBehaviour
     IEnumerator Dush()
     {
         moveSpeed = 6;
+        isDush = true;
         charCont.height = 1f;
         charCont.center = new Vector3(0, 0.54f, 0);
         yield return new WaitForSeconds(0.8f); //AniClip.Length = 0.833f
 
         moveSpeed = 3;
+        isDush = false;
         charCont.height = 1.88f;
         charCont.center = new Vector3(0, 0.93f, 0);
         dushCoroutine = null;
     }
 
-    public void MoveChange(bool bValue)
+    public void MoveLimit(bool bValue)
     {
         if(!bValue)
         {
             canMove = false;
+            canRotat = false;
         }
         else
         {
             canMove = true;
+            canRotat = true;
         }
     }
 

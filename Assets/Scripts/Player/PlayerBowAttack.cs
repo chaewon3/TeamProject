@@ -9,7 +9,7 @@ public class PlayerBowAttack : MonoBehaviour
     Animator playerAnimator;
     PlayerMove player;
     Coroutine ArrowCoroutine;
-    ArrowPooling pool;
+    ArrowPool pool;
     int arrow;
 
     public AnimationClip shootClip;
@@ -20,7 +20,7 @@ public class PlayerBowAttack : MonoBehaviour
     {
         playerAnimator = GetComponent<Animator>();
         player = GetComponent<PlayerMove>();
-        pool = GetComponent<ArrowPooling>();
+        pool = GetComponent<ArrowPool>();
         arrow = GetComponent<PlayerInfo>().ArrowCount;
     }
 

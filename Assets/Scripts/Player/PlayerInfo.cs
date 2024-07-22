@@ -29,7 +29,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
 
     void Awake()
     {
-        playerData = DataManager.Instance.playerData;
+        playerData = DataManager.Instance.playerDataTest;
         player = GetComponent<PlayerMove>();
         playerAni = GetComponent<Animator>();
         maxHealth = playerData.maxHP;

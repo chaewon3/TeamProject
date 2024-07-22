@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
-public class EquipSlot : MonoBehaviour
+public class EquipSlot : MonoBehaviour, IPointerDownHandler
 {
     private Image icon;
     private Image defaulticon;
@@ -31,4 +30,30 @@ public class EquipSlot : MonoBehaviour
         defaulticon.enabled = true;
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (item == null)
+            return;
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            InventoryManager.AddItem(item);
+            switch(item.Data.type)
+            {
+                case ItemType.Equipment_ARMOR:
+                    InventoryManager.Equips[1] = null;
+                    break;
+                case ItemType.Equipment_BOW:
+                    InventoryManager.Equips[2] = null;
+                    break;
+                case ItemType.Equipment_SWORD:
+                    InventoryManager.Equips[0] = null;
+                    break;
+                case ItemType.Artifact:
+                    break;
+                default: break;
+            }
+            Clear();
+            InventoryManager.Refresh();
+        }
+    }
 }

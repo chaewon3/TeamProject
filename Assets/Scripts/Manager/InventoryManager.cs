@@ -5,14 +5,18 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     private List<ItemData> items = new List<ItemData>();
-    public ItemData[] equipSlots = new ItemData[3];
-    public ItemData[] ArtifactsSlots = new ItemData[3];
+    private ItemData[] equipSlots = new ItemData[3] { null, null, null };
+    private ItemData[] ArtifactsSlots = new ItemData[3] { null, null, null };
+
+    private int currentID = 1;
 
     public static InventoryPanel Panel => CanvasManager.inventoryPanel;
     public static InventoryManager Instance { get; private set; }
 
     // 저장을 위한 함수
     public static List<ItemData> Items { get => Instance.items; set => Instance.items = value; }
+    public static ItemData[] Equips { get => Instance.equipSlots; set => Instance.equipSlots = value; }
+    public static ItemData[] Artifact { get => Instance.ArtifactsSlots; set => Instance.ArtifactsSlots = value; }
 
     private void Awake()
     {
@@ -20,7 +24,8 @@ public class InventoryManager : MonoBehaviour
     }
     public static void AddItem(ItemData item)
     {
-        item.UniqueID = Items.Count;
+        item.UniqueID = Instance.currentID;
+        Instance.currentID++;
         if (item is EquipmentData)
         {
             Instance.items.Add(item);

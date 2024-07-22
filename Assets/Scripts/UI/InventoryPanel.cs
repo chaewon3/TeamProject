@@ -26,15 +26,15 @@ public class InventoryPanel : MonoBehaviour
         }
         for(int i=0;i<3;i++)
         {
-            if (equip[i].tableID != 0)
-                equipslot[i].setItem(equip[i]);
-            else
+            if (equip[i] == null)
                 equipslot[i].Clear();
+            else                
+               equipslot[i].setItem(equip[i]);
 
-            if (Artifact[i].tableID != 0)
-                ArtifactSlot[i].setItem(Artifact[i]);
+            if (Artifact[i] == null)
+                ArtifactSlot[i].Clear(); 
             else
-                ArtifactSlot[i].Clear();
+                ArtifactSlot[i].setItem(Artifact[i]);
         }
     }
 }

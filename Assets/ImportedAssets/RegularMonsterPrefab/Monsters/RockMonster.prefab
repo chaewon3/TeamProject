@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterInfo: {fileID: 0}
   animator: {fileID: 0}
-  monster_type: 0
+  monster_type: 1
   _isMove: 0
   _isDead: 0
   _isHit: 0

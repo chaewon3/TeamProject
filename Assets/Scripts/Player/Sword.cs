@@ -16,9 +16,13 @@ public class Sword : MonoBehaviour
 
     void Awake()
     {
-        //dmg = PlayerInfo.damage; 
         pool = FindObjectOfType<DamageTextPool>();
         player = FindObjectOfType<PlayerSwordAttack>();
+    }
+
+    void Start()
+    {
+        dmg = PlayerManager.Data.damage;
     }
 
     void OnCollisionEnter(Collision obj)

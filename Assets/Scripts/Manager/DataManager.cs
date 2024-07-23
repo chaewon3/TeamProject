@@ -5,13 +5,13 @@ using System.IO;
 
 public class FileData
 {
-    //public List<PlayerData> playerData;
+    public PlayerData PlayerData;
     public List<EquipmentData> EquipData;
     public List<ConsumableData> consumData;
 
     public FileData()
     {
-        //playerData = new List<PlayerData>();
+        PlayerData = new PlayerData();
         EquipData = new List<EquipmentData>();
         consumData = new List<ConsumableData>();
     }
@@ -54,20 +54,6 @@ public class DataManager : MonoBehaviour
     {
         LoadData();
     }
-
-
-    public void PlayerInfoSave(float maxHP, float dmg, float exp, int level, int arrow) //todo 이거 배열로 파라미터 변경 할건지?
-    {
-        string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
-        playerDataTest.maxHP = maxHP;
-        playerDataTest.damage = dmg;
-        playerDataTest.experience = exp;
-        playerDataTest.level = level;
-        playerDataTest.ArrowCount = arrow;
-        string json = JsonUtility.ToJson(playerDataTest);
-        File.WriteAllText(path, json);
-    }
-
     
     public void SaveData()
     {
@@ -77,7 +63,7 @@ public class DataManager : MonoBehaviour
             save.AddItem(item);
         }
         // todo PlayerData 저장하는 부분도 넣어야 함
-
+        save.PlayerData = PlayerManager.Data;
         File.WriteAllText(saveFilePath, JsonUtility.ToJson(save));
     }
 
@@ -102,6 +88,7 @@ public class DataManager : MonoBehaviour
         foreach (var item in InventoryManager.Items)
             item.Data = itemSOList.Find(x => x.tableId == item.tableID);
 
+        PlayerManager.Data = save.PlayerData;
         InventoryManager.Refresh();
     }
 
@@ -138,13 +125,13 @@ public class DataManager : MonoBehaviour
     //}
 }
 
-[System.Serializable]
-public class PlayerData
-{
-    public float maxHP;
-    public float damage;
-    public float experience;
-    public int level;
-    public int ArrowCount;
-}
+//[System.Serializable]
+//public class PlayerData
+//{
+//    public float maxHP;
+//    public float damage;
+//    public float experience;
+//    public int level;
+//    public int ArrowCount;
+//}
 

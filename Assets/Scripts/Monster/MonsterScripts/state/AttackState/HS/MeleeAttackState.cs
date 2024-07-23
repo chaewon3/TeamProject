@@ -25,21 +25,20 @@ public class MeleeAttackState : EnemyAttackState
         switch (regularPattern)
         {
             case REGULAR_MONSTER_ATTACK_BEHAVIOUR.REGULAR_MONSTER_ATTACK:
-                monsterController.StartCoroutine(RegularPatternAttack());
+                monsterController.StartCoroutine(RegularPatternAttack(monsterController.monsterInfo.attackDurationTime));
                 break;
             default:
                 break;
         }
     }
 
-    IEnumerator RegularPatternAttack()
+    IEnumerator RegularPatternAttack(float time)
     {
         print("regularattack");
+        print(time);
         monsterController.animator.SetTrigger(PatternAttack);
-        yield return new WaitForSeconds(1f);
-
-        
-        monsterController.TransitionToState(monsterController.moveState);
+        yield return new WaitForSeconds(time);
+        monsterController.TransitionToState(monsterController.idleState);
 
     }
 }

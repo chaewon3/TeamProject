@@ -1735,7 +1735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterInfo: {fileID: 0}
   animator: {fileID: 0}
-  monster_type: 0
+  monster_type: 1
   _isMove: 0
   _isDead: 0
   _doingSomeAction: 0
@@ -1762,13 +1762,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 10
+  _maxHP: 30
   _currentHP: 0
   _attackDamage: 5
   _moveSpeed: 2
   _attackDetectRange: 2
   _returnStopRange: 1
   _MaxChasingRange: 6
+  attackDurationTime: 2.5
   _IsAttacked: 0
 --- !u!1 &4554347376192598483
 GameObject:
@@ -2850,3 +2851,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coffin: {fileID: 841297463111734537}
+  mummy: {fileID: 4554347376192598481}

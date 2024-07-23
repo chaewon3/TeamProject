@@ -49,12 +49,14 @@ public class BossAttackState : EnemyAttackState
                 monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
                 break;
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
-                monsterController.StartCoroutine(BossPatternSpellOne());
-                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 10));
+                //monsterController.StartCoroutine(BossPatternSpellOne());
+                //monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 10));
+                monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
+
                 break;
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2:
-                //monsterController.StartCoroutine(BossPatternSpellTwo());
-                monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
+                monsterController.StartCoroutine(BossPatternSpellTwo());
+                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 10));
                 break;
             
         }

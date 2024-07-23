@@ -44,7 +44,7 @@ public class PlayerBowAttack : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 playerAnimator.SetTrigger("Attack");
-                pool.GetObj();
+                pool.GetArrow();
 
                 if (ArrowCoroutine == null)
                     ArrowCoroutine = StartCoroutine(Arrow());

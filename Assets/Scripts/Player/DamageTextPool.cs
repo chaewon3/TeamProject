@@ -18,7 +18,7 @@ public class DamageTextPool : MonoBehaviour
         }
     }
 
-    public GameObject GetObj(Transform target, float dmg)
+    public GameObject GetDmgText(Transform target, float dmg)
     {
         if(pool.Count == 0)
         {
@@ -34,9 +34,8 @@ public class DamageTextPool : MonoBehaviour
         return obj;
     }
 
-    public void ReturnObj(GameObject obj)
+    public void ReturnDmgText(GameObject obj)
     {
-        print($"리턴 함수 오브젝트 {obj}");
         obj.SetActive(false);
         obj.transform.SetParent(transform);
         pool.Enqueue(obj);

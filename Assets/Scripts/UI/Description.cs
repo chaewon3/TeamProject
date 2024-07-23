@@ -13,7 +13,9 @@ public class Description : MonoBehaviour
     public TextMeshProUGUI itemDesc;
     public GameObject Upgrade;
     public UpdradeSlot[] upgradeSlot = new UpdradeSlot[3];
-    //public GameObject tooltip;
+
+    public CanvasGroup Error;
+    public TextMeshProUGUI ErrorMessgae;
 
     public static Description Instance;
 
@@ -32,11 +34,10 @@ public class Description : MonoBehaviour
     public void DescriptionsON(ItemData item)
     {
         gameObject.SetActive(true);
-        currentItem = (EquipmentData)item;
-
         itemName.text = item.Data.name;
         if (item is EquipmentData)
         {
+            currentItem = (EquipmentData)item;
             itemDamage.enabled = true;
             Upgrade.SetActive(true);
             var equip = (EquipmentData)item;
@@ -77,16 +78,34 @@ public class Description : MonoBehaviour
     public void upgrade(int slotLevel)
     {
         bool upgrade = true;
+        if(currentItem.upgrade[slotLevel] != 0)
+        {
+            ErrorMessgae.text = "이미 강화된 슬롯입니다.";
+            StopAllCoroutines();
+            StartCoroutine(Warning());
+            return;
+        }
         // 앞의 슬롯이 업그레이드 되었는지 확인
-        for(int i = 0; i<slotLevel;i++)
+        for (int i = 0; i<slotLevel;i++)
         {
             if (currentItem.upgrade[i] == 0)
                 upgrade = false;
-        }
+        }        
 
         if(!upgrade)
         {
             //앞슬롯 강화 경고창
+            ErrorMessgae.text = "아직 강화할 수 없는 슬롯입니다.";
+            StopAllCoroutines();
+            StartCoroutine(Warning());
+            return;
+        }
+
+        if(currentItem.upgrade[2] != 0)
+        {
+            ErrorMessgae.text = "최대 강화 수치입니다.";
+            StopAllCoroutines();
+            StartCoroutine(Warning());
             return;
         }
 
@@ -98,29 +117,41 @@ public class Description : MonoBehaviour
             currentItem.Upgrade(additionDam, slotLevel);
             int index = InventoryManager.Items.FindIndex(a => a.UniqueID == currentItem.UniqueID);
             InventoryManager.Items[index] = currentItem;
+            PlayerManager.Data.skillPoint -= slotLevel + 1;
+            ErrorMessgae.text = $"강화에 성공했습니다. +(<color=green>{additionDam}</color>)";
         }
         else
         {
-            print("스킬포인트가 부족합니다.");
+            ErrorMessgae.text = $"스킬 포인트가 {slotLevel+1}필요합니다..";
         }
-        upgradeSlot[slotLevel].Set(currentItem);
+        StopAllCoroutines();
+        StartCoroutine(Warning());
+        InventoryManager.Refresh();
+        DescriptionsON(currentItem);
     }
 
-    public void showtooltip(int slotLevel)
+    IEnumerator Warning()
     {
-        RectTransform transform = tooltip.GetComponent<RectTransform>();
-        TextMeshProUGUI text = tooltip.GetComponent<TextMeshProUGUI>();
-        StringBuilder sb = new StringBuilder();
-        if(currentItem.upgrade[slotLevel] == 0)
+        Error.alpha = 0;
+        float starttime = 0;
+        while (starttime < 0.5f)
         {
-            //sb.Append
+            float t = (Time.time - starttime) / 0.5f;
+            Error.alpha = Mathf.Lerp(0, 1, starttime / 0.5f);
+            starttime += Time.deltaTime;
+            yield return null;
         }
-        else
+        Error.alpha = 1;
+        yield return new WaitForSeconds(0.8f);
+        starttime = 0;
+        while (starttime < 0.5f)
         {
-            sb.Append($"+{currentItem.upgrade[slotLevel]}");
+            float t = (Time.time - starttime) / 0.5f;
+            Error.alpha = Mathf.Lerp(1,0, starttime / 0.5f);
+            starttime += Time.deltaTime;
+            yield return null;
         }
-        // 업그레이드 되었는지 안되었는지 확인
-        // 안되었으면 몇 스킬포인트가 필요한지 /  앞의 슬롯을 열어야하는지
-        // 되었으면 강화된 수치 표기
+        Error.alpha = 0;
     }
+
 }

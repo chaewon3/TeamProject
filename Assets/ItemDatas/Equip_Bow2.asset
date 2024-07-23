@@ -17,7 +17,7 @@ MonoBehaviour:
   name: "\uAC15\uB825 \uD65C"
   price: 150
   icon: {fileID: 21300000, guid: 80d75a8922e0f764d8a1271e5c3ed299, type: 3}
-  ModelPrefab: {fileID: 0}
+  ModelPrefab: {fileID: 6051663234640318594, guid: ff112c89b441bbd4b98401cca7a002d2, type: 3}
   description: "\uAC15\uB825 \uD65C\uC774 \uAC15\uB825\uD55C \uC774\uC720\uC5D0 \uB300\uD55C
     \uC9C8\uBB38\uC740 \uC624\uB7AB\uB3D9\uC548 \uC2DD\uACAC \uC788\uB294 \uC0AC\uB78C\uB4E4\uC744
     \uD63C\uB780\uC2A4\uB7FD\uAC8C \uD588\uC2B5\uB2C8\uB2E4."

@@ -46,7 +46,6 @@ public class DataManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
-
         //playerDataTest = PlayerFileLoad("PlayerInfo");
     }
 
@@ -111,27 +110,7 @@ public class DataManager : MonoBehaviour
             }
         }
         return null;
-    }
-
-
-    //void firstDataSave()
-    //{
-    //    foreach(PlayerData data in playerData)
-    //    {
-    //        string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
-    //        string json = JsonUtility.ToJson(data);
-    //        File.WriteAllText(path, json);
-    //    }
-    //}
+    }   
 }
 
-//[System.Serializable]
-//public class PlayerData
-//{
-//    public float maxHP;
-//    public float damage;
-//    public float experience;
-//    public int level;
-//    public int ArrowCount;
-//}
 

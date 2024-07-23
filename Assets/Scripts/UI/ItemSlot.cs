@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
     private Image icon;
+    private TextMeshProUGUI amount;
     public ItemData item;
 
     float interval = 0.25f;
@@ -13,6 +15,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         icon = transform.Find("Item Icon").GetComponent<Image>();
+        amount = transform.Find("amount").GetComponent<TextMeshProUGUI>();
     }
 
     public void setItem(ItemData item)
@@ -20,12 +23,20 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         this.item = item;
         icon.enabled = true;
         icon.sprite = item.Data?.icon;
+        if (item is ConsumableData)
+        {
+            amount.text = item.amount.ToString();
+            amount.enabled = true;
+        }
+        else
+            amount.enabled = false;
     }
 
     public void Clear()
     {
         item = null;
         icon.enabled = false;
+        amount.enabled = false;
     }
 
     public void Equip(int slot)

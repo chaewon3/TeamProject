@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour
 {
+    PlayerInfo player;
     bool healPortion = true;
     public Image portion;
     float fillAmount = 1f;
@@ -13,6 +14,7 @@ public class ItemUI : MonoBehaviour
     void Awake()
     {
         portion.fillAmount = 0f;
+        player = FindObjectOfType<PlayerInfo>();
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class ItemUI : MonoBehaviour
         {
             healPortion = false;
             portion.fillAmount = 1f;
-            PlayerManager.Instance.Healing(10f);
+            player.Healing(10f);
         }   
 
         if(!healPortion && fillAmount > 0)

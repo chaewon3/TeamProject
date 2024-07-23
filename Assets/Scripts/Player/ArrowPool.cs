@@ -29,7 +29,6 @@ public class ArrowPool : MonoBehaviour
         if (count != pool.Count)
         {
             GameObject arrow = pool[count];
-            print($"{count}¹ø È­»ì : {pool[count].transform.position}, {pool[count].transform.rotation}");
             arrow.transform.position = spawnPoint.position;
             arrow.transform.rotation = spawnPoint.rotation;
             arrow.SetActive(true);

@@ -98,7 +98,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
         _monsterOriginRotation = transform.rotation;
 
         currentState = idleState;
-        currentState.Enter();
+        currentState?.Enter();
     }
 
 

@@ -8,10 +8,7 @@ public class Sword : MonoBehaviour
     float dmg;
     public LayerMask targetLayer;
     DamageTextPool pool;
-    //bool isHit = false;
     PlayerSwordAttack player;
-
-    //bool hitEnemy = false;
     #endregion
 
     void Awake()
@@ -25,34 +22,26 @@ public class Sword : MonoBehaviour
         dmg = PlayerManager.Data.damage;
     }
 
-    void OnCollisionEnter(Collision obj)
+    void OnTriggerEnter(Collider other)
     {
-        print("Ä®¿¡ ´ê¾Ò´Ù");
-        if((targetLayer | (1 << obj.collider.gameObject.layer)) != targetLayer)
+        if ((targetLayer | (1 << other.gameObject.layer)) != targetLayer)
         {
             return;
         }
 
-        if (!player.isHit && obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
+        if (other.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
             player.isHit = true;
-            GameObject dmgText = pool.GetObj(obj.transform, dmg);
+
+            GameObject dmgText = pool.GetObj(other.transform, dmg);
             StartCoroutine(Despawn(dmgText));
         }
-
-        
     }
 
     IEnumerator Despawn(GameObject obj)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         pool.ReturnObj(obj);
     }
-
-    //public void HitPossible()
-    //{
-    //    isHit = false;
-    //}
-    
 }

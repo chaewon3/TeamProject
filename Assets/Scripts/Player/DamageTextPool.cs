@@ -36,6 +36,7 @@ public class DamageTextPool : MonoBehaviour
 
     public void ReturnObj(GameObject obj)
     {
+        print($"리턴 함수 오브젝트 {obj}");
         obj.SetActive(false);
         obj.transform.SetParent(transform);
         pool.Enqueue(obj);

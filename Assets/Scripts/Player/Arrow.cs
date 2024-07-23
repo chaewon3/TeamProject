@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     public LayerMask targetLayer;
     Rigidbody rigid;
     CapsuleCollider arrowcollider;
-    int speed = 1200;//1200
+    int speed = 1200;
     ArrowPool arrowPool;
     DamageTextPool dmgPool;
     bool end = false;
@@ -20,6 +20,11 @@ public class Arrow : MonoBehaviour
         arrowcollider = GetComponent<CapsuleCollider>();
         arrowPool = FindObjectOfType<ArrowPool>();
         dmgPool = FindObjectOfType<DamageTextPool>();
+    }
+
+    void Start()
+    {
+        dmg = PlayerManager.Data.damage;
     }
 
     void OnEnable()
@@ -46,30 +51,35 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider obj)
+    void OnTriggerEnter(Collider other)
     {
-        if ((targetLayer | (1 << obj.gameObject.layer)) != targetLayer)
+        if ((targetLayer | (1 << other.gameObject.layer)) != targetLayer)
         {
             return;
         }
 
-        if (obj.TryGetComponent<IHitable>(out IHitable hitable))
+        if (other.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
 
-            GameObject dmgText = dmgPool.GetObj(obj.transform, dmg);
+            GameObject dmgText = dmgPool.GetObj(other.transform, dmg);
             StartCoroutine(Despawn(dmgText));
+            print($"코루틴에 넣을 오브젝트 {dmgText}");
         }
-
+        
         rigid.isKinematic = true;
         rigid.velocity = Vector3.zero;
-        transform.SetParent(obj.transform);
+        transform.SetParent(other.transform);
         arrowcollider.enabled = false;
     }
 
     IEnumerator Despawn(GameObject obj)
     {
-        yield return new WaitForSeconds(3f);
+        print($"코루틴 안에 있는 오브젝트 {obj}");
+        yield return new WaitForSeconds(1.5f);
+        print($"데미지 리턴");
+        dmgPool.ReturnObj(obj);
+        yield return new WaitForSeconds(1.5f);
         arrowPool.ReturnObj(gameObject);
     }
 

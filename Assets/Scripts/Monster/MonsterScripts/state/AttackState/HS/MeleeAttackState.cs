@@ -34,11 +34,14 @@ public class MeleeAttackState : EnemyAttackState
 
     IEnumerator RegularPatternAttack(float time)
     {
-        print("regularattack");
-        print(time);
         monsterController.animator.SetTrigger(PatternAttack);
         yield return new WaitForSeconds(time);
-        monsterController.TransitionToState(monsterController.idleState);
+        if (!monsterController._isHit && !monsterController._isDead)
+        {
+            monsterController.TransitionToState(monsterController.moveState);
+        }
+
+        
 
     }
 }

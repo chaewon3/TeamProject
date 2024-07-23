@@ -47,7 +47,7 @@ public class DataManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        playerDataTest = PlayerFileLoad("PlayerInfo");
+        //playerDataTest = PlayerFileLoad("PlayerInfo");
     }
 
     private void Start()

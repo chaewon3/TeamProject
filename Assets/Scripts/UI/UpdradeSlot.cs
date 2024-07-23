@@ -2,50 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class UpdradeSlot : MonoBehaviour,IPointerUpHandler, IPointerClickHandler
+public class UpdradeSlot : MonoBehaviour
 {
-    private GameObject Lock;
-    private GameObject Upgrade;
-    EquipmentData item;
+    private Image Lock;
+    private Image Upgrade;
 
     private bool isUpgrade;
 
-    [Range(1,3)]
+    [Range(0,2)]
     public int slotLevel;
 
     private void Awake()
     {
-        Lock = transform.Find("Lock").gameObject;
-        Upgrade = transform.Find("Upgrade").gameObject;
+        Lock = transform.Find("Lock").GetComponent<Image>();
+        Upgrade = transform.Find("Upgrade").GetComponent<Image>();
     }
 
-    private void OnEnable()
+    public void Set(EquipmentData item)
     {
-        item = Description.Instance.currentItem;
-        if(item.upgrade[slotLevel] == 0)
+        if (item.upgrade[slotLevel] == 0)
         {
-            Lock.SetActive(true);
-            Upgrade.SetActive(false);
+            Lock.enabled = true;
+            Upgrade.enabled = false;
         }
         else
         {
-            Lock.SetActive(false);
-            Upgrade.SetActive(true);
+            Lock.enabled = false;
+            Upgrade.enabled = true;
         }
     }
 
-    /// <summary>
-    /// 강화하는데 필요한 스킬포인트 혹은 강화한 데미지 얼마나 붙었는지
-    /// </summary>
-    /// <param name="eventData"></param>
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
 }

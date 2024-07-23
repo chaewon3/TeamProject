@@ -23,18 +23,21 @@ public class CanvasManager : MonoBehaviour
     private void Start()
     {
         //PlayerUI.gameObject.SetActive(false);
-        InvenUI.gameObject.SetActive(true);
-        MainOption.gameObject.SetActive(false);
+        InvenUI.gameObject.SetActive(false);
+        MainOption.gameObject.SetActive(true);
     }
-    //todo 나중에 MainScene에서 연동 다 바꾸끼
+
+    //todo 나중에 MainScene에서 캔버스 키고 끄는 연동 다 바꾸끼
     public static void ShowInentory()
     {
+        GameManager.Instance.MouseLock(false);
         Instance.InvenUI.gameObject.SetActive(true);
         //Instance.PlayerUI.gameObject.SetActive(false);
     }
 
     public static void ShowPlayer()
     {
+        GameManager.Instance.MouseLock(true);
         Instance.InvenUI.gameObject.SetActive(false);
         //Instance.PlayerUI.gameObject.SetActive(true);
     }

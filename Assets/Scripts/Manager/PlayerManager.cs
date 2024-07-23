@@ -52,21 +52,21 @@ public class PlayerManager : MonoBehaviour, IHitable
         currentHealth = playerData.maxHealth;
     }
 
-    void Update()
-    {
-        // 업데이트말고 함수로 빼서 필요할때만 호출 하는거 생각해보기
-        levelText.text = playerData.level.ToString();
-        hpBar.maxValue = playerData.maxHealth;
-        hpBar.value = currentHealth;
-        expBar.maxValue = playerData.level * 100f; // 이거 비율 계산 조율하기 
-        expBar.value = playerData.experience;
-
-        if(currentHealth <= 0)
-        {
-            player.canMove = false;
-            playerAni.SetBool("isDead", true);
-        }
-    }
+    //void Update()
+    //{
+    //    // 업데이트말고 함수로 빼서 필요할때만 호출 하는거 생각해보기
+    //    levelText.text = playerData.level.ToString();
+    //    hpBar.maxValue = playerData.maxHealth;
+    //    hpBar.value = currentHealth;
+    //    expBar.maxValue = playerData.level * 100f; // 이거 비율 계산 조율하기 
+    //    expBar.value = playerData.experience;
+    //
+    //    if(currentHealth <= 0)
+    //    {
+    //        player.canMove = false;
+    //        playerAni.SetBool("isDead", true);
+    //    }
+    //}
 
     public void Hit(float damage)
     {

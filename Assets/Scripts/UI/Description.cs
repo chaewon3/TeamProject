@@ -11,12 +11,20 @@ public class Description : MonoBehaviour
     public TextMeshProUGUI itemDamage;
     public Image itemIcon;
     public TextMeshProUGUI itemDesc;
+    public GameObject Upgrade;
 
+    [HideInInspector]
+    public EquipmentData currentItem;
     public static Description Instance;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        DescriptionOFF();
     }
 
     public void DescriptionsON(ItemData item)
@@ -26,12 +34,13 @@ public class Description : MonoBehaviour
         itemName.text = item.Data.name;
         if (item is EquipmentData)
         {
-            print("됨");
+            currentItem = (item as EquipmentData);
             itemDamage.enabled = true;
+            Upgrade.SetActive(true);
             var equip = (EquipmentData)item;
             if (equip.DataEquip.equiptype == EquipType.Armor)
             {
-                itemDamage.text = $"+{equip.DataEquip.DEF + equip.additionalAbility} 체력";
+                itemDamage.text = $"+{equip.DataEquip.DEF + equip.additionalAbility} (<color=green>+{equip.additionalAbility}</color>) 체력";
             }
             else
             {
@@ -41,11 +50,16 @@ public class Description : MonoBehaviour
                 else if (equip.Data.type == ItemType.Equipment_SWORD)
                     sb.Append("근거리 피해");
                 sb.Append(equip.DataEquip.ATK + equip.additionalAbility);
+                if (equip.additionalAbility != 0)
+                    sb.Append($"(<color=green>+{equip.additionalAbility}</color>)");
                 itemDamage.text = sb.ToString();
             }
         }
         else
+        {
             itemDamage.enabled = false;
+            Upgrade.SetActive(false);
+        }
         itemIcon.sprite = item.Data.icon;
         itemDesc.text = item.Data.description;
     }

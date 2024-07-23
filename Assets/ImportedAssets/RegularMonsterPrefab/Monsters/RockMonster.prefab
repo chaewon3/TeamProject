@@ -1910,7 +1910,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8
+  m_Radius: 0.7
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
@@ -1926,14 +1926,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 100
+  _maxHP: 30
   _currentHP: 0
-  _attackDamage: 0
+  _attackDamage: 10
   _moveSpeed: 0
-  _attackDetectRange: 0
-  _returnStopRange: 0
-  _MaxChasingRange: 0
-  attackDurationTime: 0
+  _attackDetectRange: 2
+  _returnStopRange: 2
+  _MaxChasingRange: 4
+  attackDurationTime: 2.5
   _IsAttacked: 0
 --- !u!114 &609499854030023841
 MonoBehaviour:

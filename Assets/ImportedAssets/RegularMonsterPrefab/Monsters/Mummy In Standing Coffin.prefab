@@ -1717,7 +1717,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _attackDetectRange: 2
   _returnStopRange: 1
-  _MaxChasingRange: 6
+  _MaxChasingRange: 20
   attackDurationTime: 2.5
   _IsAttacked: 0
 --- !u!1 &4554347376192598483

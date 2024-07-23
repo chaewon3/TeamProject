@@ -10,15 +10,31 @@ public class MummySpawnAnimation : MonoBehaviour
     Vector3 rayOrigin;
     Vector3 rayDirection;
     LayerMask groundLayer;
+    Animator animator;
+
+    MonsterController monsterController;
+
 
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
+        animator = GetComponentInChildren<Animator>();
+        monsterController = GetComponentInChildren<MonsterController>();
     }
 
     private void OnEnable()
     {
+        animator.SetBool("IsActivating", true);
         StartCoroutine(RaycastingAndStartAnim());
+
+        monsterController._characterGotIntoArea = false;
+        
+        InitializingObject(coffin);
+        InitializingObject(mummy);
+
+        coffin.GetComponent<Rigidbody>().isKinematic = false;
+
+        ColliderAndRigidBodyEnable(mummy);
     }
 
     IEnumerator RaycastingAndStartAnim()
@@ -32,7 +48,7 @@ public class MummySpawnAnimation : MonoBehaviour
             Debug.DrawRay(rayOrigin, rayDirection * 0.4f, Color.red, 0.1f);
 
 
-            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.2f, groundLayer))
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.3f, groundLayer))
             {
                 break;
             }
@@ -81,17 +97,16 @@ public class MummySpawnAnimation : MonoBehaviour
             }
         }
 
-
-        Destroy(coffin);
-
-
+        coffin.SetActive(false);
+        
         StartCoroutine(MummyOpenAnimation());
     }
 
     IEnumerator MummyOpenAnimation()
     {
-        Animator animator = GetComponentInChildren<Animator>();
+        
         animator.SetTrigger("open");
+        animator.SetBool("IsActivating", false);
         yield return new WaitForSeconds(4.0f);
 
         ColliderAndRigidBodyEnable(mummy);
@@ -128,6 +143,15 @@ public class MummySpawnAnimation : MonoBehaviour
         {
             rigidbody.isKinematic = false;
         }
+    }
+
+    void InitializingObject(GameObject target)
+    {
+        target.transform.localPosition = Vector3.zero;
+        target.transform.localEulerAngles = Vector3.zero;
+        target.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        target.SetActive(true);
     }
 
 }

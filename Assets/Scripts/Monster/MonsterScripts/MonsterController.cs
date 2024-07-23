@@ -20,6 +20,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     // 움직일 수 있게 사용
     public bool _isMove = false;
     public bool _isDead = false;
+    public bool _isHit = false;
 
     public bool _doingSomeAction = false;
 
@@ -55,19 +56,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     protected void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-    }
-
-    protected void Start()
-    {
-        monsterInfo = GetComponent<MonsterInfo>();
-
-        monsterInfo._currentHP = monsterInfo._maxHP;
-
-        _monsterOriginPosition = transform.position;
-
-        _monsterOriginRotation = transform.rotation;
-
-        PlayerObject = PlayerGameobjectManager.instance.playerObject;
 
         idleState = new EnemyIdleState(this);
 
@@ -97,8 +85,30 @@ public abstract class MonsterController : MonoBehaviour, IHitable
             hitState = null;
         }
 
+        
+    }
+    protected void OnEnable()
+    {
+        monsterInfo = GetComponent<MonsterInfo>();
+
+        monsterInfo._currentHP = monsterInfo._maxHP;
+
+        _monsterOriginPosition = transform.position;
+
+        _monsterOriginRotation = transform.rotation;
+
         currentState = idleState;
         currentState.Enter();
+    }
+
+
+    protected void Start()
+    {
+        PlayerObject = PlayerGameobjectManager.instance.playerObject;
+
+
+
+        
 
     }
 

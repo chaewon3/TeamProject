@@ -34,7 +34,7 @@ public class Sword : MonoBehaviour
             hitable.Hit(dmg);
             player.isHit = true;
 
-            GameObject dmgText = pool.GetObj(other.transform, dmg);
+            GameObject dmgText = pool.GetDmgText(other.transform, dmg);
             StartCoroutine(Despawn(dmgText));
         }
     }
@@ -42,6 +42,6 @@ public class Sword : MonoBehaviour
     IEnumerator Despawn(GameObject obj)
     {
         yield return new WaitForSeconds(1.5f);
-        pool.ReturnObj(obj);
+        pool.ReturnDmgText(obj);
     }
 }

@@ -1934,7 +1934,7 @@ GameObject:
   - component: {fileID: 7726029632717384623}
   - component: {fileID: 2151836247762640615}
   - component: {fileID: 609499854030023841}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: RockMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterInfo: {fileID: 0}
   animator: {fileID: 0}
-  monster_type: 0
+  monster_type: 1
   _isMove: 0
   _isDead: 0
   _isHit: 0

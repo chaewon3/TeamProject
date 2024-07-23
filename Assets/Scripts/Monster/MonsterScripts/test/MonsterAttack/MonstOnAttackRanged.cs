@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonstOnAttackRanged : MonoBehaviour
 {
-    GameObject spherePrefab;
+    public GameObject spherePrefab;
 
     List<GameObject> spherePrefabList = new List<GameObject>();
 
@@ -12,12 +12,14 @@ public class MonstOnAttackRanged : MonoBehaviour
 
     private void Start()
     {
+        monsterController = GetComponentInParent<MonsterController>();
+
         for (int i = 0; i < 4; i++)
         {
             addListSphere();
         }
 
-        monsterController = GetComponentInParent<MonsterController>();
+       
     }
 
 
@@ -27,6 +29,7 @@ public class MonstOnAttackRanged : MonoBehaviour
         {
             if (!sphere.activeSelf)
             {
+                print("Shoot");
                 Shoot(sphere);
 
                 return;
@@ -55,6 +58,8 @@ public class MonstOnAttackRanged : MonoBehaviour
         sphere.transform.position = newPosition;
 
         sphere.transform.rotation = Quaternion.LookRotation(forwardDirection);
+
+        sphere.SetActive(true);
     }
 
 }

@@ -8,11 +8,6 @@ public class MonsterRangedAttackCollider : MonoBehaviour
 
     float damage;
 
-    private void Start()
-    {
-        damage = GetComponentInParent<MonsterController>().monsterInfo._attackDamage;
-    }
-
     private void OnEnable()
     {
         StartCoroutine(DisappearTime());
@@ -21,7 +16,7 @@ public class MonsterRangedAttackCollider : MonoBehaviour
 
     private void Update()
     {
-        gameObject.transform.position += Vector3.forward;
+        transform.position += transform.forward * 0.01f;
     }
 
 

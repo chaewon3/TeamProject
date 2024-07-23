@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1211693472922133178}
   - component: {fileID: 1211693472922133179}
+  - component: {fileID: 294828061657769907}
   m_Layer: 8
   m_Name: Animator
   m_TagString: Untagged
@@ -55,6 +56,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &294828061657769907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211693472922133177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b87e06d64ab854cac3cd57884e726a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spherePrefab: {fileID: 780427206404856172, guid: bf736ea881d00674cb819dd233a9f205, type: 3}
 --- !u!1 &3277571988783252225
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +812,7 @@ MonoBehaviour:
   monster_type: 2
   _isMove: 0
   _isDead: 0
+  _isHit: 0
   _doingSomeAction: 0
   _monsterOriginPosition: {x: 0, y: 0, z: 0}
   _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}

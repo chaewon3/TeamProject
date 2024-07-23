@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttackColliderEnable : MonoBehaviour
+public class MonsterAttackColliderEnable : MonoBehaviour
 {
     int attackTimes;
 
@@ -17,6 +17,7 @@ public class BossAttackColliderEnable : MonoBehaviour
     {
         attackTimes = 0;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && other.TryGetComponent<IHitable>(out IHitable hitable))

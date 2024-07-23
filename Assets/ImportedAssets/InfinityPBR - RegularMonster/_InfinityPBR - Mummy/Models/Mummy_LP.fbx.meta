@@ -953,7 +953,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: BossMonsterAfterAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -982,7 +989,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: BossMonsterAfterAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1011,7 +1025,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.27862626
+        functionName: BossMonsterOnAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4198471
+        functionName: BossMonsterAfterAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

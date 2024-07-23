@@ -14,12 +14,24 @@ public class MummySpawnAnimation : MonoBehaviour
 
     MonsterController monsterController;
 
+    Rigidbody coffinRigidbody;
+    Rigidbody mummyRigidbody;
+
+    Collider coffinCollider;
+    Collider mummyCollider;
 
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
         animator = GetComponentInChildren<Animator>();
         monsterController = GetComponentInChildren<MonsterController>();
+
+        coffinRigidbody = coffin.GetComponent<Rigidbody>();
+        mummyRigidbody = mummy.GetComponent<Rigidbody>();
+
+        coffinCollider = coffin.GetComponent<Collider>();
+        mummyCollider = mummy.GetComponent<Collider>();
+
     }
 
     private void OnEnable()
@@ -32,9 +44,9 @@ public class MummySpawnAnimation : MonoBehaviour
         InitializingObject(coffin);
         InitializingObject(mummy);
 
-        coffin.GetComponent<Rigidbody>().isKinematic = false;
 
-        ColliderAndRigidBodyEnable(mummy);
+        OnGraivtyAndDisableCollider(coffinRigidbody, coffinCollider);
+        OnGraivtyAndDisableCollider(mummyRigidbody, mummyCollider);
     }
 
     IEnumerator RaycastingAndStartAnim()
@@ -44,9 +56,7 @@ public class MummySpawnAnimation : MonoBehaviour
             rayOrigin = coffin.transform.position;
             rayDirection = Vector3.down;
 
-
             Debug.DrawRay(rayOrigin, rayDirection * 0.4f, Color.red, 0.1f);
-
 
             if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.3f, groundLayer))
             {
@@ -65,9 +75,13 @@ public class MummySpawnAnimation : MonoBehaviour
         int moveBackTimes = 0;
         int time = 0;
 
-        ColliderAndRigidBodyDisable(coffin);
+        //OnGravityAndDisableCollider(coffin);
 
-        ColliderAndRigidBodyDisable(mummy);
+        //OnGravityAndDisableCollider(mummy);
+
+        coffinRigidbody.isKinematic = true;
+        mummyRigidbody.isKinematic = true;
+
 
         while (true)
         {
@@ -109,35 +123,19 @@ public class MummySpawnAnimation : MonoBehaviour
         animator.SetBool("IsActivating", false);
         yield return new WaitForSeconds(4.0f);
 
-        ColliderAndRigidBodyEnable(mummy);
+        mummyCollider.enabled = true;
+        mummyRigidbody.isKinematic = false;
 
         MonsterController monsterController = GetComponentInChildren<MonsterController>();
         monsterController._characterGotIntoArea = true;
     }
 
-    void ColliderAndRigidBodyDisable(GameObject target)
-    {
-        Collider collider = target.GetComponent<Collider>();
-        Rigidbody rigidbody = target.GetComponent<Rigidbody>();
 
+    void OnGraivtyAndDisableCollider(Rigidbody rigidbody, Collider collider)
+    {
         if (collider != null)
         {
             collider.enabled = false;
-        }
-        if (rigidbody != null)
-        {
-            rigidbody.isKinematic = true;
-        }
-    }
-
-    void ColliderAndRigidBodyEnable(GameObject target)
-    {
-        Collider collider = target.GetComponent<Collider>();
-        Rigidbody rigidbody = target.GetComponent<Rigidbody>();
-
-        if (collider != null)
-        {
-            collider.enabled = true;
         }
         if (rigidbody != null)
         {

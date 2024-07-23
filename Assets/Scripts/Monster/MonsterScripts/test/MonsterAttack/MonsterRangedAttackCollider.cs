@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockMonsterAttackColliderEnable : MonoBehaviour
+public class MonsterRangedAttackCollider : MonoBehaviour
 {
     int attackTimes;
 
@@ -15,8 +15,16 @@ public class RockMonsterAttackColliderEnable : MonoBehaviour
 
     private void OnEnable()
     {
+        StartCoroutine(DisappearTime());
         attackTimes = 0;
     }
+
+    private void Update()
+    {
+        gameObject.transform.position += Vector3.forward;
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && other.TryGetComponent<IHitable>(out IHitable hitable))
@@ -26,7 +34,23 @@ public class RockMonsterAttackColliderEnable : MonoBehaviour
             if (attackTimes == 1)
             {
                 hitable.Hit(damage);
+                this.gameObject.SetActive(false);
             }
+        }
+    }
+
+    public void setDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
+    IEnumerator DisappearTime()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        if (this.gameObject.activeSelf)
+        {
+            this.gameObject.SetActive(false);
         }
     }
 }

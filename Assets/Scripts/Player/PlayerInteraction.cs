@@ -5,18 +5,46 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     private IInteractable interactable;
+
+    private State state = State.Idle;
+    enum State
+    {
+        Idle,
+        Map,
+        Inventory
+    }
     private void Update()
     {
-        if (interactable == null)
-            return;
+        
 
-        if(Input.GetKeyDown(KeyCode.G))
+        if(Input.GetKeyDown(KeyCode.G) && state == State.Idle)
         {
+            if (interactable == null)
+                return;
             interactable.interaction(true);
+            state = State.Map;
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            interactable.interaction(false);
+            switch(state)
+            {
+                case State.Map: interactable.interaction(false); break;
+                case State.Inventory: CanvasManager.ShowPlayer(); break;
+            }
+            state = State.Idle;
+        }
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            if(state == State.Idle)
+            {
+                CanvasManager.ShowInentory();
+                state = State.Inventory;
+            }
+            else if(state == State.Inventory)
+            {
+                CanvasManager.ShowPlayer();
+                state = State.Idle;
+            }
         }
     }
 

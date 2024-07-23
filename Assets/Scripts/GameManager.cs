@@ -23,11 +23,14 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+        CanMove(false);
     }
 
     public void CanMove(bool move)
     {
         Player.canMove = move;
+        Player.canRotat = move;
     }
 
     public void MouseLock(bool Lock)

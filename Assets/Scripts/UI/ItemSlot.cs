@@ -53,7 +53,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         Description.Instance.DescriptionsON(item);
         if (eventData.clickCount == 2 && (Time.time - lastClickTime <= interval))
         {            
-            // todo 장착 만들어야 함
             switch(item.Data.type)
             {
                 case ItemType.Equipment_ARMOR:

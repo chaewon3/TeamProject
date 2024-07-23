@@ -59,23 +59,10 @@ public class EquipmentData : ItemData
         this.upgrade = upgrade;
     }
 
-    //todo 데미지 올라가는 부분이나 방어구/무기 다르게 할거 나중에 다시 써야함
-    public bool Upgrade(int enforce, int skillPoint)
+    public void Upgrade(int enforce, int slotlevel)
     {
-        int cost = 1;
-        for(int i = 0; i<3;i++)
-        {
-            if (upgrade[i] != 0 && cost <= skillPoint)
-            {
-                upgrade[i] = enforce;
-                additionalAbility += enforce;
-                // todo needcost만큼 가진 스킬포인트에서 빠지는거 만들어야
-                // playerdata.skillpoint -= cost;
-                return true;
-            }
-            cost++;
-        }
-        return false;
+        upgrade[slotlevel] = enforce;
+        additionalAbility += enforce;
     }
 }
 

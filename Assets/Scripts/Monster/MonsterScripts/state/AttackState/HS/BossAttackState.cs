@@ -32,7 +32,7 @@ public class BossAttackState : EnemyAttackState
         switch (bossPattern)
         {
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK:
-                monsterController.StartCoroutine(BossPatternAttack());
+                monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
                 break;
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
                 monsterController.StartCoroutine(BossPatternSpellOne());
@@ -46,10 +46,10 @@ public class BossAttackState : EnemyAttackState
         }
     }
 
-    IEnumerator BossPatternAttack()
+    IEnumerator BossPatternAttack(float time)
     {
         monsterController.animator.SetTrigger(PatternAttack);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(time);
         monsterController.TransitionToState(monsterController.moveState);
     }
 

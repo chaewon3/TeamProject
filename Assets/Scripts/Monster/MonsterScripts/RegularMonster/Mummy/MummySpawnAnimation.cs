@@ -5,6 +5,8 @@ using UnityEngine;
 public class MummySpawnAnimation : MonoBehaviour
 {
     public GameObject coffin;
+    public GameObject mummy;
+
     Vector3 rayOrigin;
     Vector3 rayDirection;
     LayerMask groundLayer;
@@ -26,12 +28,16 @@ public class MummySpawnAnimation : MonoBehaviour
             rayOrigin = coffin.transform.position;
             rayDirection = Vector3.down;
 
-            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.5f, groundLayer))
+
+            Debug.DrawRay(rayOrigin, rayDirection * 0.4f, Color.red, 0.1f);
+
+
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.2f, groundLayer))
             {
                 break;
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.01f);
         }
 
 
@@ -43,25 +49,15 @@ public class MummySpawnAnimation : MonoBehaviour
         int moveBackTimes = 0;
         int time = 0;
 
-        Collider collider = coffin.GetComponent<Collider>();
-        Rigidbody rigidbody = coffin.GetComponent<Rigidbody>();
+        ColliderAndRigidBodyDisable(coffin);
 
-        if (collider != null)
-        {
-            collider.enabled = false;
-        }
-        if (rigidbody != null)
-        {
-            rigidbody.isKinematic = true;
-        }
-
-
+        ColliderAndRigidBodyDisable(mummy);
 
         while (true)
         {
             moveBackTimes += 1;
             Vector3 backwardMovement = new Vector3(0, 0, -0.01f);
-            coffin.transform.position += backwardMovement;
+            coffin.transform.localPosition += backwardMovement;
 
             yield return new WaitForSeconds(0.01f);
 
@@ -89,6 +85,49 @@ public class MummySpawnAnimation : MonoBehaviour
         Destroy(coffin);
 
 
+        StartCoroutine(MummyOpenAnimation());
+    }
+
+    IEnumerator MummyOpenAnimation()
+    {
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.SetTrigger("open");
+        yield return new WaitForSeconds(4.0f);
+
+        ColliderAndRigidBodyEnable(mummy);
+
+        MonsterController monsterController = GetComponentInChildren<MonsterController>();
+        monsterController._characterGotIntoArea = true;
+    }
+
+    void ColliderAndRigidBodyDisable(GameObject target)
+    {
+        Collider collider = target.GetComponent<Collider>();
+        Rigidbody rigidbody = target.GetComponent<Rigidbody>();
+
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = true;
+        }
+    }
+
+    void ColliderAndRigidBodyEnable(GameObject target)
+    {
+        Collider collider = target.GetComponent<Collider>();
+        Rigidbody rigidbody = target.GetComponent<Rigidbody>();
+
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = false;
+        }
     }
 
 }

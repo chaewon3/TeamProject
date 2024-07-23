@@ -1859,6 +1859,8 @@ GameObject:
   - component: {fileID: 7726029632717551181}
   - component: {fileID: 7726029632717384622}
   - component: {fileID: 7726029632717384623}
+  - component: {fileID: 2151836247762640615}
+  - component: {fileID: 609499854030023841}
   m_Layer: 9
   m_Name: RockMonster
   m_TagString: Untagged
@@ -1912,6 +1914,56 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &2151836247762640615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726029632717384621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
+  _currentHP: 0
+  _attackDamage: 0
+  _moveSpeed: 0
+  _attackDetectRange: 0
+  _returnStopRange: 0
+  _MaxChasingRange: 0
+  attackDurationTime: 0
+  _IsAttacked: 0
+--- !u!114 &609499854030023841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726029632717384621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3253a570addecc94dba05a34277e0052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterInfo: {fileID: 0}
+  animator: {fileID: 0}
+  monster_type: 0
+  _isMove: 0
+  _isDead: 0
+  _doingSomeAction: 0
+  _monsterOriginPosition: {x: 0, y: 0, z: 0}
+  _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}
+  _characterGotIntoArea: 0
+  PlayerObject: {fileID: 0}
+  _characterTransfrom: {fileID: 0}
+  currentState: {fileID: 0}
+  idleState: {fileID: 0}
+  moveState: {fileID: 0}
+  attackState: {fileID: 0}
+  deadState: {fileID: 0}
+  hitState: {fileID: 0}
 --- !u!1 &7726029632717384625
 GameObject:
   m_ObjectHideFlags: 0

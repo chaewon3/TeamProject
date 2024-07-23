@@ -15,8 +15,12 @@ public abstract class MonsterInfo : MonoBehaviour
     public float _attackDetectRange;
     public float _returnStopRange;
     public float _MaxChasingRange;
+    public float attackDurationTime;
+
 
     public bool _IsAttacked;
+
+    
 
     public Dictionary<System.Enum, bool> _monsterBehaviourPool;
 

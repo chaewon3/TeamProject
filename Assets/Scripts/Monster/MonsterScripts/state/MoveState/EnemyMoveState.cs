@@ -9,6 +9,11 @@ public class EnemyMoveState : EnemyState
     Coroutine searching;
     float angle;
 
+    private void Start()
+    {
+        print("hello");
+    }
+
     static readonly int IsMove = Animator.StringToHash("IsMove");
 
     public override void Enter()
@@ -110,10 +115,11 @@ public class EnemyMoveState : EnemyState
 
         monsterController.transform.position = Vector3.MoveTowards(currentPosition, new Vector3(targetPosition.x, currentPosition.y, targetPosition.z), monsterController.monsterInfo._moveSpeed * Time.deltaTime);
 
-        if (IsTracing && Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange))
+        if (IsTracing && Vector3.SqrMagnitude(new Vector3(currentPosition.x, 0, currentPosition.z) - new Vector3(targetPosition.x, 0, targetPosition.z)) <= (stopRange * stopRange))
         {
-            // 뒤에 있어도 거리안에 탐지되기 때문에 전방 기준으로 30도 안에 들어오면 공격
-            angle = Vector3.Angle(monsterController.transform.forward, direction);
+            
+               // 뒤에 있어도 거리안에 탐지되기 때문에 전방 기준으로 30도 안에 들어오면 공격
+               angle = Vector3.Angle(monsterController.transform.forward, direction);
 
             if (angle < 30f)
             {
@@ -121,7 +127,7 @@ public class EnemyMoveState : EnemyState
             }
         }
 
-        if ((!IsTracing) && (Vector3.SqrMagnitude(currentPosition - targetPosition) <= (stopRange * stopRange)))
+        if ((!IsTracing) && (Vector3.SqrMagnitude(new Vector3(currentPosition.x, 0, currentPosition.z) - new Vector3(targetPosition.x, 0, targetPosition.z)) <= (stopRange * stopRange)))
         {
             monsterController.TransitionToState(monsterController.idleState);
             

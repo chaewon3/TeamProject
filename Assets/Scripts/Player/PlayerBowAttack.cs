@@ -21,11 +21,11 @@ public class PlayerBowAttack : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         player = GetComponent<PlayerMove>();
         pool = GetComponent<ArrowPool>();
-        arrow = GetComponent<PlayerInfo>().ArrowCount;
     }
 
     void Start()
     {
+        arrow = PlayerManager.Data.ArrowCount;
         arrowText.text = arrow.ToString();
     }
 
@@ -52,18 +52,10 @@ public class PlayerBowAttack : MonoBehaviour
         } 
     }
 
-    //void Shoot()
-    //{
-    //    GameObject arrowObj = pool.GetObj();
-    //    if(arrowObj != null)
-    //    {
-    //        StartCoroutine(Despawn(arrowObj));
-    //    }
-    //}
-
     IEnumerator Arrow()
     {
         arrow--;
+        PlayerManager.Data.ArrowCount--;
         arrowText.text = arrow.ToString();
         yield return new WaitForSeconds(shootClip.length);
 
@@ -71,23 +63,4 @@ public class PlayerBowAttack : MonoBehaviour
         player.state = State.Sword;
         ArrowCoroutine = null;
     }
-
-    //IEnumerator Despawn(GameObject obj)
-    //{
-    //    yield return new WaitForSeconds(3f);
-    //    pool.ReturnObj(obj);
-    //}
 }
-
-/*
- if(Input.GetMouseButton(1))
-        {
-            if(player.state != State.Bow)
-                player.state = State.Bow;
-        }
-
-        if(Input.GetMouseButtonDown(1))
-            playerAnimator.SetTrigger("Charge");
- */
-//if (arrowObj.TryGetComponent(out Rigidbody rigidBody))
-//    ApplyForce(rigidBody);

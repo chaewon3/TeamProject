@@ -27,9 +27,9 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void interaction(bool OnOff)
     {
-        //작아지는 애니메이션, 아이템리스트에 추가
         StartCoroutine(Anim());
         InventoryManager.AddItem(item);
+        InventoryManager.Refresh();
     }
 
     IEnumerator Anim()

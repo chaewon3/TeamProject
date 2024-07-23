@@ -30,7 +30,10 @@ public class EnemyAttackState : EnemyState
 
         foreach (var behaviour in monsterController.monsterInfo._monsterBehaviourPool)
         {
-            monsterController.patturnIndexes.Add(behaviour.Key);
+            if (behaviour.Value)
+            {
+                monsterController.patturnIndexes.Add(behaviour.Key);
+            }
         }
 
         if (monsterController.patturnIndexes.Count > 0)

@@ -39,26 +39,39 @@ public class BossAttackState : EnemyAttackState
     {
         BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-        bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
+        
+
+        //bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
 
         
 
         switch (bossPattern)
         {
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK:
+                print(bossPattern);
                 monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
-                break;
-            case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
-                monsterController.StartCoroutine(BossPatternSpellOne());
-                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 10));
+                
 
                 break;
+            case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
+                print(bossPattern);
+                //monsterController.StartCoroutine(BossPatternSpellOne());
+                monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
+                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 10));
+                break;
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2:
+                print(bossPattern);
+                //monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 10));
                 monsterController.StartCoroutine(BossPatternSpellTwo());
+
+                //monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
+
+                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 10));
                 break;
             default:
-                monsterController.TransitionToState(monsterController.idleState);
+                print("default");
                 break;
+            
         }
     }
 
@@ -86,7 +99,7 @@ public class BossAttackState : EnemyAttackState
 
     IEnumerator BossPatternSpellTwo()
     {
-        monsterController.animator.SetBool(PatternSpellTwoCharging, true);
+        monsterController.animator.SetTrigger(PatternSpellTwoCharging);
 
         yield return new WaitForSeconds(3f);
 

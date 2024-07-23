@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum SlotType
 {
@@ -18,6 +19,10 @@ public class InventoryPanel : MonoBehaviour
     public EquipSlot[] ArtifactSlot = new EquipSlot[3];
 
     public SlotType type = SlotType.All;
+
+    public TextMeshProUGUI Level;
+    public TextMeshProUGUI Gem;
+    public TextMeshProUGUI SP;
 
     private void Awake()
     {
@@ -68,5 +73,9 @@ public class InventoryPanel : MonoBehaviour
             else
                 ArtifactSlot[i].setItem(Artifact[i]);
         }
+        Level.text = PlayerManager.Data.level.ToString();
+        Gem.text = PlayerManager.Data.Gem.ToString();
+        SP.text = PlayerManager.Data.skillPoint.ToString();
+
     }
 }

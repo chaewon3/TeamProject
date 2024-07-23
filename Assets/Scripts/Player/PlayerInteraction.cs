@@ -14,9 +14,7 @@ public class PlayerInteraction : MonoBehaviour
         Inventory
     }
     private void Update()
-    {
-        
-
+    {      
         if(Input.GetKeyDown(KeyCode.G) && state == State.Idle)
         {
             if (interactable == null)
@@ -50,6 +48,11 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.TryGetComponent<ItemObject>(out ItemObject item))
+        {
+            item.interaction(true);
+            return;
+        }
         if (other.TryGetComponent<IInteractable>(out IInteractable interact))
         {
             interactable = interact;

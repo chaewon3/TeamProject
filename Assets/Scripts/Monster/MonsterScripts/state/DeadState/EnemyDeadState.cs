@@ -37,6 +37,8 @@ public class EnemyDeadState : EnemyState
         Collider collider = monsterController.GetComponentInChildren<CapsuleCollider>();
         Rigidbody rigidbody = monsterController.GetComponent<Rigidbody>();
 
+        DropManager.instance.RandomItemDrop(monsterController.transform);
+
         if (collider != null)
         {
             collider.enabled = false;
@@ -47,6 +49,7 @@ public class EnemyDeadState : EnemyState
         }
         yield return new WaitForSeconds(5.0f);
 
+        
 
         while (true)
         {

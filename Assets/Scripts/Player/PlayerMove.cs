@@ -40,11 +40,6 @@ public class PlayerMove : MonoBehaviour
 
         transGroundCheckPoint = transform;
         groundMask = (1 << LayerMask.NameToLayer("Ground"));
-
-        //for(int i =0; i < weapon[0].transform.childCount; i++)
-        //{
-        //    textWeapon[i] = weapon[0].transform.GetChild(i).gameObject;
-        //}
     }
 
     void Start()

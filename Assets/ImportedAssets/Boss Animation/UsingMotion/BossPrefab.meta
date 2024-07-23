@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Item.meta
+guid: b44f0193f3a0b69448e563683a7d887a
+========
 guid: 39a30b1ba21534b459407c456a2c1245
+>>>>>>>> 3202f4697227a8d842e34bedf9661d60b0b1564c:Assets/ImportedAssets/Boss Animation/UsingMotion/BossPrefab.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

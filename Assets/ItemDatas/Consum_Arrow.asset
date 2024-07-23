@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6fd485a042e6d46853dcf07f5c96db, type: 3}
+  m_Name: Consum_Arrow
+  m_EditorClassIdentifier: 
+  type: 8
+  tableId: 101
+  name: "\uD654\uC0B4"
+  price: 5
+  icon: {fileID: 21300000, guid: ca4fc01896c37384ab7bf5b9529931fb, type: 3}
+  ModelPrefab: {fileID: 6985760264283550259, guid: 5b70e80bb4bb83a41b7c54a1cf198607, type: 3}
+  description: "\uBA40\uB9AC \uC788\uB294 \uBAAC\uC2A4\uD130\uB97C \uACF5\uACA9\uD560
+    \uC218 \uC788\uB2E4."
+  coolTime: 2
+  effect: 0

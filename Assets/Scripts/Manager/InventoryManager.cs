@@ -9,7 +9,6 @@ public class InventoryManager : MonoBehaviour
     private ItemData[] ArtifactsSlots = new ItemData[3] { null, null, null };
 
     private int currentID = 1;
-    
 
     public static InventoryPanel Panel => CanvasManager.inventoryPanel;
     public static InventoryManager Instance { get; private set; }

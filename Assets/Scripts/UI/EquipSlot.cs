@@ -56,4 +56,5 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
             InventoryManager.Refresh();
         }
     }
+
 }

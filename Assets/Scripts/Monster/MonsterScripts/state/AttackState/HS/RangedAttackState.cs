@@ -41,7 +41,7 @@ public class RangedAttackState : EnemyAttackState
         monsterController.animator.SetTrigger(PatternAttack);
         yield return new WaitForSeconds(2.5f);
 
-        if (monsterController.currentState == monsterController.attackState)
+        if (!monsterController._isHit && !monsterController._isDead)
         {
             monsterController.TransitionToState(monsterController.moveState);
         }

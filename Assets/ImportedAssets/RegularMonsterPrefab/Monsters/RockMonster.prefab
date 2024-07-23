@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3445924779501443535}
   - component: {fileID: 3445924779501443520}
+  - component: {fileID: 7223064762326962731}
   m_Layer: 9
   m_Name: Animator
   m_TagString: Untagged
@@ -56,6 +57,77 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7223064762326962731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445924779501443534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armCollider: {fileID: 5577180535089560064}
+--- !u!1 &5577180535089560064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7664857774477705092}
+  - component: {fileID: 8547888322395315686}
+  - component: {fileID: 1516960783035337494}
+  m_Layer: 9
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7664857774477705092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5577180535089560064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7726029632717551143}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8547888322395315686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5577180535089560064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.82, y: 0.7, z: 0.7}
+  m_Center: {x: 0.18, y: 0, z: 0}
+--- !u!114 &1516960783035337494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5577180535089560064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b75bbb25e5924046a17fba28af27587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7726029632717384193
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +248,8 @@ Transform:
   m_LocalPosition: {x: 1.2272788, y: -0.23394056, z: 1.4605174}
   m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7664857774477705092}
   m_Father: {fileID: 7726029632717551221}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1929,7 +2002,7 @@ MonoBehaviour:
   _maxHP: 30
   _currentHP: 0
   _attackDamage: 10
-  _moveSpeed: 0
+  _moveSpeed: 2
   _attackDetectRange: 2
   _returnStopRange: 2
   _MaxChasingRange: 4
@@ -1952,6 +2025,7 @@ MonoBehaviour:
   monster_type: 0
   _isMove: 0
   _isDead: 0
+  _isHit: 0
   _doingSomeAction: 0
   _monsterOriginPosition: {x: 0, y: 0, z: 0}
   _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}

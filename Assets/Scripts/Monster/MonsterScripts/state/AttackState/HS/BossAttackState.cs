@@ -39,7 +39,7 @@ public class BossAttackState : EnemyAttackState
     {
         BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-        bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
+        //bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
 
         
 
@@ -51,13 +51,13 @@ public class BossAttackState : EnemyAttackState
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
                 monsterController.StartCoroutine(BossPatternSpellOne());
                 monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 10));
-
+                break;
+            
+            default:
+                monsterController.TransitionToState(monsterController.idleState);
                 break;
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2:
                 monsterController.StartCoroutine(BossPatternSpellTwo());
-                break;
-            default:
-                monsterController.TransitionToState(monsterController.idleState);
                 break;
         }
     }

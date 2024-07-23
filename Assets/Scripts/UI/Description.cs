@@ -106,21 +106,21 @@ public class Description : MonoBehaviour
         upgradeSlot[slotLevel].Set(currentItem);
     }
 
-    public void showtooltip(int slotLevel)
-    {
-        RectTransform transform = tooltip.GetComponent<RectTransform>();
-        TextMeshProUGUI text = tooltip.GetComponent<TextMeshProUGUI>();
-        StringBuilder sb = new StringBuilder();
-        if(currentItem.upgrade[slotLevel] == 0)
-        {
-            //sb.Append
-        }
-        else
-        {
-            sb.Append($"+{currentItem.upgrade[slotLevel]}");
-        }
-        // 업그레이드 되었는지 안되었는지 확인
-        // 안되었으면 몇 스킬포인트가 필요한지 /  앞의 슬롯을 열어야하는지
-        // 되었으면 강화된 수치 표기
-    }
+    //public void showtooltip(int slotLevel)
+    //{
+    //    RectTransform transform = tooltip.GetComponent<RectTransform>();
+    //    TextMeshProUGUI text = tooltip.GetComponent<TextMeshProUGUI>();
+    //    StringBuilder sb = new StringBuilder();
+    //    if(currentItem.upgrade[slotLevel] == 0)
+    //    {
+    //        //sb.Append
+    //    }
+    //    else
+    //    {
+    //        sb.Append($"+{currentItem.upgrade[slotLevel]}");
+    //    }
+    //    // 업그레이드 되었는지 안되었는지 확인
+    //    // 안되었으면 몇 스킬포인트가 필요한지 /  앞의 슬롯을 열어야하는지
+    //    // 되었으면 강화된 수치 표기
+    //}
 }

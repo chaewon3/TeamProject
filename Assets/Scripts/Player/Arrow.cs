@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Arrow : MonoBehaviour
 {
     float dmg;
@@ -13,12 +12,13 @@ public class Arrow : MonoBehaviour
     ArrowPool arrowPool;
     DamageTextPool dmgPool;
     bool end = false;
+    Coroutine despawn;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        arrowcollider = GetComponent<CapsuleCollider>();
         arrowPool = FindObjectOfType<ArrowPool>();
+        arrowcollider = GetComponent<CapsuleCollider>();
         dmgPool = FindObjectOfType<DamageTextPool>();
     }
 
@@ -32,7 +32,6 @@ public class Arrow : MonoBehaviour
         arrowcollider.enabled = true;
         Vector3 force = transform.up * speed;
         rigid.AddForce(force);
-        StartCoroutine(Despawn(gameObject));
     }
 
     void OnDisable()
@@ -53,6 +52,9 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (despawn == null)
+            despawn = StartCoroutine(DespawnArrow());
+
         if ((targetLayer | (1 << other.gameObject.layer)) != targetLayer)
         {
             return;
@@ -62,9 +64,8 @@ public class Arrow : MonoBehaviour
         {
             hitable.Hit(dmg);
 
-            GameObject dmgText = dmgPool.GetObj(other.transform, dmg);
+            GameObject dmgText = dmgPool.GetDmgText(other.transform, dmg);
             StartCoroutine(Despawn(dmgText));
-            print($"코루틴에 넣을 오브젝트 {dmgText}");
         }
         
         rigid.isKinematic = true;
@@ -75,12 +76,15 @@ public class Arrow : MonoBehaviour
 
     IEnumerator Despawn(GameObject obj)
     {
-        print($"코루틴 안에 있는 오브젝트 {obj}");
         yield return new WaitForSeconds(1.5f);
-        print($"데미지 리턴");
-        dmgPool.ReturnObj(obj);
-        yield return new WaitForSeconds(1.5f);
-        arrowPool.ReturnObj(gameObject);
+        dmgPool.ReturnDmgText(obj);
+    }
+
+    IEnumerator DespawnArrow()
+    {
+        yield return new WaitForSeconds(3f);
+        arrowPool.ReturnArrow(gameObject);
+        despawn = null;
     }
 
 }

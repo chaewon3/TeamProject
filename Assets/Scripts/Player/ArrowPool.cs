@@ -9,8 +9,8 @@ public class ArrowPool : MonoBehaviour
     public Transform spawnPoint;
     public GameObject spawnObj;
     
-    List<GameObject> pool = new List<GameObject>();
-    int count;
+    Queue<GameObject> pool = new Queue<GameObject>();
+    //int count;
     int poolSize = 12;
     #endregion
 
@@ -20,38 +20,55 @@ public class ArrowPool : MonoBehaviour
         {
             GameObject arrowObj = Instantiate(prefab, spawnObj.transform);
             arrowObj.SetActive(false);
-            pool.Add(arrowObj);
+            pool.Enqueue(arrowObj);
         }
     }
 
-    public GameObject GetObj()
+    public GameObject GetArrow()
     {
-        if (count != pool.Count)
+        if(pool.Count == 0)
         {
-            GameObject arrow = pool[count];
-            arrow.transform.position = spawnPoint.position;
-            arrow.transform.rotation = spawnPoint.rotation;
-            arrow.SetActive(true);
-            arrow.transform.SetParent(null);
-            count++;
-            return arrow;
+            GameObject arrow = Instantiate(prefab, transform);
+            pool.Enqueue(arrow);
         }
-        else
-        {
-            count = 0;
-            GameObject arrow = pool[count];
-            arrow.transform.position = spawnPoint.position;
-            arrow.transform.rotation = spawnPoint.rotation;
-            arrow.SetActive(true);
-            arrow.transform.SetParent(null);
-            count++;
-            return arrow;
-        }
+
+        GameObject obj = pool.Dequeue();
+        obj.transform.position = spawnPoint.position;
+        obj.transform.rotation = spawnPoint.rotation;
+        obj.SetActive(true);
+        obj.transform.SetParent(null);
+        return obj;
+        //
     }
 
-    public void ReturnObj(GameObject obj)
+    public void ReturnArrow(GameObject obj)
     {
+        print("¹ßµ¿");
         obj.SetActive(false);
         obj.transform.SetParent(spawnObj.transform);
+        pool.Enqueue(obj);
     }
 }
+
+
+//if (count != pool.Count)
+//{
+//    GameObject arrow = pool[count];
+//    arrow.transform.position = spawnPoint.position;
+//    arrow.transform.rotation = spawnPoint.rotation;
+//    arrow.SetActive(true);
+//    arrow.transform.SetParent(null);
+//    count++;
+//    return arrow;
+//}
+//else
+//{
+//    count = 0;
+//    GameObject arrow = pool[count];
+//    arrow.transform.position = spawnPoint.position;
+//    arrow.transform.rotation = spawnPoint.rotation;
+//    arrow.SetActive(true);
+//    arrow.transform.SetParent(null);
+//    count++;
+//    return arrow;
+//}

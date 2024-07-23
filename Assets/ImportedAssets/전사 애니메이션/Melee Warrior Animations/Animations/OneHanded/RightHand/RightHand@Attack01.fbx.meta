@@ -459,7 +459,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.27450982
+      - time: 0.2097849
         functionName: OnCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 41e051dd71cbe1a4ca232fb41039fcab, type: 3}
@@ -468,6 +468,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.4229692
         functionName: OffCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 41e051dd71cbe1a4ca232fb41039fcab, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.82887703
+        functionName: HitPossible
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 41e051dd71cbe1a4ca232fb41039fcab, type: 3}
         floatParameter: 0

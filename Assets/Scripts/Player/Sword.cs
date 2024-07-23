@@ -8,8 +8,9 @@ public class Sword : MonoBehaviour
     float dmg;
     public LayerMask targetLayer;
     DamageTextPool pool;
+    //bool isHit = false;
+    PlayerSwordAttack player;
 
-    //Collider ObjCollider;
     //bool hitEnemy = false;
     #endregion
 
@@ -17,7 +18,7 @@ public class Sword : MonoBehaviour
     {
         //dmg = PlayerInfo.damage; 
         pool = FindObjectOfType<DamageTextPool>();
-        //ObjCollider = GetComponent<Collider>();
+        player = FindObjectOfType<PlayerSwordAttack>();
     }
 
     void OnCollisionEnter(Collision obj)
@@ -28,10 +29,10 @@ public class Sword : MonoBehaviour
             return;
         }
 
-        if ( obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
+        if (!player.isHit && obj.collider.TryGetComponent<IHitable>(out IHitable hitable))
         {
             hitable.Hit(dmg);
-
+            player.isHit = true;
             GameObject dmgText = pool.GetObj(obj.transform, dmg);
             StartCoroutine(Despawn(dmgText));
         }
@@ -45,5 +46,9 @@ public class Sword : MonoBehaviour
         pool.ReturnObj(obj);
     }
 
+    //public void HitPossible()
+    //{
+    //    isHit = false;
+    //}
     
 }

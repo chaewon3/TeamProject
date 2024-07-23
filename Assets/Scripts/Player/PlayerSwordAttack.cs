@@ -12,6 +12,8 @@ public class PlayerSwordAttack : MonoBehaviour
     Coroutine attackCoroutine, comboCoroutine;
     PlayerMove player;
 
+    public bool isHit = false;
+
     void Awake()
     {
         playerAnimator = GetComponent<Animator>();
@@ -80,19 +82,24 @@ public class PlayerSwordAttack : MonoBehaviour
 
     public void OnCollider()
     {
-        player.weapon[0].GetComponentInChildren<Collider>().enabled = true;
-        if (player.weapon[0].activeSelf)
-        { }
-        foreach (var item in player.weapon[0].gameObject)
-        {
+        player.weapon[0].transform.GetChild(0).GetComponentInChildren<MeshCollider>().enabled = true;
+        //if (player.weapon[0].activeSelf)
+        //{ }
+        //foreach (var item in player.weapon[0].gameObject)
+        //{
 
-        }
+        //}
 
     }
 
     public void OffCollider()
     {
-        player.weapon[0].GetComponent<Collider>().enabled = false;
+        player.weapon[0].transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
+    }
+
+    public void HitPossible()
+    {
+        isHit = false;
     }
 }
 

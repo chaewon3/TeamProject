@@ -35,7 +35,7 @@ public class EquipmentData : ItemData
     public EquipmentDataSO DataEquip { get => data as EquipmentDataSO; }
 
     public int additionalAbility;
-    public InchantType Inchant;
+    public int[] upgrade = new int[3];
 
     /// <summary>
     /// 아이템을 첫 습득할 때 원본아이템 데이터를 복사해서 생성
@@ -53,21 +53,29 @@ public class EquipmentData : ItemData
     /// </summary>
     /// <param name="data"></param>
     /// <param name="Inchant"></param>
-    public EquipmentData(EquipmentDataSO data, int additionalAbility, InchantType Inchant) : this(data)
+    public EquipmentData(EquipmentDataSO data, int additionalAbility, int[] upgrade) : this(data)
     {
         this.additionalAbility = additionalAbility;
-        this.Inchant = Inchant;
+        this.upgrade = upgrade;
     }
 
     //todo 데미지 올라가는 부분이나 방어구/무기 다르게 할거 나중에 다시 써야함
-    public void Upgrade(InchantType type)
+    public bool Upgrade(int enforce, int skillPoint)
     {
-        if(Inchant != InchantType.None)
+        int cost = 1;
+        for(int i = 0; i<3;i++)
         {
-            return; // 이미 인챈트 된 속성이 있다면 리턴
+            if (upgrade[i] != 0 && cost <= skillPoint)
+            {
+                upgrade[i] = enforce;
+                additionalAbility += enforce;
+                // todo needcost만큼 가진 스킬포인트에서 빠지는거 만들어야
+                // playerdata.skillpoint -= cost;
+                return true;
+            }
+            cost++;
         }
-
-        Inchant = type;
+        return false;
     }
 }
 

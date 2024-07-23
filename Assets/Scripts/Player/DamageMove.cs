@@ -9,11 +9,13 @@ public class DamageMove : MonoBehaviour
     Vector3 endPos;
     float duration = 3f;
     float elapsedTime = 0.0f;
+    Transform target;
 
     void Awake()
     {
-        startPos = new Vector3(-1f, 1.5f, -0.5f);
-        endPos = new Vector3(-1f, 1.7f, -0.5f);
+        startPos = new Vector3(-1f, 1.5f, 1f);
+        endPos = new Vector3(-1f, 1.7f, 1f);
+        target = GameObject.Find("Main Cam").transform;
     }
 
     void OnEnable()
@@ -39,6 +41,14 @@ public class DamageMove : MonoBehaviour
     {
         while (elapsedTime < duration)
         {
+            Vector3 dire = target.position - transform.position;
+            dire.y = 0;
+            if(dire.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRota = Quaternion.LookRotation(dire);
+                transform.rotation = targetRota * Quaternion.Euler(0, 180, 0);
+            }
+
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
             float easedT = EaseOutBack(t);

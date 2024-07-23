@@ -26,6 +26,10 @@ public class PlayerManager : MonoBehaviour
     public int ArrowCount;
 
     public static PlayerData Data { get => Instance.playerData;  set => Instance.playerData = value; }
+
+    public GameObject[] EquipArray = new GameObject[3];
+    public GameObject[] Equips = new GameObject[6];
+
     #endregion
 
     void Awake()
@@ -38,6 +42,19 @@ public class PlayerManager : MonoBehaviour
         else
             Destroy(gameObject);
     } 
+
+    public void EquipChange(int Itype, int id)
+    { 
+        for (int i = 0; i < EquipArray[Itype].transform.childCount; i++)
+        {
+            EquipArray[Itype].transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        Equips[id].SetActive(true);
+    }
 }
 
 
+// 이거, 활 딜레이 ///
+
+// , ui설정, 경험치, 레벨업, 사운드, 보스 ui, 던전 탈출

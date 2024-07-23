@@ -28,9 +28,11 @@ public class DamageTextPool : MonoBehaviour
 
         GameObject obj = pool.Dequeue();
         obj.GetComponent<TextMeshPro>().text = dmg.ToString();
-        obj.SetActive(true);
         obj.transform.SetParent(target);
         obj.transform.position = Vector3.zero;
+        obj.SetActive(true);
+        
+
         return obj;
     }
 
@@ -38,6 +40,7 @@ public class DamageTextPool : MonoBehaviour
     {
         obj.SetActive(false);
         obj.transform.SetParent(transform);
+        //obj.transform.position = Vector3.zero;
         pool.Enqueue(obj);
     }
 }

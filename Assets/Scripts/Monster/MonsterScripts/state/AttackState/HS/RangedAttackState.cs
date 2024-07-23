@@ -6,6 +6,8 @@ public class RangedAttackState : EnemyAttackState
 {
     public RangedAttackState(MonsterController character) : base(character) { }
 
+    static readonly int PatternAttack = Animator.StringToHash("PatternAttack");
+
     public override void Enter()
     {
         base.Enter();
@@ -13,7 +15,11 @@ public class RangedAttackState : EnemyAttackState
 
     public override void Exit()
     {
+        
+
         base.Exit();
+
+        
     }
 
     protected override void PatternCooltime(System.Enum @enum)
@@ -23,10 +29,21 @@ public class RangedAttackState : EnemyAttackState
         switch (regularPattern)
         {
             case REGULAR_MONSTER_ATTACK_BEHAVIOUR.REGULAR_MONSTER_ATTACK:
-
+                monsterController.StartCoroutine(RegularPatternAttack());
                 break;
             default:
                 break;
+        }
+    }
+
+    IEnumerator RegularPatternAttack()
+    {
+        monsterController.animator.SetTrigger(PatternAttack);
+        yield return new WaitForSeconds(2.5f);
+
+        if (monsterController.currentState == monsterController.attackState)
+        {
+            monsterController.TransitionToState(monsterController.moveState);
         }
     }
 }

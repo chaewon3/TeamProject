@@ -18,7 +18,7 @@ public class RegularMonsterController : MonsterController
         }
         else
         {
-
+            TransitionToState(hitState);
         }
 
         // 맞았을 때 움직임으로 바꾸게

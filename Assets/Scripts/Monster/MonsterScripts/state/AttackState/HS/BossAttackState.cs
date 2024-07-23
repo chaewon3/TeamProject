@@ -49,7 +49,7 @@ public class BossAttackState : EnemyAttackState
     IEnumerator BossPatternAttack()
     {
         monsterController.animator.SetTrigger(PatternAttack);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         monsterController.TransitionToState(monsterController.moveState);
     }
 

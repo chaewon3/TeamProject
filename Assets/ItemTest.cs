@@ -16,7 +16,7 @@ public class ItemTest : MonoBehaviour
                 item = new EquipmentData(itemSO as EquipmentDataSO);
             else
                 item = new ConsumableData(itemSO as ConsumableDataSO);
-            InventoryManager.Items.Add(item);
+            InventoryManager.AddItem(item);
             InventoryManager.Refresh();
         }
     }

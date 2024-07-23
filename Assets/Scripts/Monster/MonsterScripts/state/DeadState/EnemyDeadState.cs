@@ -33,9 +33,6 @@ public class EnemyDeadState : EnemyState
     {
         float time = 0;
 
-        
-
-
         Collider collider = monsterController.GetComponentInChildren<CapsuleCollider>();
         Rigidbody rigidbody = monsterController.GetComponent<Rigidbody>();
 

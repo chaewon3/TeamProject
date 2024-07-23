@@ -8650,6 +8650,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockMonster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726029632717384621, guid: 59af1dd0b56956348974014d88831aeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7726029632717551181, guid: 59af1dd0b56956348974014d88831aeb, type: 3}
       propertyPath: m_RootOrder
       value: 1

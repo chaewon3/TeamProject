@@ -56,7 +56,8 @@ public class EnemyDeadState : EnemyState
 
             if (time >= 3.0f)
             {
-                Destroy(monsterController.gameObject);
+                //Destroy(monsterController.gameObject);
+                monsterController.gameObject.SetActive(false);
                 break;
             }
         }

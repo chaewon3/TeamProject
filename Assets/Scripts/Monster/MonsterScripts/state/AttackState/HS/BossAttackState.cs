@@ -25,7 +25,7 @@ public class BossAttackState : EnemyAttackState
     {
         BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-        bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
+        bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2;
 
         
 
@@ -50,20 +50,28 @@ public class BossAttackState : EnemyAttackState
     {
         monsterController.animator.SetTrigger(PatternAttack);
         yield return new WaitForSeconds(time);
-        monsterController.TransitionToState(monsterController.moveState);
+        if (!monsterController._isHit && !monsterController._isDead)
+        {
+            monsterController.TransitionToState(monsterController.moveState);
+        }
+        
     }
 
     IEnumerator BossPatternSpellOne()
     {
         monsterController.animator.SetTrigger(PatternSpellOne);
         yield return new WaitForSeconds(2f);
-        monsterController.TransitionToState(monsterController.moveState);
+        if (!monsterController._isHit && !monsterController._isDead)
+        {
+            monsterController.TransitionToState(monsterController.moveState);
+        }
+
     }
 
-    IEnumerator BossPatternSpellOneCooltime(System.Enum @enum)
+    IEnumerator BossPatternSpellOneCooltime(System.Enum @enum, float cooltime)
     {
         monsterController.monsterInfo._monsterBehaviourPool[@enum] = false;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(cooltime);
         monsterController.monsterInfo._monsterBehaviourPool[@enum] = true;
     }
 
@@ -76,7 +84,11 @@ public class BossAttackState : EnemyAttackState
         monsterController.animator.SetTrigger(PatternSpellTwoShot);
         
         yield return new WaitForSeconds(1.1f);
-        monsterController.TransitionToState(monsterController.moveState);
+        if (!monsterController._isHit && !monsterController._isDead)
+        {
+            monsterController.TransitionToState(monsterController.moveState);
+        }
+
     }
 
 

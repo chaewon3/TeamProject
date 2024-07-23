@@ -29,7 +29,7 @@ public class EnemyHitState : EnemyState
     {
         monsterController.animator.SetTrigger(GotHit);
         yield return new WaitForSeconds(1.5f);
-        monsterController.TransitionToState(monsterController.idleState);
+        monsterController.TransitionToState(monsterController.moveState);
     }
 
     void TurningWhenHit()

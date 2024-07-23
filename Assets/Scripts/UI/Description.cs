@@ -13,6 +13,7 @@ public class Description : MonoBehaviour
     public TextMeshProUGUI itemDesc;
     public GameObject Upgrade;
     public UpdradeSlot[] upgradeSlot = new UpdradeSlot[3];
+    //public GameObject tooltip;
 
     public static Description Instance;
 
@@ -82,23 +83,42 @@ public class Description : MonoBehaviour
             if (currentItem.upgrade[i] == 0)
                 upgrade = false;
         }
-        if(upgrade)
+
+        if(!upgrade)
         {
-
+            //앞슬롯 강화 경고창
+            return;
         }
+
         // 스킬포인트가 있는지 확인
-        // 업그레이드 진행 후 리스트 아이템 변경
-        // set다시 하기
-        
-
-
-
-        int index = InventoryManager.Items.FindIndex(a => a.UniqueID == currentItem.UniqueID);
-        InventoryManager.Items[index] = currentItem;
+        if (PlayerManager.Data.skillPoint >= (slotLevel + 1))
+        {
+            // 업그레이드 진행 후 리스트 아이템 변경
+            int additionDam = Random.Range(20, 35);
+            currentItem.Upgrade(additionDam, slotLevel);
+            int index = InventoryManager.Items.FindIndex(a => a.UniqueID == currentItem.UniqueID);
+            InventoryManager.Items[index] = currentItem;
+        }
+        else
+        {
+            print("스킬포인트가 부족합니다.");
+        }
+        upgradeSlot[slotLevel].Set(currentItem);
     }
 
     public void showtooltip(int slotLevel)
     {
+        RectTransform transform = tooltip.GetComponent<RectTransform>();
+        TextMeshProUGUI text = tooltip.GetComponent<TextMeshProUGUI>();
+        StringBuilder sb = new StringBuilder();
+        if(currentItem.upgrade[slotLevel] == 0)
+        {
+            //sb.Append
+        }
+        else
+        {
+            sb.Append($"+{currentItem.upgrade[slotLevel]}");
+        }
         // 업그레이드 되었는지 안되었는지 확인
         // 안되었으면 몇 스킬포인트가 필요한지 /  앞의 슬롯을 열어야하는지
         // 되었으면 강화된 수치 표기

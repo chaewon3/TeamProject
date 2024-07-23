@@ -9,8 +9,6 @@ public class UpdradeSlot : MonoBehaviour
     private Image Lock;
     private Image Upgrade;
 
-    private bool isUpgrade;
-
     [Range(0,2)]
     public int slotLevel;
 

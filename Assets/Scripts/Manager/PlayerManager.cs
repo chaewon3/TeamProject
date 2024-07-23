@@ -11,6 +11,8 @@ public class PlayerData
     public float experience = 0f;
     public int level = 1;
     public int ArrowCount = 12;
+    public int skillPoint = 5;
+    public int Gem = 0;
 }
 
 public class PlayerManager : MonoBehaviour, IHitable

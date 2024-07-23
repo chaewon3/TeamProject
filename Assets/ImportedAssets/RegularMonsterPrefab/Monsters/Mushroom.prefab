@@ -780,6 +780,7 @@ MonoBehaviour:
   _returnStopRange: 2
   _MaxChasingRange: 4
   attackDurationTime: 2
+  exp: 18
   _IsAttacked: 0
 --- !u!114 &1708507932536043103
 MonoBehaviour:
@@ -798,6 +799,7 @@ MonoBehaviour:
   monster_type: 2
   _isMove: 0
   _isDead: 0
+  _isHit: 0
   _doingSomeAction: 0
   _monsterOriginPosition: {x: 0, y: 0, z: 0}
   _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}

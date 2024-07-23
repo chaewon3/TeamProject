@@ -117,6 +117,7 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     public virtual void Hit(float damage)
     {
         monsterInfo._currentHP -= damage;
+
     }
 
     private void Update()

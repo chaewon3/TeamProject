@@ -47,6 +47,8 @@ public class EnemyDeadState : EnemyState
         {
             rigidbody.isKinematic = true;
         }
+
+        PlayerManager.Instance.ExperienceUp(monsterController.monsterInfo.exp);//todo 경험치 값 변경
         yield return new WaitForSeconds(5.0f);
 
         

@@ -16,6 +16,7 @@ public abstract class MonsterInfo : MonoBehaviour
     public float _returnStopRange;
     public float _MaxChasingRange;
     public float attackDurationTime;
+    public float exp;
 
 
     public bool _IsAttacked;

@@ -2007,6 +2007,7 @@ MonoBehaviour:
   _returnStopRange: 2
   _MaxChasingRange: 4
   attackDurationTime: 2.5
+  exp: 22
   _IsAttacked: 0
 --- !u!114 &609499854030023841
 MonoBehaviour:

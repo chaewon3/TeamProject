@@ -52,9 +52,13 @@ public class PlayerManager : MonoBehaviour
 
         Equips[id].SetActive(true);
     }
+
+    public void ExperienceUp(float value)
+    {
+        playerData.experience += value;
+    }
 }
 
 
-// 이거, 활 딜레이 ///
 
 // , ui설정, 경험치, 레벨업, 사운드, 보스 ui, 던전 탈출

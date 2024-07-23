@@ -45,9 +45,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             InventoryManager.Equips[slot] = item;
             InventoryManager.Items.Remove(item);
-            //PlayerManager.Equip(slot, item.tableID);
-
-
+            PlayerManager.Instance.EquipChange(slot, item.tableID);
         }
         else
         {

@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
     public static void AddItem(ItemData item)
-    {
+    {        
         item.UniqueID = Instance.currentID;
         Instance.currentID++;
         if (item is EquipmentData)

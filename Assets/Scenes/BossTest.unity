@@ -8000,6 +8000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 3277571988783252343, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3277571988783488855, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
       propertyPath: m_RootOrder
       value: 2

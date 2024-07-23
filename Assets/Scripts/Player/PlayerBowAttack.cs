@@ -31,7 +31,7 @@ public class PlayerBowAttack : MonoBehaviour
 
     void Update()
     {
-        if(arrow != 0)
+        if(arrow != 0 && player.canMove)
         {
             if (Input.GetMouseButtonDown(1))
             {

@@ -34,6 +34,7 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
     {
         if (item == null)
             return;
+        PlayerManager.Instance.TakeOFF(item.tableID);
         if(eventData.button == PointerEventData.InputButton.Right)
         {
             InventoryManager.AddItem(item);

@@ -52,8 +52,7 @@ public class StartScene : MonoBehaviour
         Player.GetComponent<CharacterController>().enabled = true;
         Player.GetComponent<Animator>().SetLayerWeight(2, 0);
         yield return new WaitForSeconds(0.3f);
-        GameManager.Instance.CanMove(true);
-        GameManager.Instance.MouseLock(true);
+        CanvasManager.ShowPlayer();
         Destroy(this);
     }
 

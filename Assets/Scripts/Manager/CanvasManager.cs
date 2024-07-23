@@ -16,13 +16,13 @@ public class CanvasManager : MonoBehaviour
     {
         Instance = this;
         InvenUI = transform.Find("InventoryUI").GetComponent<InventoryPanel>();
-        //PlayerUI = transform.Find("PlayerUI").GetComponent<RectTransform>();
+        PlayerUI = transform.Find("PlayerUI").GetComponent<RectTransform>();
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();
     }
 
     private void Start()
     {
-        //PlayerUI.gameObject.SetActive(false);
+        PlayerUI.gameObject.SetActive(false);
         InvenUI.gameObject.SetActive(false);
         MainOption.gameObject.SetActive(true);
     }
@@ -30,16 +30,18 @@ public class CanvasManager : MonoBehaviour
     //todo 나중에 MainScene에서 캔버스 키고 끄는 연동 다 바꾸끼
     public static void ShowInentory()
     {
+        GameManager.Instance.CanMove(false);
         GameManager.Instance.MouseLock(false);
         Instance.InvenUI.gameObject.SetActive(true);
-        //Instance.PlayerUI.gameObject.SetActive(false);
+        Instance.PlayerUI.gameObject.SetActive(false);
     }
 
     public static void ShowPlayer()
     {
+        GameManager.Instance.CanMove(true);
         GameManager.Instance.MouseLock(true);
         Instance.InvenUI.gameObject.SetActive(false);
-        //Instance.PlayerUI.gameObject.SetActive(true);
+        Instance.PlayerUI.gameObject.SetActive(true);
     }
 
 }

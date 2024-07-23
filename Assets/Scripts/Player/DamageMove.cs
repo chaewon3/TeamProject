@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class DamageMove : MonoBehaviour
 {
@@ -13,8 +12,8 @@ public class DamageMove : MonoBehaviour
 
     void Awake()
     {
-        startPos = new Vector3(0f, 0.5f, -0.5f);
-        endPos = new Vector3(0f, 0.7f, -0.5f);
+        startPos = new Vector3(-1f, 1.5f, -0.5f);
+        endPos = new Vector3(-1f, 1.7f, -0.5f);
     }
 
     void OnEnable()

@@ -11,7 +11,7 @@ public class ArrowPool : MonoBehaviour
     
     Queue<GameObject> pool = new Queue<GameObject>();
     //int count;
-    int poolSize = 12;
+    int poolSize = 6;
     #endregion
 
     void Awake()
@@ -43,7 +43,6 @@ public class ArrowPool : MonoBehaviour
 
     public void ReturnArrow(GameObject obj)
     {
-        print("¹ßµ¿");
         obj.SetActive(false);
         obj.transform.SetParent(spawnObj.transform);
         pool.Enqueue(obj);

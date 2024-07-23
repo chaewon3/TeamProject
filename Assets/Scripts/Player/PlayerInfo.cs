@@ -45,7 +45,6 @@ public class PlayerInfo : MonoBehaviour, IHitable
 
     public void Hit(float damage)
     {
-        print($"보스한테 {damage}데미지 남은 hp : {currentHealth}");
         currentHealth -= damage;
         if (hit)
             hit = false;

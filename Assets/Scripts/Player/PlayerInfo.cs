@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
 {
     PlayerMove player;
     Animator playerAni;
-    float currentHealth;
+    public float currentHealth;
     bool hit = false;
     bool isDead = false;
 

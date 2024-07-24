@@ -105,7 +105,7 @@ public class BossAttackState : EnemyAttackState
         {
             if (!item.activeSelf)
             {
-                item.transform.position = monsterController._characterTransfrom.position + Vector3.up * 10;
+                item.transform.position = monsterController._characterTransfrom.position + Vector3.up * 7;
                 item.SetActive(true);
 
                 yield return new WaitForSeconds(1.0f);

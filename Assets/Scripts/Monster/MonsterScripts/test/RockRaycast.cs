@@ -22,6 +22,7 @@ public class RockRaycast : MonoBehaviour
 
     private void OnEnable()
     {
+        attackTimes = 0;
         Initializing();
 
         StartCoroutine(RaycastStart());
@@ -79,16 +80,19 @@ public class RockRaycast : MonoBehaviour
         }
 
         this.transform.parent.gameObject.SetActive(false);
-        //gameObject.SetActive(false);
     }
-    private void OnCollisionEnter(Collision other)
+
+   
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && other.gameObject.TryGetComponent<IHitable>(out IHitable hitable))
+        if (other.tag == "Player" && other.TryGetComponent<IHitable>(out IHitable hitable))
         {
             attackTimes += 1;
 
             if (attackTimes == 1)
             {
+                print(11);
+                smokePrefab.SetActive(true);
                 hitable.Hit(damage);
 
             }
@@ -102,8 +106,4 @@ public class RockRaycast : MonoBehaviour
 
     }
 
-    //public void SetDamage(float damage)
-    //{
-    //    this.damage = damage;
-    //}
 }

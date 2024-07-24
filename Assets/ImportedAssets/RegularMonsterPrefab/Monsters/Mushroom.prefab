@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spherePrefab: {fileID: 1773671204576862, guid: 7a2fdc3420f3f7546a4ef28c3721eb79, type: 3}
+  bubblePrefab: {fileID: 6570483813925148287, guid: 2733b05899e36df47baefdefa8c7fdc5, type: 3}
 --- !u!1 &3277571988783252225
 GameObject:
   m_ObjectHideFlags: 0

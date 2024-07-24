@@ -9,8 +9,22 @@ public class BossMonsterController : MonsterController
     protected override void Start()
     {
         base.Start();
-        bossHPBar = CanvasManager.Instance.BossHPBar.GetComponent<UnityEngine.UI.Slider>();
+        bossHPBar = CanvasManager.Instance.BossHPBar.GetComponentInChildren<UnityEngine.UI.Slider>();
 
+        if (bossHPBar == null)
+        {
+            print(11);
+        }
+
+        if (CanvasManager.Instance.BossHPBar == null)
+        {
+            print(22);
+        
+        }
+        else
+        {
+            print(33);
+        }
 
         //bossHPBar = CanvasManager.Instance.BossHPBar;
     }

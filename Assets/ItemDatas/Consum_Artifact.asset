@@ -17,7 +17,7 @@ MonoBehaviour:
   name: "\uC2E0\uC18D\uC758 \uC11C"
   price: 200
   icon: {fileID: 21300000, guid: 557771912a6fa4f89b3d49536216b714, type: 3}
-  ModelPrefab: {fileID: 0}
+  ModelPrefab: {fileID: 6094666942450008373, guid: 59051a5edc33e5145aa8e2273c0d38fa, type: 3}
   description: "10\uCD08\uAC04 \uC774\uB3D9\uC18D\uB3C4\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4."
   coolTime: 5
   effect: 2

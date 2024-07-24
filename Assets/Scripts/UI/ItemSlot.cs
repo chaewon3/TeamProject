@@ -46,6 +46,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             PlayerManager.Instance.EquipChange(slot, item.tableID);
             InventoryManager.Equips[slot] = item;
             InventoryManager.Items.Remove(item);
+
+            EquipmentData tmep = item as EquipmentData;
+
+            if(slot == 0 && slot ==2)
+                PlayerManager.Instance.EquipAddStats(slot, tmep.DataEquip.ATK + tmep.additionalAbility);
+            else
+                PlayerManager.Instance.EquipAddStats(slot, tmep.DataEquip.DEF + tmep.additionalAbility);
+
         }
         else
         {
@@ -55,6 +63,19 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             item = InventoryManager.Equips[slot];
             InventoryManager.Items[index] = item;
             InventoryManager.Equips[slot] = temp;
+
+            EquipmentData tmepItem = item as EquipmentData;
+
+            if (slot == 0 && slot == 2)
+            {
+                PlayerManager.Instance.EquipSubStats(slot, tmepItem.DataEquip.ATK + tmepItem.additionalAbility);
+                PlayerManager.Instance.EquipAddStats(slot, tmepItem.DataEquip.ATK + tmepItem.additionalAbility);
+            }    
+            else
+            {
+                PlayerManager.Instance.EquipSubStats(slot, tmepItem.DataEquip.DEF + tmepItem.additionalAbility);
+                PlayerManager.Instance.EquipAddStats(slot, tmepItem.DataEquip.DEF + tmepItem.additionalAbility);
+            }     
         }
         InventoryManager.Refresh();
     }
@@ -80,10 +101,18 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
                 case ItemType.Artifact:
                     for(int i =0; i<3;i++)
                     {
-                        if(InventoryManager.Artifact[i] == null)
+                        if (InventoryManager.Artifact[i] == null)
                         {
                             InventoryManager.Artifact[i] = item;
-                            Clear(); break;
+                            InventoryManager.Refresh(); break;
+                        }
+                        else
+                        {
+                            if (InventoryManager.Artifact[i].tableID == item.tableID)
+                            {
+                                Description.Instance.Window("이미 장착된 아이템입니다.");
+                                break;
+                            }
                         }
                     }
                     break;
@@ -93,5 +122,4 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         else
             lastClickTime = Time.time;
     }
-
 }

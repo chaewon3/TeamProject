@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2614039460055613804}
+  - component: {fileID: 5444567581219884064}
+  - component: {fileID: 3378916823339382604}
   m_Layer: 0
   m_Name: Sword01SO
   m_TagString: Untagged
@@ -33,6 +35,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5444567581219884064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093686882533303650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df6ad542f7c4046883a584bb3122a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: a6bff9653831eb74d98dce57ea0e2a76, type: 2}
+--- !u!135 &3378916823339382604
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093686882533303650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7369491260164244766
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,8 +70,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1315636608379393219}
-  - component: {fileID: 2049253029559556384}
-  - component: {fileID: 7182827695414957313}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -67,32 +93,6 @@ Transform:
   m_Father: {fileID: 2614039460055613804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2049253029559556384
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7369491260164244766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.48241538
-  m_Center: {x: 0, y: 0.09, z: -0.06}
---- !u!114 &7182827695414957313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7369491260164244766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93df6ad542f7c4046883a584bb3122a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: a6bff9653831eb74d98dce57ea0e2a76, type: 2}
 --- !u!1 &8432656418362872632
 GameObject:
   m_ObjectHideFlags: 0

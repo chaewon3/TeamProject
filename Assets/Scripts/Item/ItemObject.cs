@@ -2,35 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class ItemObject : MonoBehaviour, IInteractable
 {
     public ItemDataSO itemData;
+    private GameObject item;
 
-    public ItemData item { get; set; }
+    public ItemData Item { get; set; }
 
+    private void Awake()
+    {
+        item = transform.Find("Item").gameObject;
+    }
     private void Start()
     {
-        if(item == null)
+        if(Item == null)
         {
             if (itemData is EquipmentDataSO)
-                item = new EquipmentData(itemData as EquipmentDataSO);
+                Item = new EquipmentData(itemData as EquipmentDataSO);
             else if (itemData is ConsumableDataSO)
-                item = new ConsumableData(itemData as ConsumableDataSO);
+                Item = new ConsumableData(itemData as ConsumableDataSO);
         }
     }
 
     private void Update()
     {
-        //빙글 돌아가거나 파티클 생성    
+        transform.Rotate(transform.up * 50f * Time.deltaTime);
     }
 
     public void interaction(bool OnOff)
     {
         StartCoroutine(Anim());
-        InventoryManager.AddItem(item);
+        InventoryManager.AddItem(Item);
         InventoryManager.Refresh();
     }
+
 
     IEnumerator Anim()
     {
@@ -50,5 +55,6 @@ public class ItemObject : MonoBehaviour, IInteractable
             starttime += Time.deltaTime;
             yield return null;
         }
+        Destroy(this.gameObject);
     }
 }

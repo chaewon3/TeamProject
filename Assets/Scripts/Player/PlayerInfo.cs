@@ -11,6 +11,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
     Animator playerAni;
     float currentHealth;
     bool hit = false;
+    bool isDead = false;
 
     public TextMeshProUGUI levelText;
     public Slider hpBar;
@@ -19,7 +20,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
     void Awake()
     {
         player = FindObjectOfType<PlayerMove>();
-        playerAni = FindObjectOfType<Animator>();
+        playerAni = GetComponent<Animator>();
     }
 
     void Start()
@@ -36,10 +37,12 @@ public class PlayerInfo : MonoBehaviour, IHitable
         expBar.maxValue = PlayerManager.Data.level * 100f; // 이거 비율 계산 조율하기 
         expBar.value = PlayerManager.Data.experience;
 
-        if (currentHealth <= 0)
+        if (!isDead && currentHealth <= 0)
         {
             player.canMove = false;
+            isDead = true;
             playerAni.SetBool("isDead", true);
+            playerAni.SetTrigger("Dead");
         }
     }
 

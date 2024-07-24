@@ -30,6 +30,12 @@ public class Notification : MonoBehaviour
         }
         else
         {
+            CamStart.Priority = 3;
+            CamEnd.Priority = 3;
+            OptionUI.alpha = 0;
+            OptionUI.interactable = false;
+            Player.GetComponent<CharacterController>().enabled = true;
+            CanvasManager.ShowPlayer();
 
         }
     }
@@ -41,7 +47,6 @@ public class Notification : MonoBehaviour
             notion.text = "게임을 종료하시겠습니까?";
         else if (option == 1)
             notion.text = "진행 상황이 사라질 수 있습니다.\n 새로운 데이터로 진행하시겠습니까?";
-
         NotionUI.SetActive(true);
     }
 
@@ -79,12 +84,11 @@ public class Notification : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         CamEnd.Priority = 3;
         yield return new WaitForSeconds(StandUp.length);
-        Stool.transform.position = new Vector3(1.1f, -0.05f, -0.1f);
+        Stool.transform.position = new Vector3(0.6f, 0, 0.25f);
         Player.GetComponent<CharacterController>().enabled = true;
         Player.GetComponent<Animator>().SetLayerWeight(2, 0);
         yield return new WaitForSeconds(0.3f);
         CanvasManager.ShowPlayer();
-        Destroy(this);
     }
 
     IEnumerator UIFadeIn()

@@ -25,7 +25,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: Main Cam
-    m_To: TunnelEventCam
+    m_To: TunnelCam
     m_Blend:
       m_Style: 1
       m_Time: 1

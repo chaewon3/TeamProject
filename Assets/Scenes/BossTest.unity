@@ -2741,17 +2741,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 294828061657769907, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
-      propertyPath: bubblePrefab
-      value: 
-      objectReference: {fileID: 6570483813925148287, guid: 2733b05899e36df47baefdefa8c7fdc5, type: 3}
     - target: {fileID: 3277571988783252343, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
     - target: {fileID: 3277571988783252343, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3277571988783488855, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
       propertyPath: m_RootOrder

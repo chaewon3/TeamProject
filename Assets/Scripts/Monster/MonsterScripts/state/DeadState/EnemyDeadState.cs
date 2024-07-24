@@ -37,8 +37,6 @@ public class EnemyDeadState : EnemyState
         Collider collider = monsterController.GetComponentInChildren<CapsuleCollider>();
         Rigidbody rigidbody = monsterController.GetComponent<Rigidbody>();
 
-        DropManager.instance.RandomItemDrop(monsterController.transform);
-
         if (collider != null)
         {
             collider.enabled = false;
@@ -47,6 +45,8 @@ public class EnemyDeadState : EnemyState
         {
             rigidbody.isKinematic = true;
         }
+
+        DropManager.instance.RandomItemDrop(monsterController.transform);
 
         PlayerManager.Instance.ExperienceUp(monsterController.monsterInfo.exp);//todo 경험치 값 변경
         yield return new WaitForSeconds(5.0f);

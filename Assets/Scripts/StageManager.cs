@@ -10,7 +10,7 @@ public class StageManager : MonoBehaviour
 
     void Update()
     {
-        print(stageBoss.activeSelf);
+       
         if(!dungeonClear && !stageBoss.activeSelf)
         {
             dungeonClear = true;

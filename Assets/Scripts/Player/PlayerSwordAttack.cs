@@ -12,6 +12,9 @@ public class PlayerSwordAttack : MonoBehaviour
     Coroutine attackCoroutine, comboCoroutine;
     PlayerMove player;
 
+    GameObject sword;
+    GameObject particle;
+
     public bool isHit = false;
 
     void Awake()
@@ -26,31 +29,40 @@ public class PlayerSwordAttack : MonoBehaviour
         comboCount = 1;
         playerAnimator.SetInteger("Combo", comboCount);
         comboing = false;
+        FindSword();
     }
 
     void Update()
     {
-        if(player.state == State.Sword && Input.GetMouseButtonDown(0) && player.canMove)
+        if(sword != null && Input.GetMouseButtonDown(0))
         {
-            if (delray)
+            if(!sword.activeSelf)
+                FindSword();
+
+            if (player.state == State.Sword && player.canMove && sword != null)
             {
-                playerAnimator.SetTrigger("Attack");
-
-                if (comboCoroutine != null && comboCount != 4)
+                if (delray)
                 {
-                    StopCoroutine(comboCoroutine);
-                    player.MoveLimit(true);
-                    comboCoroutine = null;
-                }
+                    playerAnimator.SetTrigger("Attack");
 
-                if (comboCoroutine == null)
-                {
-                    delray = false;
-                    comboCoroutine = StartCoroutine(ComboAttack());
+                    if (comboCoroutine != null && comboCount != 4)
+                    {
+                        StopCoroutine(comboCoroutine);
+                        player.MoveLimit(true);
+                        comboCoroutine = null;
+                    }
+
+                    if (comboCoroutine == null)
+                    {
+                        delray = false;
+                        comboCoroutine = StartCoroutine(ComboAttack());
+                    }
                 }
-                    
-            }  
+            }
         }
+
+        if(sword == null && Input.GetMouseButtonDown(0))
+            FindSword();
     }
 
     IEnumerator ComboAttack()
@@ -80,26 +92,71 @@ public class PlayerSwordAttack : MonoBehaviour
         comboCoroutine = null;
     }
 
+    void FindSword()
+    {
+        sword = null;
+
+        for (int i = 0; i < player.weapon[0].transform.childCount; i++)
+        {
+            Transform childTransform = player.weapon[0].transform.GetChild(i);
+            GameObject childObj = childTransform.gameObject;
+
+            if (childObj.activeInHierarchy)
+            {
+                sword = childObj;
+                particle = sword.transform.GetChild(0).gameObject;
+            }
+                
+        }
+    }
+
     public void OnCollider()
     {
-        player.weapon[0].transform.GetChild(0).GetComponentInChildren<MeshCollider>().enabled = true;
-        //if (player.weapon[0].activeSelf)
-        //{ }
-        //foreach (var item in player.weapon[0].gameObject)
-        //{
-
-        //}
-
+        if(sword.activeSelf)
+            sword.GetComponent<MeshCollider>().enabled = true;
+        else
+        {
+            FindSword();
+            sword.GetComponent<MeshCollider>().enabled = true;
+        }
     }
 
     public void OffCollider()
     {
-        player.weapon[0].transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
+        if (sword.activeSelf)
+            sword.GetComponent<MeshCollider>().enabled = false;
+        else
+        {
+            FindSword();
+            sword.GetComponent<MeshCollider>().enabled = false;
+        }
     }
 
     public void HitPossible()
     {
         isHit = false;
+    }
+
+    public void OnParticle()
+    {
+        if (sword.activeSelf)
+            particle.SetActive(true);
+        else
+        {
+            FindSword();
+            particle.SetActive(true);
+        }
+    }
+
+    public void OffParticle()
+    {
+        if (sword.activeSelf)
+            particle.SetActive(false);
+        else
+        {
+            FindSword();
+            particle.SetActive(false);
+        }
     }
 }
 

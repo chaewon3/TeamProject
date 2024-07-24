@@ -14,12 +14,15 @@ public class Arrow : MonoBehaviour
     bool end = false;
     Coroutine despawn;
 
+    GameObject aimingPoint;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         arrowPool = FindObjectOfType<ArrowPool>();
         arrowcollider = GetComponent<CapsuleCollider>();
         dmgPool = FindObjectOfType<DamageTextPool>();
+        aimingPoint = GameObject.Find("AimingPoint");
     }
 
     void Start()
@@ -29,8 +32,13 @@ public class Arrow : MonoBehaviour
 
     void OnEnable()
     {
+        transform.LookAt(aimingPoint.transform);
+
+
+
+
         arrowcollider.enabled = true;
-        Vector3 force = transform.up * speed;
+        Vector3 force = transform.forward * speed;
         rigid.AddForce(force);
     }
 

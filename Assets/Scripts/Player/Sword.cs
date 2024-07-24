@@ -7,6 +7,7 @@ public class Sword : MonoBehaviour
     #region 전역 변수
     float dmg;
     public LayerMask targetLayer;
+
     DamageTextPool pool;
     PlayerSwordAttack player;
     #endregion

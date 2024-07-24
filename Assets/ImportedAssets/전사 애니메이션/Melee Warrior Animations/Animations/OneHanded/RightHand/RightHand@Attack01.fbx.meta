@@ -480,6 +480,20 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.18735224
+        functionName: OnParticle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 41e051dd71cbe1a4ca232fb41039fcab, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5063906
+        functionName: OffParticle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 41e051dd71cbe1a4ca232fb41039fcab, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

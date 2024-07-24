@@ -4948,7 +4948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5361624646735908301
 Transform:
   m_ObjectHideFlags: 0
@@ -5044,6 +5044,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  particle: {fileID: 840068295333711150}
 --- !u!1 &8722500945090769650
 GameObject:
   m_ObjectHideFlags: 0

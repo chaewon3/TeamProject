@@ -11,6 +11,7 @@ public class PlayerBowAttack : MonoBehaviour
     PlayerMove player;
     Coroutine ArrowCoroutine;
     ArrowPool pool;
+    GameObject bow;
     int arrow;
 
     public AnimationClip shootClip;
@@ -34,33 +35,44 @@ public class PlayerBowAttack : MonoBehaviour
     {
         arrow = PlayerManager.Data.ArrowCount;
         arrowText.text = arrow.ToString();
+        FindBow();
     }
 
     void Update()
     {
-        if(arrow != 0 && player.canMove)
+        if (bow == null && Input.GetMouseButtonDown(1))
+            FindBow();
+
+        if (arrow != 0 && player.canMove && bow != null)
         {
+            if(!bow.activeSelf)
+                FindBow();
 
-            if (Input.GetMouseButtonDown(1))
+            if(bow != null)
             {
-                if (player.state != State.Bow)
-                    player.state = State.Bow;
+                if (Input.GetMouseButtonDown(1))
+                {
+                    if (player.state != State.Bow)
+                        player.state = State.Bow;
 
-                playerAnimator.SetTrigger("Charge");
-            }
+                    playerAnimator.SetTrigger("Charge");
+                }
 
-            if (Input.GetMouseButtonUp(1))
-            {
-                CanShoot = false;
-                coolTime.fillAmount = 1f;
+                if (Input.GetMouseButtonUp(1))
+                {
+                    CanShoot = false;
+                    coolTime.fillAmount = 1f;
 
-                playerAnimator.SetTrigger("Attack");
-                pool.GetArrow();
+                    playerAnimator.SetTrigger("Attack");
+                    pool.GetArrow();
 
-                if (ArrowCoroutine == null)
-                    ArrowCoroutine = StartCoroutine(Arrow());
+                    if (ArrowCoroutine == null)
+                        ArrowCoroutine = StartCoroutine(Arrow());
+                }
             }
         }
+
+        
 
         if (!CanShoot && fillAmount > 0)
         {
@@ -71,6 +83,22 @@ public class PlayerBowAttack : MonoBehaviour
             {
                 CanShoot = true;
                 fillAmount = 1f;
+            }
+        }
+    }
+
+    void FindBow()
+    {
+        bow = null;
+
+        for (int i = 0; i < player.weapon[1].transform.childCount; i++)
+        {
+            Transform childTransform = player.weapon[1].transform.GetChild(i);
+            GameObject childObj = childTransform.gameObject;
+
+            if (childObj.activeSelf)
+            {
+                bow = childObj;
             }
         }
     }

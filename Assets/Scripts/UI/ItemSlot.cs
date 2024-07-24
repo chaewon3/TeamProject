@@ -8,12 +8,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     private Image icon;
     private TextMeshProUGUI amount;
     public ItemData item;
+    private UISound sound;
 
     float interval = 0.25f;
     float lastClickTime = 0;
 
     private void Awake()
     {
+        sound = FindObjectOfType<UISound>();
         icon = transform.Find("Item Icon").GetComponent<Image>();
         amount = transform.Find("amount").GetComponent<TextMeshProUGUI>();
     }
@@ -41,6 +43,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void Equip(int slot)
     {
+        sound.Equip();
         if (InventoryManager.Equips[slot] == null)
         {
             PlayerManager.Instance.EquipChange(slot, item.tableID);

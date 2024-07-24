@@ -20,6 +20,7 @@ public class Description : MonoBehaviour
     public static Description Instance;
 
     private EquipmentData currentItem;
+    private UISound sound;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class Description : MonoBehaviour
 
     private void Start()
     {
+        sound = FindObjectOfType<UISound>();
         DescriptionOFF();
     }
 
@@ -138,6 +140,7 @@ public class Description : MonoBehaviour
 
     IEnumerator Warning()
     {
+        sound.Notion();
         Error.alpha = 0;
         float starttime = 0;
         while (starttime < 0.5f)

@@ -55,7 +55,10 @@ public class InventoryManager : MonoBehaviour
             return;
         item.amount -= 1;
         if (item.amount <= 0)
+        {
             Artifact[slot] = null;
+            Items.Remove(item);
+        }
         else
             Artifact[slot] = item;
 

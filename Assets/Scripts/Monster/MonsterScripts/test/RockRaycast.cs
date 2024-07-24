@@ -8,18 +8,24 @@ public class RockRaycast : MonoBehaviour
 
     float damage;
 
+    public GameObject smokePrefab;
+
     public LayerMask groundLayer;
     Vector3 rayOrigin;
     Vector3 rayDirection;
     private void Start()
     {
         damage = 30;
+        
     }
 
 
     private void OnEnable()
     {
+        Initializing();
+
         StartCoroutine(RaycastStart());
+        smokePrefab.SetActive(false);
 
     }
 
@@ -39,6 +45,8 @@ public class RockRaycast : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.25f, groundLayer))
             {
+                smokePrefab.SetActive(true);
+
                 break;
             }
 
@@ -54,6 +62,8 @@ public class RockRaycast : MonoBehaviour
 
         gameObject.GetComponent<Collider>().enabled = false;
 
+        yield return new WaitForSeconds(2.5f);
+
         while (true)
         {
             time += 1;
@@ -68,18 +78,28 @@ public class RockRaycast : MonoBehaviour
             }
         }
 
-        gameObject.SetActive(false);
+        this.transform.parent.gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player" && other.gameObject.TryGetComponent<IHitable>(out IHitable hitable))
+        {
+            attackTimes += 1;
+
+            if (attackTimes == 1)
+            {
+                hitable.Hit(damage);
+
+            }
+        }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    void Initializing()
     {
-        if (other.tag == "Player" && other.TryGetComponent<IHitable>(out IHitable hitable))
-        {
-            hitable.Hit(damage);
+        gameObject.GetComponent<Collider>().enabled = true;
+        gameObject.transform.localPosition = Vector3.zero;
 
-            gameObject.SetActive(false);
-        }
     }
 
     //public void SetDamage(float damage)

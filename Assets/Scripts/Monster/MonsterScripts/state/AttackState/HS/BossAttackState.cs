@@ -8,6 +8,7 @@ public class BossAttackState : EnemyAttackState
     List<GameObject> listOfMummy = new List<GameObject>();
 
     GameObject rockPrefab;
+    List<GameObject> listOfRock = new List<GameObject>();
 
     public BossAttackState(MonsterController character) : base(character) 
     {
@@ -20,10 +21,14 @@ public class BossAttackState : EnemyAttackState
             listOfMummy.Add(mummyPrefabInstance);
         }
 
-        rockPrefab = Instantiate(Resources.Load<GameObject>("DropRock"), Vector3.zero, Quaternion.identity);
+        rockPrefab = Resources.Load<GameObject>("GameObject (2)");
 
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject rockPrefabInstance = Instantiate(rockPrefab, Vector3.zero, Quaternion.identity);
 
-
+            listOfRock.Add(rockPrefabInstance);
+        }
         //rockPrefab.GetComponent<RockRaycast>().SetDamage(monsterController.monsterInfo._attackDamage + 15);
 
 
@@ -64,17 +69,12 @@ public class BossAttackState : EnemyAttackState
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1:
                 print(bossPattern);
                 monsterController.StartCoroutine(BossPatternSpellOne());
-                //monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
-                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 20));
+                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_1, 15));
                 break;
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2:
                 print(bossPattern);
-                //monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 10));
                 monsterController.StartCoroutine(BossPatternSpellTwo());
-
-                //monsterController.StartCoroutine(BossPatternAttack(monsterController.monsterInfo.attackDurationTime));
-
-                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 15));
+                monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 20));
                 break;
             default:
                 print("default");
@@ -91,23 +91,28 @@ public class BossAttackState : EnemyAttackState
         {
             monsterController.TransitionToState(monsterController.moveState);
         }
-        
     }
 
     IEnumerator BossPatternSpellOne()
     {
         monsterController.animator.SetTrigger(PatternSpellOne);
 
-        
-        
-
         yield return new WaitForSeconds(2f);
 
-        rockPrefab.transform.position = monsterController._characterTransfrom.position + Vector3.up * 10;
+        print(listOfRock.Count);
 
-        rockPrefab.SetActive(true);
+        foreach (var item in listOfRock)
+        {
+            if (!item.activeSelf)
+            {
+                item.transform.position = monsterController._characterTransfrom.position + Vector3.up * 10;
+                item.SetActive(true);
 
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
 
+        
         if (!monsterController._isHit && !monsterController._isDead)
         {
             monsterController.TransitionToState(monsterController.moveState);

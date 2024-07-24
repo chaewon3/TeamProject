@@ -8,8 +8,10 @@ public class CanvasManager : MonoBehaviour
 
     private InventoryPanel InvenUI;
     private PlayerPanel PlayerUI;
+    private RectTransform CursorUI;
     private RectTransform MainOption;
-    private GameObject BossHPBar;
+    [HideInInspector]
+    public GameObject BossHPBar;
 
     public static InventoryPanel inventoryPanel => Instance.InvenUI;
     public static PlayerPanel PalyerPanel => Instance.PlayerUI;
@@ -21,14 +23,17 @@ public class CanvasManager : MonoBehaviour
         PlayerUI = transform.Find("PlayerUI").GetComponent<PlayerPanel>();
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();
         BossHPBar = transform.Find("BossHPBarCanvas").gameObject;
+        CursorUI = transform.Find("Cursor").GetComponent<RectTransform>();
     }
 
     private void Start()
     {
         PlayerUI.gameObject.SetActive(false);
         InvenUI.gameObject.SetActive(false);
-        MainOption.gameObject.SetActive(true);
         BossHPBar.SetActive(false);
+
+        if(!GameManager.Instance.gamestart)
+           MainOption.gameObject.SetActive(true);
     }
 
     //todo 나중에 MainScene에서 캔버스 키고 끄는 연동 다 바꾸끼
@@ -38,6 +43,7 @@ public class CanvasManager : MonoBehaviour
         GameManager.Instance.MouseLock(false);
         Instance.InvenUI.gameObject.SetActive(true);
         Instance.PlayerUI.gameObject.SetActive(false);
+        Instance.CursorUI.gameObject.SetActive(false);
     }
 
     public static void ShowPlayer()
@@ -46,6 +52,7 @@ public class CanvasManager : MonoBehaviour
         GameManager.Instance.MouseLock(true);
         Instance.InvenUI.gameObject.SetActive(false);
         Instance.PlayerUI.gameObject.SetActive(true);
+        Instance.CursorUI.gameObject.SetActive(true);
     }
 
     public void ShowBossHPBar()
@@ -54,4 +61,12 @@ public class CanvasManager : MonoBehaviour
         BossHPBar.SetActive(true);
     }
 
+    public static void ShowMap()
+    {
+        GameManager.Instance.CanMove(false);
+        GameManager.Instance.MouseLock(false);
+        Instance.PlayerUI.gameObject.SetActive(false);
+        Instance.CursorUI.gameObject.SetActive(false);
+        Instance.InvenUI.gameObject.SetActive(false);
+    }
 }

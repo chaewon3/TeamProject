@@ -6,11 +6,10 @@ public class BossMonsterController : MonsterController
 {
     UnityEngine.UI.Slider bossHPBar;
 
-    public GameObject ddd;
     protected override void Start()
     {
         base.Start();
-        bossHPBar = ddd.GetComponentInChildren<UnityEngine.UI.Slider>();
+        bossHPBar = CanvasManager.Instance.BossHPBar.GetComponent<UnityEngine.UI.Slider>();
 
 
         //bossHPBar = CanvasManager.Instance.BossHPBar;

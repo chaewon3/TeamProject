@@ -48,7 +48,7 @@ public class PlayerBowAttack : MonoBehaviour
             if(!bow.activeSelf)
                 FindBow();
 
-            if(bow != null)
+            if(bow != null && CanShoot)
             {
                 if (Input.GetMouseButtonDown(1))
                 {

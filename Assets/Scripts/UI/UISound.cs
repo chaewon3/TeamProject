@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class UISound : MonoBehaviour
 {
+    public static UISound Instance;
+
     public AudioClip[] sounds;
     AudioSource audio;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -30,6 +37,11 @@ public class UISound : MonoBehaviour
     public void Equip()
     {
         audio.PlayOneShot(sounds[3], 0.4f);
+    }
+
+    public void Inven()
+    {
+        audio.PlayOneShot(sounds[4], 0.6f);
     }
 
 }

@@ -5,7 +5,12 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     private IInteractable interactable;
+    Notification notion;
 
+    private void Start()
+    {
+        notion = FindObjectOfType<Notification>();
+    }
     private State state = State.Idle;
     enum State
     {
@@ -20,14 +25,20 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable == null)
                 return;
             interactable.interaction(true);
+            UISound.Instance.Inven();
             state = State.Map;
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            switch(state)
+
+            switch (state)
             {
-                case State.Map: interactable.interaction(false); break;
-                case State.Inventory: CanvasManager.ShowPlayer(); break;
+                case State.Map: interactable.interaction(false);
+                    UISound.Instance.Inven(); break;
+                case State.Inventory: CanvasManager.ShowPlayer();
+                    UISound.Instance.Inven(); break;
+                default: CanvasManager.Exit();
+                    break;
             }
             state = State.Idle;
         }
@@ -35,11 +46,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             if(state == State.Idle)
             {
+                UISound.Instance.Inven();
                 CanvasManager.ShowInentory();
                 state = State.Inventory;
             }
             else if(state == State.Inventory)
             {
+                UISound.Instance.Inven();
                 CanvasManager.ShowPlayer();
                 state = State.Idle;
             }

@@ -43,7 +43,7 @@ public class Notification : MonoBehaviour
     public void Notify(int option)
     {
         this.option = option;
-        if(option == 0)
+        if (option == 0)
             notion.text = "게임을 종료하시겠습니까?";
         else if (option == 1)
             notion.text = "진행 상황이 사라질 수 있습니다.\n 새로운 데이터로 진행하시겠습니까?";
@@ -54,6 +54,7 @@ public class Notification : MonoBehaviour
     {
         if(option == 0)
         {
+            DataManager.Instance.SaveData();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -66,6 +67,8 @@ public class Notification : MonoBehaviour
 
     public void NO()
     {
+        if (GameManager.Instance.gamestart)
+            CanvasManager.Restart();
         NotionUI.SetActive(false);
     }
 
@@ -89,6 +92,8 @@ public class Notification : MonoBehaviour
         Player.GetComponent<Animator>().SetLayerWeight(2, 0);
         yield return new WaitForSeconds(0.3f);
         CanvasManager.ShowPlayer();
+        notion.text = "게임을 종료하시겠습니까?";
+        option = 0;
     }
 
     IEnumerator UIFadeIn()

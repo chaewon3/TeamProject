@@ -29,6 +29,11 @@ public class InventoryPanel : MonoBehaviour
         slots.AddRange(GetComponentsInChildren<ItemSlot>());
     }
 
+    private void Start()
+    {
+        InventoryManager.Refresh();
+    }
+
     public void SetType(int typenum)
     {
         switch(typenum)

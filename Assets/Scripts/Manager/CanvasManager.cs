@@ -10,6 +10,7 @@ public class CanvasManager : MonoBehaviour
     private PlayerPanel PlayerUI;
     private RectTransform CursorUI;
     private RectTransform MainOption;
+    private RectTransform notion;
     [HideInInspector]
     public GameObject BossHPBar;
 
@@ -24,8 +25,9 @@ public class CanvasManager : MonoBehaviour
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();
         BossHPBar = transform.Find("BossHPBarCanvas").gameObject;
         CursorUI = transform.Find("Cursor").GetComponent<RectTransform>();
+        notion = transform.Find("Notification ").GetComponent<RectTransform>();
 
-        if(BossHPBar == null)
+        if (BossHPBar == null)
         {
             print("캔버스 매니저에도ㅓ 없음");
         }
@@ -73,5 +75,24 @@ public class CanvasManager : MonoBehaviour
         Instance.PlayerUI.gameObject.SetActive(false);
         Instance.CursorUI.gameObject.SetActive(false);
         Instance.InvenUI.gameObject.SetActive(false);
+    }
+
+    public static void Exit()
+    {
+        UISound.Instance.Notion(); 
+        Time.timeScale = 0;
+        GameManager.Instance.MouseLock(false);
+        Instance.notion.gameObject.SetActive(true);
+        Instance.PlayerUI.gameObject.SetActive(false);
+        Instance.CursorUI.gameObject.SetActive(false);
+    }
+
+    public static void Restart()
+    {
+        Time.timeScale = 1;
+        GameManager.Instance.MouseLock(true);
+        Instance.notion.gameObject.SetActive(false);
+        Instance.PlayerUI.gameObject.SetActive(true);
+        Instance.CursorUI.gameObject.SetActive(true);
     }
 }

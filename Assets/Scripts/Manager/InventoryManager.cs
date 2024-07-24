@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class InventoryManager : MonoBehaviour
     {
         Instance = this;
     }
+
     public static void AddItem(ItemData item)
     {        
         item.UniqueID = Instance.currentID;

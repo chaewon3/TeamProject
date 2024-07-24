@@ -11,12 +11,12 @@ public class MapInteraction : MonoBehaviour, IInteractable
     {
         if(OnOff)
         {
-            GameManager.Instance.MouseLock(false);
+            CanvasManager.ShowMap();
             MapCam.Priority = 11;
         }
         else
         {
-            GameManager.Instance.MouseLock(true);
+            CanvasManager.ShowPlayer();
             MapCam.Priority = 9;
         }
     }

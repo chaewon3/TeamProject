@@ -48,14 +48,12 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<ItemObject>(out ItemObject item))
-        {
-            item.interaction(true);
-            return;
-        }
         if (other.TryGetComponent<IInteractable>(out IInteractable interact))
         {
             interactable = interact;
+            if (other.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+                return;
+            interact.interaction(true);
         }
     }
 

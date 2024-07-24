@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3211596241488720331}
+  - component: {fileID: 1391063713009291160}
+  - component: {fileID: 3364925440232001657}
   m_Layer: 0
   m_Name: Bow02SO
   m_TagString: Untagged
@@ -33,6 +35,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1391063713009291160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639240744560306318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df6ad542f7c4046883a584bb3122a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 42780d53e78870f4fbfe67236d34d5cc, type: 2}
+--- !u!135 &3364925440232001657
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639240744560306318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8145096609312147224
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,8 +124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8150172040616795972}
   - component: {fileID: 8136985314181917166}
-  - component: {fileID: 7903644158409652211}
-  - component: {fileID: 3128402743324128474}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -177,32 +203,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.01939144, y: 0, z: 0}
     m_Extent: {x: 0.09178173, y: 0.38369873, z: 0.026925888}
   m_DirtyAABB: 0
---- !u!135 &7903644158409652211
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8145934443584929664}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.41923252
-  m_Center: {x: 0.019391445, y: -0.035533845, z: -0.0000000011506105}
---- !u!114 &3128402743324128474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8145934443584929664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93df6ad542f7c4046883a584bb3122a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 42780d53e78870f4fbfe67236d34d5cc, type: 2}
 --- !u!1 &8146542764841662860
 GameObject:
   m_ObjectHideFlags: 0

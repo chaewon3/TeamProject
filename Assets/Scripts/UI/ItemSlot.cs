@@ -80,10 +80,18 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
                 case ItemType.Artifact:
                     for(int i =0; i<3;i++)
                     {
-                        if(InventoryManager.Artifact[i] == null)
+                        if (InventoryManager.Artifact[i] == null)
                         {
                             InventoryManager.Artifact[i] = item;
-                            Clear(); break;
+                            InventoryManager.Refresh(); break;
+                        }
+                        else
+                        {
+                            if (InventoryManager.Artifact[i].tableID == item.tableID)
+                            {
+                                Description.Instance.Window("이미 장착된 아이템입니다.");
+                                break;
+                            }
                         }
                     }
                     break;

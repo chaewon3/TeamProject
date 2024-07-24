@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8611868669121980246}
+  - component: {fileID: 4464889247185852989}
+  - component: {fileID: 9212071932870645392}
   m_Layer: 0
   m_Name: Bow01SO
   m_TagString: Untagged
@@ -33,6 +35,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4464889247185852989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553476972165232043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df6ad542f7c4046883a584bb3122a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 9cd2048afa266de4facc22cd8d0d8be5, type: 2}
+--- !u!135 &9212071932870645392
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553476972165232043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.42
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2280583455193021714
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8206635266466488165}
   - component: {fileID: 8073354856904713453}
-  - component: {fileID: 5496261037708318172}
-  - component: {fileID: 1892843669952324035}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -262,32 +288,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.024434268, y: 0, z: 0.0000000018626451}
     m_Extent: {x: 0.0852987, y: 0.361523, z: 0.018912632}
   m_DirtyAABB: 0
---- !u!135 &5496261037708318172
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208883515223898969}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.39442113
-  m_Center: {x: 0.024434268, y: -0.032897685, z: 0.0000000013192069}
---- !u!114 &1892843669952324035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208883515223898969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93df6ad542f7c4046883a584bb3122a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 9cd2048afa266de4facc22cd8d0d8be5, type: 2}
 --- !u!1001 &6559984516419446145
 PrefabInstance:
   m_ObjectHideFlags: 0

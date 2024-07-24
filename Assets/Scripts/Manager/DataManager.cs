@@ -46,14 +46,12 @@ public class DataManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
-        //playerDataTest = PlayerFileLoad("PlayerInfo");
     }
 
     private void Start()
     {
-        LoadData();
+        InventoryManager.Refresh();
     }
-    
     public void SaveData()
     {
         FileData save = new FileData();
@@ -61,7 +59,7 @@ public class DataManager : MonoBehaviour
         {
             save.AddItem(item);
         }
-        // todo PlayerData 저장하는 부분도 넣어야 함
+        print(PlayerManager.Data.experience);
         save.PlayerData = PlayerManager.Data;
         File.WriteAllText(saveFilePath, JsonUtility.ToJson(save));
     }
@@ -91,26 +89,6 @@ public class DataManager : MonoBehaviour
         InventoryManager.Refresh();
     }
 
-
-    public PlayerData PlayerFileLoad(string fileName)
-    {
-        DirectoryInfo di = new DirectoryInfo(Application.streamingAssetsPath);
-
-        foreach(FileInfo file in di.GetFiles())
-        {
-            if(file.Name == $"{fileName}Data.json")
-            {
-                string path = $"{Application.streamingAssetsPath}/PlayerInfoData.json";
-
-                if (File.Exists(path) && file.Extension == ".json")
-                {
-                    string json = File.ReadAllText(path);
-                    return JsonUtility.FromJson<PlayerData>(json);
-                }
-            }
-        }
-        return null;
-    }   
 }
 
 

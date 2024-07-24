@@ -129,6 +129,12 @@ public class Description : MonoBehaviour
         InventoryManager.Refresh();
         DescriptionsON(currentItem);
     }
+    public void Window(string str)
+    {
+        ErrorMessgae.text = str;
+        StopAllCoroutines();
+        StartCoroutine(Warning());
+    }
 
     IEnumerator Warning()
     {

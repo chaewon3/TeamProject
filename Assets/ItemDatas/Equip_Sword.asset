@@ -17,7 +17,7 @@ MonoBehaviour:
   name: "\uCE7C"
   price: 100
   icon: {fileID: 21300000, guid: 9ae385d08bab84d418b1bd1703b1a27a, type: 3}
-  ModelPrefab: {fileID: 5034957644604653305, guid: 979f21d4d01dae244bcddc6b2af73dc5, type: 3}
+  ModelPrefab: {fileID: 1093686882533303650, guid: eb664927281b4dc4d9287ed8af662807, type: 3}
   description: "\uCE7C\uC740 \uD6A8\uC728\uC801\uC778 \uBB34\uAE30\uB85C, \uC6B0\uBBFC\uC655\uC758
     \uAD70\uB300\uC5D0 \uC788\uB294 \uBB34\uC790\uBE44\uD55C \uBCC0\uBA85\uC790\uB4E4\uC774
     \uC990\uACA8 \uC0AC\uC6A9\uD569\uB2C8\uB2E4."

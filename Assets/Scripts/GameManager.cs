@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string scenename)
     {
+        DataManager.Instance.SaveData();
         Cursor.lockState = CursorLockMode.Locked;
         currentScene = scenename;
         SceneManager.LoadScene("LoadingScene");

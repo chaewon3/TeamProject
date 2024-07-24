@@ -31,6 +31,12 @@ public class StartScene : MonoBehaviour
         StartCoroutine(gamestart());
     }
 
+    public void Continue()
+    {
+        DataManager.Instance.LoadData();
+        StartCoroutine(gamestart());
+    }
+
     public void GameExit()
     {
 #if UNITY_EDITOR

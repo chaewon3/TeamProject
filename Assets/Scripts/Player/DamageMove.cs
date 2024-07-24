@@ -13,8 +13,8 @@ public class DamageMove : MonoBehaviour
 
     void Awake()
     {
-        startPos = new Vector3(-1f, 1.5f, 1f);
-        endPos = new Vector3(-1f, 1.7f, 1f);
+        startPos = new Vector3(-1f, 1.8f, 1f);
+        endPos = new Vector3(-1f, 2f, 1f);
         target = GameObject.Find("Main Cam").transform;
     }
 

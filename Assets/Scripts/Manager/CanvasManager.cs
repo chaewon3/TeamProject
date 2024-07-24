@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
     private InventoryPanel InvenUI;
     private PlayerPanel PlayerUI;
     private RectTransform MainOption;
+    private GameObject BossHPBar;
 
     public static InventoryPanel inventoryPanel => Instance.InvenUI;
     public static PlayerPanel PalyerPanel => Instance.PlayerUI;
@@ -19,6 +20,7 @@ public class CanvasManager : MonoBehaviour
         InvenUI = transform.Find("InventoryUI").GetComponent<InventoryPanel>();
         PlayerUI = transform.Find("PlayerUI").GetComponent<PlayerPanel>();
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();
+        BossHPBar = transform.Find("BossHPBarCanvas").gameObject;
     }
 
     private void Start()
@@ -26,6 +28,7 @@ public class CanvasManager : MonoBehaviour
         PlayerUI.gameObject.SetActive(false);
         InvenUI.gameObject.SetActive(false);
         MainOption.gameObject.SetActive(true);
+        BossHPBar.SetActive(false);
     }
 
     //todo 나중에 MainScene에서 캔버스 키고 끄는 연동 다 바꾸끼
@@ -43,6 +46,12 @@ public class CanvasManager : MonoBehaviour
         GameManager.Instance.MouseLock(true);
         Instance.InvenUI.gameObject.SetActive(false);
         Instance.PlayerUI.gameObject.SetActive(true);
+    }
+
+    public void ShowBossHPBar()
+    {
+        BossHPBar.GetComponentInChildren<UnityEngine.UI.Slider>().value = 1;
+        BossHPBar.SetActive(true);
     }
 
 }

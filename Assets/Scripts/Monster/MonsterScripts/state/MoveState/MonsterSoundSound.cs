@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterSoundSound : MonoBehaviour
 {
     public AudioClip walkingSound;
-    public AudioClip attackSound;
+    public AudioClip[] attackSound;
     AudioSource audioSource;
 
 
@@ -22,6 +22,9 @@ public class MonsterSoundSound : MonoBehaviour
 
     void AttackSound()
     {
-        audioSource.PlayOneShot(attackSound);
+        int randValue = Random.Range(0, attackSound.Length);
+
+
+        audioSource.PlayOneShot(attackSound[randValue]);
     }
 }

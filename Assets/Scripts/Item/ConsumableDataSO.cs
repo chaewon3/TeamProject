@@ -5,5 +5,5 @@ public class ConsumableDataSO : ItemDataSO
 {
     public float coolTime;
     public effect effect;
-
+    public GameObject usePrefab;
 }

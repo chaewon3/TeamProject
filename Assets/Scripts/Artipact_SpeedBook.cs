@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Artipact_SpeedBook : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject particle;
+    PlayerMove playerMove;
+
+    void Awake()
     {
-        
+        playerMove = FindObjectOfType<PlayerMove>();
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Start()
     {
+        playerMove.moveSpeed += 2f;
+        yield return new WaitForSeconds(8f);
         
+        playerMove.moveSpeed -= 2f;
+        yield return new WaitForEndOfFrame();
+
+        Destroy(gameObject);
     }
 }

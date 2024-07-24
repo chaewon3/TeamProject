@@ -21,3 +21,4 @@ MonoBehaviour:
   description: "10\uCD08\uAC04 \uC774\uB3D9\uC18D\uB3C4\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4."
   coolTime: 5
   effect: 2
+  usePrefab: {fileID: 6094666942450008373, guid: 2155717f860a75c4a8b20a933f4e4227, type: 3}

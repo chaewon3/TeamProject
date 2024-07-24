@@ -662,6 +662,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSound: {fileID: 8300000, guid: 0eb175268e6f7b2459c3952a4277718b, type: 3}
+  attackSound:
+  - {fileID: 8300000, guid: 3f8f9a58b85075f4baa7d01a0e9b1839, type: 3}
+  - {fileID: 8300000, guid: 9bb18756158754b4ea98f7c91744cdba, type: 3}
 --- !u!82 &6096529313288202364
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1125,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHP: 100
   _currentHP: 0
-  _attackDamage: 0
+  _attackDamage: 15
   _moveSpeed: 1
   _attackDetectRange: 4
   _returnStopRange: 1
@@ -1163,7 +1166,6 @@ MonoBehaviour:
   attackState: {fileID: 0}
   deadState: {fileID: 0}
   hitState: {fileID: 0}
-  ddd: {fileID: 0}
 --- !u!54 &2571787653438412219
 Rigidbody:
   m_ObjectHideFlags: 0

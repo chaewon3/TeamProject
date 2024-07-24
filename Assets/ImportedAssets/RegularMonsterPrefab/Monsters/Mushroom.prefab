@@ -85,7 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSound: {fileID: 0}
-  attackSound: {fileID: 8300000, guid: ebf307f61b9bc9c43a639a29062b29a8, type: 3}
+  attackSound:
+  - {fileID: 8300000, guid: ebf307f61b9bc9c43a639a29062b29a8, type: 3}
 --- !u!82 &87690626
 AudioSource:
   m_ObjectHideFlags: 0

@@ -24,6 +24,11 @@ public class CanvasManager : MonoBehaviour
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();
         BossHPBar = transform.Find("BossHPBarCanvas").gameObject;
         CursorUI = transform.Find("Cursor").GetComponent<RectTransform>();
+
+        if(BossHPBar == null)
+        {
+            print("캔버스 매니저에도ㅓ 없음");
+        }
     }
 
     private void Start()

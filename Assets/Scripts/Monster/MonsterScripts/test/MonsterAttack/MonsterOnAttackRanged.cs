@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonstOnAttackRanged : MonoBehaviour
+public class MonsterOnAttackRanged : MonoBehaviour
 {
     public GameObject spherePrefab;
 

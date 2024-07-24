@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMoveSound : MonoBehaviour
+public class MonsterSoundSound : MonoBehaviour
 {
     public AudioClip walkingSound;
+    public AudioClip attackSound;
     AudioSource audioSource;
 
 
@@ -14,8 +15,13 @@ public class BossMoveSound : MonoBehaviour
     }
 
 
-    void BossWalking()
+    void WalkingSound()
     {
         audioSource.PlayOneShot(walkingSound);
+    }
+
+    void AttackSound()
+    {
+        audioSource.PlayOneShot(attackSound);
     }
 }

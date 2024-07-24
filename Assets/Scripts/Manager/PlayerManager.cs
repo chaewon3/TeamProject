@@ -49,12 +49,12 @@ public class PlayerManager : MonoBehaviour
         {
             EquipArray[Itype].transform.GetChild(i).gameObject.SetActive(false);
         }
-        Equips[id].SetActive(true);
+        Equips[id-1].SetActive(true);
     }
 
     public void TakeOFF(int id)
     {
-        Equips[id].SetActive(false);
+        Equips[id-1].SetActive(false);
     }
 
     public void ExperienceUp(float value)

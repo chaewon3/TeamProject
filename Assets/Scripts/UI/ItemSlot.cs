@@ -43,12 +43,13 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         if (InventoryManager.Equips[slot] == null)
         {
+            PlayerManager.Instance.EquipChange(slot, item.tableID);
             InventoryManager.Equips[slot] = item;
             InventoryManager.Items.Remove(item);
-            PlayerManager.Instance.EquipChange(slot, item.tableID);
         }
         else
         {
+            PlayerManager.Instance.EquipChange(slot, item.tableID);
             int index = InventoryManager.Items.FindIndex(a => a.UniqueID == item.UniqueID);
             ItemData temp = item;
             item = InventoryManager.Equips[slot];

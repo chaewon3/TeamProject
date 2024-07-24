@@ -102,13 +102,9 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     }
 
 
-    protected void Start()
+    protected virtual void Start()
     {
         PlayerObject = PlayerGameobjectManager.instance.playerObject;
-
-
-
-        
 
     }
 

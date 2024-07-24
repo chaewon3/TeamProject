@@ -9,8 +9,12 @@ public class MummySpawnAnimation : MonoBehaviour
 
     Vector3 rayOrigin;
     Vector3 rayDirection;
-    LayerMask groundLayer;
+    public LayerMask groundLayer;
+    
     Animator animator;
+    static readonly int IsActivating = Animator.StringToHash("IsActivating");
+    static readonly int open = Animator.StringToHash("open");
+
 
     MonsterController monsterController;
 
@@ -22,7 +26,6 @@ public class MummySpawnAnimation : MonoBehaviour
 
     private void Awake()
     {
-        groundLayer = LayerMask.GetMask("Ground");
         animator = GetComponentInChildren<Animator>();
         monsterController = GetComponentInChildren<MonsterController>();
 
@@ -36,7 +39,7 @@ public class MummySpawnAnimation : MonoBehaviour
 
     private void OnEnable()
     {
-        animator.SetBool("IsActivating", true);
+        animator.SetBool(IsActivating, true);
         StartCoroutine(RaycastingAndStartAnim());
 
         monsterController._characterGotIntoArea = false;
@@ -74,10 +77,6 @@ public class MummySpawnAnimation : MonoBehaviour
     {
         int moveBackTimes = 0;
         int time = 0;
-
-        //OnGravityAndDisableCollider(coffin);
-
-        //OnGravityAndDisableCollider(mummy);
 
         coffinRigidbody.isKinematic = true;
         mummyRigidbody.isKinematic = true;
@@ -119,8 +118,8 @@ public class MummySpawnAnimation : MonoBehaviour
     IEnumerator MummyOpenAnimation()
     {
         
-        animator.SetTrigger("open");
-        animator.SetBool("IsActivating", false);
+        animator.SetTrigger(open);
+        animator.SetBool(IsActivating, false);
         yield return new WaitForSeconds(4.0f);
 
         mummyCollider.enabled = true;

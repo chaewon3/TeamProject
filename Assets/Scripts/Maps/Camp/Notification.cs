@@ -21,8 +21,17 @@ public class Notification : MonoBehaviour
 
     private void Start()
     {
-        CamStart.Priority = 3;
-        StartCoroutine(UIFadeIn());
+        if(!GameManager.Instance.gamestart)
+        {
+            Player.GetComponent<Animator>().SetLayerWeight(2, 1);
+            CamStart.Priority = 3;
+            StartCoroutine(UIFadeIn());
+            GameManager.Instance.gamestart = true;
+        }
+        else
+        {
+
+        }
     }
 
     public void Notify(int option)

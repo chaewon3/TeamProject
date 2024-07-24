@@ -6479,6 +6479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mummy In Standing Coffin
       objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -11325,7 +11329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2571787653438412222, guid: a2a8d175cb3cc584c8d7c1f1f479dec7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2571787653537730930, guid: a2a8d175cb3cc584c8d7c1f1f479dec7, type: 3}
       propertyPath: m_LocalPosition.x

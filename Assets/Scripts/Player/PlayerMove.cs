@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 3f;
     CharacterController charCont;
     Animator playerAnimator;
-
+    public GameObject targetObj;
     
     public bool canMove = true;
     public bool canRotat = true;
@@ -29,9 +29,7 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public State state;
     public GameObject[] weapon;
-    //public List<GameObject> textWeapon = new List<GameObject>();
     #endregion
-
 
     void Awake()
     {
@@ -101,10 +99,12 @@ public class PlayerMove : MonoBehaviour
             #region 마우스 방향 회전
 
             dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity / 8 * Time.deltaTime;
 
-            dirY = Mathf.Clamp(dirY, -90f, 90f);
-            transform.localRotation = Quaternion.Euler(0, dirX * dirSpeed, 0f);
+            dirY = Mathf.Clamp(dirY, -20f, 20f);
+            //transform.localRotation = Quaternion.Euler(dirY * dirSpeed, dirX * dirSpeed, 0f);
+            targetObj.transform.localRotation = Quaternion.Euler(dirY * dirSpeed, 0f, 0f);
+            transform.localRotation = Quaternion.Euler(0f, dirX * dirSpeed, 0f);
             #endregion
         }
 

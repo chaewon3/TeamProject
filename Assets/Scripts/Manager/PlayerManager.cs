@@ -8,7 +8,8 @@ using TMPro;
 public class PlayerData
 {
     public float maxHealth = 100f;
-    public float damage = 10f;
+    public float meleeDamage = 10f;
+    public float longDamage = 5f;
     public float experience = 0f;
     public int level = 1;
     public int ArrowCount = 12;
@@ -61,6 +62,38 @@ public class PlayerManager : MonoBehaviour
     public void ExperienceUp(float value)
     {
         playerData.experience += value;
+    }
+
+    public void EquipAddStats(int slot, float value)
+    {
+        switch(slot)
+        {
+            case 0:
+                playerData.meleeDamage += value;
+                break;
+            case 1:
+                playerData.maxHealth += value;
+                break;
+            case 2:
+                playerData.longDamage += value;
+                break;
+        }
+    }
+
+    public void EquipSubStats(int slot, float value)
+    {
+        switch (slot)
+        {
+            case 0:
+                playerData.meleeDamage -= value;
+                break;
+            case 1:
+                playerData.maxHealth -= value;
+                break;
+            case 2:
+                playerData.longDamage -= value;
+                break;
+        }
     }
 }
 

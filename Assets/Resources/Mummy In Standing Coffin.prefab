@@ -1825,10 +1825,11 @@ MonoBehaviour:
   _currentHP: 0
   _attackDamage: 5
   _moveSpeed: 2
-  _attackDetectRange: 1.5
+  _attackDetectRange: 1.75
   _returnStopRange: 1
   _MaxChasingRange: 20
   attackDurationTime: 2.5
+  exp: 0
   _IsAttacked: 0
 --- !u!1 &4554347376192598483
 GameObject:
@@ -2926,3 +2927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coffin: {fileID: 841297463111734537}
   mummy: {fileID: 4554347376192598481}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64

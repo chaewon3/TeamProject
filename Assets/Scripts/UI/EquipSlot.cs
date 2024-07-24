@@ -37,22 +37,38 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
         PlayerManager.Instance.TakeOFF(item.tableID);
         if(eventData.button == PointerEventData.InputButton.Right)
         {
+            int slot = 5;
             InventoryManager.AddItem(item);
             switch(item.Data.type)
             {
                 case ItemType.Equipment_ARMOR:
                     InventoryManager.Equips[1] = null;
+                    slot = 1;
                     break;
                 case ItemType.Equipment_BOW:
                     InventoryManager.Equips[2] = null;
+                    slot = 2;
                     break;
                 case ItemType.Equipment_SWORD:
                     InventoryManager.Equips[0] = null;
+                    slot = 0;
                     break;
                 case ItemType.Artifact:
                     break;
                 default: break;
             }
+
+            EquipmentData tmepItem = item as EquipmentData;
+
+            if (slot == 0 && slot == 2)
+            {
+                PlayerManager.Instance.EquipSubStats(slot, tmepItem.DataEquip.ATK + tmepItem.additionalAbility);
+            }
+            else if(slot == 1)
+            {
+                PlayerManager.Instance.EquipSubStats(slot, tmepItem.DataEquip.DEF + tmepItem.additionalAbility);
+            }
+
             Clear();
             InventoryManager.Refresh();
         }

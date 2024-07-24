@@ -6,6 +6,8 @@ public class MonsterRangedAttackCollider : MonoBehaviour
 {
     int attackTimes;
 
+    public float speed;
+
     float damage;
 
     private void OnEnable()
@@ -16,7 +18,7 @@ public class MonsterRangedAttackCollider : MonoBehaviour
 
     private void Update()
     {
-        transform.position += transform.forward * 0.01f;
+        transform.position += transform.forward * 0.01f * speed;
     }
 
 

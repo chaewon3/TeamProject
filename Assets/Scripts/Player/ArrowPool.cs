@@ -38,7 +38,6 @@ public class ArrowPool : MonoBehaviour
         obj.SetActive(true);
         obj.transform.SetParent(null);
         return obj;
-        //
     }
 
     public void ReturnArrow(GameObject obj)
@@ -48,26 +47,3 @@ public class ArrowPool : MonoBehaviour
         pool.Enqueue(obj);
     }
 }
-
-
-//if (count != pool.Count)
-//{
-//    GameObject arrow = pool[count];
-//    arrow.transform.position = spawnPoint.position;
-//    arrow.transform.rotation = spawnPoint.rotation;
-//    arrow.SetActive(true);
-//    arrow.transform.SetParent(null);
-//    count++;
-//    return arrow;
-//}
-//else
-//{
-//    count = 0;
-//    GameObject arrow = pool[count];
-//    arrow.transform.position = spawnPoint.position;
-//    arrow.transform.rotation = spawnPoint.rotation;
-//    arrow.SetActive(true);
-//    arrow.transform.SetParent(null);
-//    count++;
-//    return arrow;
-//}

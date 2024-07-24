@@ -33,10 +33,6 @@ public class Arrow : MonoBehaviour
     void OnEnable()
     {
         transform.LookAt(aimingPoint.transform);
-
-
-
-
         arrowcollider.enabled = true;
         Vector3 force = transform.forward * speed;
         rigid.AddForce(force);

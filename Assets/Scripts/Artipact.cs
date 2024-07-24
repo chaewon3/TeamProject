@@ -4,37 +4,42 @@ using UnityEngine;
 
 public class Artipact : MonoBehaviour
 {
+    public Transform player;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            GetArtipact(0);
+            ConsumableData Item = (ConsumableData)InventoryManager.Artifact[0];
+
+            if (Item != null)
+            {
+                Instantiate(Item.DataConsum.usePrefab, player);
+                InventoryManager.UseItem(Item, 0);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ConsumableData Item = (ConsumableData)InventoryManager.Artifact[1];
-            ArtipactEffect(Item.DataConsum.effect);
+
+            if (Item != null)
+            {
+                Instantiate(Item.DataConsum.usePrefab, player);
+                InventoryManager.UseItem(Item, 0);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ConsumableData Item = (ConsumableData)InventoryManager.Artifact[2];
-            ArtipactEffect(Item.DataConsum.effect);
+
+            if (Item != null)
+            {
+                Instantiate(Item.DataConsum.usePrefab, player);
+                InventoryManager.UseItem(Item, 0);
+            }
         }
-    }
-
-
-    void GetArtipact(int index)
-    {
-        ConsumableData Item = (ConsumableData)InventoryManager.Artifact[index];
-        ArtipactEffect(Item.DataConsum.effect);
-    }
-
-
-    void ArtipactEffect(effect index)
-    {
-        //모든 아티팩트 함수 ?
     }
 }
 

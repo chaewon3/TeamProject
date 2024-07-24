@@ -19,7 +19,7 @@ public class Sword : MonoBehaviour
 
     void Start()
     {
-        dmg = PlayerManager.Data.damage;
+        dmg = PlayerManager.Data.meleeDamage;
     }
 
     void OnTriggerEnter(Collider other)

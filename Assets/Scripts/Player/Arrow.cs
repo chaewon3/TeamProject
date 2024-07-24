@@ -24,7 +24,7 @@ public class Arrow : MonoBehaviour
 
     void Start()
     {
-        dmg = PlayerManager.Data.damage;
+        dmg = PlayerManager.Data.longDamage;
     }
 
     void OnEnable()

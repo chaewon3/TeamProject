@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class PlayerInfo : MonoBehaviour, IHitable
 {
     PlayerMove player;
@@ -16,6 +15,10 @@ public class PlayerInfo : MonoBehaviour, IHitable
     public TextMeshProUGUI levelText;
     public Slider hpBar;
     public Slider expBar;
+
+    public GameObject healParticle;
+    public GameObject levelUpParticle;
+    Coroutine healCoro, levelUpCoro;
 
     void Awake()
     {
@@ -44,6 +47,22 @@ public class PlayerInfo : MonoBehaviour, IHitable
             playerAni.SetBool("isDead", true);
             playerAni.SetTrigger("Dead");
         }
+
+        if(PlayerManager.Data.experience >= PlayerManager.Data.level * 100f)
+        {
+            PlayerManager.Data.experience -= PlayerManager.Data.level * 100f;
+            PlayerManager.Data.level++;
+            levelUpParticle.SetActive(true);
+            if(levelUpCoro == null)
+                levelUpCoro = StartCoroutine(OffLevelUp(levelUpParticle));
+
+            if (PlayerManager.Data.level % 5 == 0)
+            {
+                PlayerManager.Data.skillPoint += 2;
+            }
+            else
+                PlayerManager.Data.skillPoint++;
+        }
     }
 
     public void Hit(float damage)
@@ -60,6 +79,20 @@ public class PlayerInfo : MonoBehaviour, IHitable
     public void Healing(float value)
     {
         currentHealth += value;
-        // ÆÄÆ¼Å¬?
+        healParticle.SetActive(true);
+        if(healCoro == null)
+            healCoro = StartCoroutine(OffHeal(healParticle));
+    }
+
+    IEnumerator OffHeal(GameObject ptc)
+    {
+        yield return new WaitForSeconds(.3f);
+        ptc.SetActive(false);
+    }
+
+    IEnumerator OffLevelUp(GameObject ptc)
+    {
+        yield return new WaitForSeconds(1.6f);
+        ptc.SetActive(false);
     }
 }

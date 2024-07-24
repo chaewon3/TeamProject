@@ -1825,7 +1825,7 @@ MonoBehaviour:
   _currentHP: 0
   _attackDamage: 5
   _moveSpeed: 2
-  _attackDetectRange: 1.5
+  _attackDetectRange: 1.75
   _returnStopRange: 1
   _MaxChasingRange: 20
   attackDurationTime: 2.5

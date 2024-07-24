@@ -5374,67 +5374,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3277571988783252343, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
   m_PrefabInstance: {fileID: 715240459}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &998547669
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 129630, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_Name
-      value: DropRock
-      objectReference: {fileID: 0}
-    - target: {fileID: 129630, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.5366592
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.4120073
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489622, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 69f662e618186f84eaa8e09494f041d0, type: 3}
 --- !u!1 &1006173794
 GameObject:
   m_ObjectHideFlags: 0
@@ -6539,6 +6478,10 @@ PrefabInstance:
     - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
       propertyPath: m_Name
       value: Mummy In Standing Coffin
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
       propertyPath: m_RootOrder
@@ -11386,7 +11329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2571787653438412222, guid: a2a8d175cb3cc584c8d7c1f1f479dec7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2571787653537730930, guid: a2a8d175cb3cc584c8d7c1f1f479dec7, type: 3}
       propertyPath: m_LocalPosition.x

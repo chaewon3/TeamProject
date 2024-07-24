@@ -532,7 +532,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3549614
+      - time: 0.3322771
+        functionName: AttackSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 0d5ba1607cfebc347a8cd966524ce651, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.35489038
         functionName: RangedAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 14b87e06d64ab854cac3cd57884e726a, type: 3}

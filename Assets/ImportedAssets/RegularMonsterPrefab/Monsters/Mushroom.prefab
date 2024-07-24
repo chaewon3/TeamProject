@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b87e06d64ab854cac3cd57884e726a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spherePrefab: {fileID: 780427206404856172, guid: bf736ea881d00674cb819dd233a9f205, type: 3}
+  spherePrefab: {fileID: 1773671204576862, guid: 7a2fdc3420f3f7546a4ef28c3721eb79, type: 3}
 --- !u!1 &3277571988783252225
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,11 +786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 10
+  _maxHP: 15
   _currentHP: 0
   _attackDamage: 5
   _moveSpeed: 2
-  _attackDetectRange: 5
+  _attackDetectRange: 6
   _returnStopRange: 2
   _MaxChasingRange: 4
   attackDurationTime: 2

@@ -24,7 +24,7 @@ public class Loading : MonoBehaviour
                 SceneName.text = "야영지";
                 image.sprite = spr[0];
                 break;
-            case "Dungeon":
+            case "DungeonScene":
                 SceneName.text = "무너진 광산";
                 image.sprite = spr[1];
                 break;

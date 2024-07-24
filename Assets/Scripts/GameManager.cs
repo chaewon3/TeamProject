@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public string currentScene;
+    public bool gamestart;
 
     private void Awake()
     {

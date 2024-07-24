@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     PlayerData playerData = new PlayerData();
+    PlayerInfo playerinfo;
 
     [HideInInspector]
     public int ArrowCount;
@@ -67,6 +68,8 @@ public class PlayerManager : MonoBehaviour
                 break;
             case 1:
                 playerData.maxHealth += value;
+                playerinfo = FindObjectOfType<PlayerInfo>();
+                playerinfo.currentHealth += value;
                 break;
             case 2:
                 playerData.longDamage += value;
@@ -83,6 +86,8 @@ public class PlayerManager : MonoBehaviour
                 break;
             case 1:
                 playerData.maxHealth -= value;
+                playerinfo = FindObjectOfType<PlayerInfo>();
+                playerinfo.currentHealth -= value;
                 break;
             case 2:
                 playerData.longDamage -= value;

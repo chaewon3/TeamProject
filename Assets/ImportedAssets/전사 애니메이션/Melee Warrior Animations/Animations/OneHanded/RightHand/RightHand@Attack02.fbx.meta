@@ -494,6 +494,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.30147132
+        functionName: SwordCombo02Sound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 015cda562a0ad664fb94cab5473aeea0, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

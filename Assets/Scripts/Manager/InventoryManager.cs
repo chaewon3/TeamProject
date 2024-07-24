@@ -10,7 +10,8 @@ public class InventoryManager : MonoBehaviour
 
     private int currentID = 1;
 
-    public static InventoryPanel Panel => CanvasManager.inventoryPanel;
+    public static InventoryPanel InventoryPanel => CanvasManager.inventoryPanel;
+    public static PlayerPanel PlayerPanel => CanvasManager.PalyerPanel;
     public static InventoryManager Instance { get; private set; }
 
     // 저장을 위한 함수
@@ -48,12 +49,25 @@ public class InventoryManager : MonoBehaviour
         }
     }
     
+    public static void UseItem(ItemData item, int slot)
+    {
+        if (item is not ConsumableData)
+            return;
+        item.amount -= 1;
+        if (item.amount <= 0)
+            Artifact[slot] = null;
+        else
+            Artifact[slot] = item;
+
+        Refresh();
+    }
 
     /// <summary>
     /// 인벤토리 새로고침
     /// </summary>
     public static void Refresh()
     {
-        Panel.Refresh(Instance.items, Instance.equipSlots, Instance.ArtifactsSlots);
+        InventoryPanel.Refresh(Instance.items, Instance.equipSlots, Instance.ArtifactsSlots);
+        PlayerPanel.Referesh(Instance.ArtifactsSlots);
     }
 }

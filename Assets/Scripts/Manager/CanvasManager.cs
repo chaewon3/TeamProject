@@ -7,16 +7,17 @@ public class CanvasManager : MonoBehaviour
     public static CanvasManager Instance { get; private set; }
 
     private InventoryPanel InvenUI;
-    private RectTransform PlayerUI;
+    private PlayerPanel PlayerUI;
     private RectTransform MainOption;
 
     public static InventoryPanel inventoryPanel => Instance.InvenUI;
+    public static PlayerPanel PalyerPanel => Instance.PlayerUI;
 
     private void Awake()
     {
         Instance = this;
         InvenUI = transform.Find("InventoryUI").GetComponent<InventoryPanel>();
-        PlayerUI = transform.Find("PlayerUI").GetComponent<RectTransform>();
+        PlayerUI = transform.Find("PlayerUI").GetComponent<PlayerPanel>();
         MainOption = transform.Find("MainOptions").GetComponent<RectTransform>();
     }
 

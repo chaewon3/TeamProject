@@ -10,7 +10,7 @@ public class ItemTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            int num = Random.Range(0,7);
+            int num = Random.Range(0,8);
             itemSO = DataManager.Instance.itemSOList[num];
             if (itemSO is EquipmentDataSO)
                 item = new EquipmentData(itemSO as EquipmentDataSO);

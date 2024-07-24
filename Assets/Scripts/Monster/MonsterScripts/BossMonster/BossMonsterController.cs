@@ -6,11 +6,10 @@ public class BossMonsterController : MonsterController
 {
     UnityEngine.UI.Slider bossHPBar;
 
-    public GameObject ddd;
     protected override void Start()
     {
         base.Start();
-        bossHPBar = ddd.GetComponentInChildren<UnityEngine.UI.Slider>();
+        bossHPBar = CanvasManager.Instance.BossHPBar.GetComponent<UnityEngine.UI.Slider>();
 
 
         //bossHPBar = CanvasManager.Instance.BossHPBar;
@@ -21,7 +20,10 @@ public class BossMonsterController : MonsterController
     {
         base.Hit(damage);
 
-        bossHPBar.value = monsterInfo._currentHP / monsterInfo._maxHP;
+        if (bossHPBar == null)
+            print("보스 피통 비었음");
+        else
+            bossHPBar.value = monsterInfo._currentHP / monsterInfo._maxHP;
 
         if (monsterInfo._currentHP <= 0)
         {

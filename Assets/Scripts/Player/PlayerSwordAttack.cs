@@ -17,6 +17,10 @@ public class PlayerSwordAttack : MonoBehaviour
 
     public bool isHit = false;
 
+    static readonly int CanAtk = Animator.StringToHash("CanAtk");
+    static readonly int Combo = Animator.StringToHash("Combo");
+    static readonly int Attack = Animator.StringToHash("Attack");
+
     void Awake()
     {
         playerAnimator = GetComponent<Animator>();
@@ -25,9 +29,9 @@ public class PlayerSwordAttack : MonoBehaviour
 
     void Start()
     {
-        playerAnimator.SetBool("CanAtk", true);
+        playerAnimator.SetBool(CanAtk, true);
         comboCount = 1;
-        playerAnimator.SetInteger("Combo", comboCount);
+        playerAnimator.SetInteger(Combo, comboCount);
         comboing = false;
         FindSword();
     }
@@ -43,7 +47,7 @@ public class PlayerSwordAttack : MonoBehaviour
             {
                 if (delray)
                 {
-                    playerAnimator.SetTrigger("Attack");
+                    playerAnimator.SetTrigger(Attack);
 
                     if (comboCoroutine != null && comboCount != 4)
                     {
@@ -69,26 +73,26 @@ public class PlayerSwordAttack : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         player.MoveLimit(false);
-        playerAnimator.SetBool("CanAtk", false);
-        //delray = false;
+        playerAnimator.SetBool(CanAtk, false);
+
         comboCount++;
-        playerAnimator.SetInteger("Combo", comboCount);
+        playerAnimator.SetInteger(Combo, comboCount);
         yield return new WaitForSeconds(attackClip[comboCount-2].length / 1.5f);
 
         player.MoveLimit(true);
         delray = true;
-        playerAnimator.SetBool("CanAtk", true);
+        playerAnimator.SetBool(CanAtk, true);
         if (comboCount == 4)
         {
             comboCount = 1;
-            playerAnimator.SetInteger("Combo", comboCount);
+            playerAnimator.SetInteger(Combo, comboCount);
             StopCoroutine(comboCoroutine);
             comboCoroutine = null;
         }
-        yield return new WaitForSeconds(1.5f); //2F
+        yield return new WaitForSeconds(1.5f);
 
         comboCount = 1;
-        playerAnimator.SetInteger("Combo", comboCount);
+        playerAnimator.SetInteger(Combo, comboCount);
         comboCoroutine = null;
     }
 

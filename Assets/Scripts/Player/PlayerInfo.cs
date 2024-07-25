@@ -6,12 +6,13 @@ using TMPro;
 
 public class PlayerInfo : MonoBehaviour, IHitable
 {
+    #region 전역 변수
     PlayerMove player;
     Animator playerAni;
     PlayerSound sound;
     public float currentHealth;
     bool hit = false;
-    bool isDead = false;
+    bool isPlayerDead = false;
 
     public TextMeshProUGUI levelText;
     public Slider hpBar;
@@ -20,6 +21,12 @@ public class PlayerInfo : MonoBehaviour, IHitable
     public GameObject healParticle;
     public GameObject levelUpParticle;
     Coroutine healCoro, levelUpCoro;
+
+    static readonly int isDead = Animator.StringToHash("isDead");
+    static readonly int Dead = Animator.StringToHash("Dead"); 
+    static readonly int HitBool = Animator.StringToHash("HitBool");
+    static readonly int HitPlayer = Animator.StringToHash("Hit");
+    #endregion
 
     void Awake()
     {
@@ -37,18 +44,17 @@ public class PlayerInfo : MonoBehaviour, IHitable
 
     void Update()
     {
-        // 업데이트말고 함수로 빼서 필요할때만 호출 하는거 생각해보기
         levelText.text = PlayerManager.Data.level.ToString();
         hpBar.maxValue = PlayerManager.Data.maxHealth;
         hpBar.value = currentHealth;
-        expBar.maxValue = PlayerManager.Data.level * 100f; // 이거 비율 계산 조율하기 
+        expBar.maxValue = PlayerManager.Data.level * 100f; 
         expBar.value = PlayerManager.Data.experience;
 
-        if (!isDead && currentHealth <= 0)
+        if (!isPlayerDead && currentHealth <= 0)
         {
-            isDead = true;
-            playerAni.SetBool("isDead", true);
-            playerAni.SetTrigger("Dead");
+            isPlayerDead = true;
+            playerAni.SetBool(isDead, true);
+            playerAni.SetTrigger(Dead);
             
             player.canMove = false;
             player.canRotat = false;
@@ -84,8 +90,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
         else
             hit = true;
 
-        playerAni.SetBool("HitBool", hit);
-        playerAni.SetTrigger("Hit");
+        playerAni.SetBool(HitBool, hit);
+        playerAni.SetTrigger(HitPlayer);
     }
     public void Healing(float value)
     {

@@ -7,7 +7,7 @@ public class CanvasManager : MonoBehaviour
     public static CanvasManager Instance { get; private set; }
 
     private InventoryPanel InvenUI;
-    private PlayerPanel PlayerUI;
+    public PlayerPanel PlayerUI;
     private RectTransform CursorUI;
     private RectTransform MainOption;
     private RectTransform notion;
@@ -61,10 +61,10 @@ public class CanvasManager : MonoBehaviour
         Instance.CursorUI.gameObject.SetActive(true);
     }
 
-    public void ShowBossHPBar()
+    public static void ShowBossHPBar()
     {
-        BossHPBar.GetComponentInChildren<UnityEngine.UI.Slider>().value = 1;
-        BossHPBar.SetActive(true);
+        Instance.BossHPBar.GetComponentInChildren<UnityEngine.UI.Slider>().value = 1;
+        Instance.BossHPBar.SetActive(true);
     }
 
     public static void ShowMap()

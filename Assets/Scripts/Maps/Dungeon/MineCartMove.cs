@@ -32,6 +32,7 @@ public class MineCartMove : MonoBehaviour, IInteractable
             yield return null;
         }
         cutScenecam.enabled = false;
+        CanvasManager.Instance.PlayerUI.gameObject.SetActive(true);
         MineCartCollapse.SetActive(true);
         Destroy(MineCart, 0);
     }
@@ -41,6 +42,7 @@ public class MineCartMove : MonoBehaviour, IInteractable
         if (!isTrigger && OnOff)
         {
             lever.Rotate(-104, 0, 0);
+            CanvasManager.Instance.PlayerUI.gameObject.SetActive(false);
             StartCoroutine(LeverOn());
             isTrigger = true;
         }

@@ -9,7 +9,7 @@ public class BossHPBarActivate : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            CanvasManager.Instance.ShowBossHPBar();
+            //CanvasManager.Instance.ShowBossHPBar();
         }
     }
 }

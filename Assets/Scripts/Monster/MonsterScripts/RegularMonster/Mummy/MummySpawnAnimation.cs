@@ -7,10 +7,16 @@ public class MummySpawnAnimation : MonoBehaviour
     public GameObject coffin;
     public GameObject mummy;
 
+    public AudioClip audioClip;
+    AudioSource audioSource;
+
+
     Vector3 rayOrigin;
     Vector3 rayDirection;
     public LayerMask groundLayer;
     
+
+
     Animator animator;
     static readonly int IsActivating = Animator.StringToHash("IsActivating");
     static readonly int open = Animator.StringToHash("open");
@@ -26,6 +32,8 @@ public class MummySpawnAnimation : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         animator = GetComponentInChildren<Animator>();
         monsterController = GetComponentInChildren<MonsterController>();
 
@@ -61,8 +69,10 @@ public class MummySpawnAnimation : MonoBehaviour
 
             Debug.DrawRay(rayOrigin, rayDirection * 0.4f, Color.red, 0.1f);
 
-            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.3f, groundLayer))
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 0.2f, groundLayer))
             {
+                audioSource.PlayOneShot(audioClip);
+
                 break;
             }
 

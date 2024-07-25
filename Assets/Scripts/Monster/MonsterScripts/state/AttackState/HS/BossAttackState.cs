@@ -19,7 +19,7 @@ public class BossAttackState : EnemyAttackState
             addListInstance(listOfMummy, 0);
         }
 
-        rockPrefab = Resources.Load<GameObject>("GameObject (2)");
+        rockPrefab = Resources.Load<GameObject>("DropPillar");
 
         for (int i = 0; i < 2; i++)
         {

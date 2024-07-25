@@ -665,6 +665,8 @@ MonoBehaviour:
   attackSound:
   - {fileID: 8300000, guid: 3f8f9a58b85075f4baa7d01a0e9b1839, type: 3}
   - {fileID: 8300000, guid: 9bb18756158754b4ea98f7c91744cdba, type: 3}
+  startSound: {fileID: 0}
+  skillSound: {fileID: 8300000, guid: 6c90f4760dfffa14a81bb55ce64c7f91, type: 3}
 --- !u!82 &6096529313288202364
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1154,7 +1156,6 @@ MonoBehaviour:
   _isMove: 0
   _isDead: 0
   _isHit: 0
-  _doingSomeAction: 0
   _monsterOriginPosition: {x: 0, y: 0, z: 0}
   _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}
   _characterGotIntoArea: 0

@@ -10,12 +10,14 @@ public class Sword : MonoBehaviour
 
     DamageTextPool pool;
     PlayerSwordAttack player;
+    PlayerSound playerSound;
     #endregion
 
     void Awake()
     {
         pool = FindObjectOfType<DamageTextPool>();
         player = FindObjectOfType<PlayerSwordAttack>();
+        playerSound = FindObjectOfType<PlayerSound>();
     }
 
     void Start()
@@ -34,6 +36,7 @@ public class Sword : MonoBehaviour
         {
             hitable.Hit(dmg);
             player.isHit = true;
+            playerSound.SwordHitEnemy();
 
             GameObject dmgText = pool.GetDmgText(other.transform, dmg);
             StartCoroutine(Despawn(dmgText));

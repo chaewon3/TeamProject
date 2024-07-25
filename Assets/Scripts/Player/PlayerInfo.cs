@@ -45,8 +45,12 @@ public class PlayerInfo : MonoBehaviour, IHitable
             isDead = true;
             playerAni.SetBool("isDead", true);
             playerAni.SetTrigger("Dead");
+            
             player.canMove = false;
             player.canRotat = false;
+
+            CanvasManager.Instance.PlayerDead();
+
         }
 
         if(PlayerManager.Data.experience >= PlayerManager.Data.level * 100f)

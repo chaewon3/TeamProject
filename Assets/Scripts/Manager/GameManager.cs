@@ -57,4 +57,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("LoadingScene");
     }
 
+    public void GameOver(string scenename)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        currentScene = scenename;
+        SceneManager.LoadScene("LoadingScene");
+    }
 }

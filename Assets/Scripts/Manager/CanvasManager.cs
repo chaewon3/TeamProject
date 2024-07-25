@@ -12,8 +12,7 @@ public class CanvasManager : MonoBehaviour
     private RectTransform MainOption;
     private RectTransform notion;
 
-    [HideInInspector]
-    public GameObject deadUI;
+    private GameObject deadUI;
     [HideInInspector]
     public GameObject BossHPBar;
 

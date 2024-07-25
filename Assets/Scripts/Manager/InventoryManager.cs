@@ -44,13 +44,13 @@ public class InventoryManager : MonoBehaviour
             if (item.Data.type == ItemType.Consumable)
                 Instance.Arrowcount += 5;
 
-            foreach (ConsumableData data in Items)
+            foreach (ItemData data in Items)
             {
                 if (data.tableID == item.tableID)
                 {
-                    if (data.amount < 99)
+                    if (data.amount < 99 && data is ConsumableData consumdata)
                     {
-                        data.amount += data.stack;
+                        data.amount += consumdata.stack;
                         return;
                     }
                 }

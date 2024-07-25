@@ -87,6 +87,8 @@ MonoBehaviour:
   walkingSound: {fileID: 0}
   attackSound:
   - {fileID: 8300000, guid: ebf307f61b9bc9c43a639a29062b29a8, type: 3}
+  startSound: {fileID: 0}
+  skillSound: {fileID: 0}
 --- !u!82 &87690626
 AudioSource:
   m_ObjectHideFlags: 0
@@ -906,9 +908,9 @@ MonoBehaviour:
   _moveSpeed: 2
   _attackDetectRange: 6
   _returnStopRange: 2
-  _MaxChasingRange: 4
+  _MaxChasingRange: 5.5
   attackDurationTime: 2
-  exp: 18
+  exp: 25
   _IsAttacked: 0
 --- !u!114 &1708507932536043103
 MonoBehaviour:
@@ -928,7 +930,6 @@ MonoBehaviour:
   _isMove: 0
   _isDead: 0
   _isHit: 0
-  _doingSomeAction: 0
   _monsterOriginPosition: {x: 0, y: 0, z: 0}
   _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}
   _characterGotIntoArea: 0

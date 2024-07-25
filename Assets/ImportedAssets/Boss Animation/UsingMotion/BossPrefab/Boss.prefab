@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4399d2559241b2b4e9b9605742bc0ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 100
+  _maxHP: 250
   _currentHP: 0
   _attackDamage: 15
   _moveSpeed: 1
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   _returnStopRange: 1
   _MaxChasingRange: 10
   attackDurationTime: 2
-  exp: 300
+  exp: 400
   _IsAttacked: 0
 --- !u!114 &2571787653438412216
 MonoBehaviour:

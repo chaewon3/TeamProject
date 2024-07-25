@@ -105,9 +105,11 @@ public class PlayerBowAttack : MonoBehaviour
 
     IEnumerator Arrow()
     {
-        arrow--;
-        PlayerManager.Data.ArrowCount--;
-        arrowText.text = arrow.ToString();
+        //arrow--;
+        InventoryManager.UseArrow();
+        arrowText.text = InventoryManager.Instance.Arrowcount.ToString();
+        //PlayerManager.Data.ArrowCount--;
+        //arrowText.text = arrow.ToString();
         yield return new WaitForSeconds(shootClip.length);
 
         playerAnimator.SetBool("Charge", false);

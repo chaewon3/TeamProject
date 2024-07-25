@@ -10,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     private ItemData[] ArtifactsSlots = new ItemData[3] { null, null, null };
 
     private int currentID = 1;
+    public int Arrowcount { get; set; }
+
 
     public static InventoryPanel InventoryPanel => CanvasManager.inventoryPanel;
     public static PlayerPanel PlayerPanel => CanvasManager.PalyerPanel;
@@ -35,14 +37,16 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item is ConsumableData)
         {
+            if (item.Data.type == ItemType.Consumable)
+                Instance.Arrowcount += 5;
 
-            foreach (ItemData data in Items)
+            foreach (ConsumableData data in Items)
             {
                 if (data.tableID == item.tableID)
                 {
                     if (data.amount < 99)
                     {
-                        data.amount++;
+                        data.amount += data.stack;
                         return;
                     }
                 }
@@ -67,6 +71,16 @@ public class InventoryManager : MonoBehaviour
         Refresh();
     }
 
+    public static void UseArrow()
+    {
+        ItemData item;
+        item = Items.FindLast(item => item.tableID == 101);
+        item.amount -= 1;
+        if (item.amount <= 0)
+            Items.Remove(item);
+        Refresh();
+    }
+
     /// <summary>
     /// 인벤토리 새로고침
     /// </summary>
@@ -75,4 +89,6 @@ public class InventoryManager : MonoBehaviour
         InventoryPanel.Refresh(Instance.items, Instance.equipSlots, Instance.ArtifactsSlots);
         PlayerPanel.Referesh(Instance.ArtifactsSlots);
     }
+
+    
 }

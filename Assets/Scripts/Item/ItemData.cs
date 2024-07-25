@@ -69,11 +69,16 @@ public class EquipmentData : ItemData
 [System.Serializable]
 public class ConsumableData : ItemData
 {
+    public int stack = 1;
     public ConsumableDataSO DataConsum { get => data as ConsumableDataSO; }
 
     public ConsumableData(ConsumableDataSO data, int amount = 1) : base(data, amount)
     {
-        //
+        if (this.data.type == ItemType.Consumable)
+        {
+            stack = 5;
+            this.amount = 5;
+        }
     }
 
 }

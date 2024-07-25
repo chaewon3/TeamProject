@@ -62,7 +62,7 @@ public class Notification : MonoBehaviour
         }
         else if(option == 1)
         {
-            
+            settingItemAdd();
             StartCoroutine(gamestart());
         }
     }
@@ -111,5 +111,19 @@ public class Notification : MonoBehaviour
         }
         GameManager.Instance.MouseLock(false);
         OptionUI.alpha = 1;
+    }
+    public void settingItemAdd()
+    {
+        for(int i = 0; i<4;i++)
+        {
+            ItemDataSO itemSO = DataManager.Instance.itemSOList[i];
+            ItemData item;
+            if (itemSO is EquipmentDataSO)
+                item = new EquipmentData(itemSO as EquipmentDataSO);
+            else
+                item = new ConsumableData(itemSO as ConsumableDataSO);
+            InventoryManager.AddItem(item);
+            InventoryManager.Refresh();
+        }
     }
 }

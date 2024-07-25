@@ -25,6 +25,11 @@ public class Sword : MonoBehaviour
         dmg = PlayerManager.Data.meleeDamage;
     }
 
+    void OnEnable()
+    {
+        dmg = PlayerManager.Data.meleeDamage;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if ((targetLayer | (1 << other.gameObject.layer)) != targetLayer)

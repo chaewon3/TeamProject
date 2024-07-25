@@ -10,11 +10,13 @@ public class ItemUI : MonoBehaviour
     public Image portion;
     float fillAmount = 1f;
     float totalTime = 10f;
+    AudioSource portionAudio;
 
     void Awake()
     {
         portion.fillAmount = 0f;
         player = FindObjectOfType<PlayerInfo>();
+        portionAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -24,6 +26,7 @@ public class ItemUI : MonoBehaviour
             healPortion = false;
             portion.fillAmount = 1f;
             player.Healing(10f);
+            portionAudio.Play();
         }   
 
         if(!healPortion && fillAmount > 0)

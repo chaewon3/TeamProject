@@ -7,6 +7,7 @@ public class BossCutScene : MonoBehaviour, IInteractable
     public void interaction(bool OnOff)
     {
         CanvasManager.ShowBossHPBar();
+        SoundManager.Instance.BossBGM();
     }
 
 }

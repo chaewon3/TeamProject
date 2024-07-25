@@ -33,6 +33,8 @@ public class Description : MonoBehaviour
 
     public void DescriptionsON(ItemData item)
     {
+        if (item == null)
+            return;
         gameObject.SetActive(true);
         itemName.text = item.Data.name;
         if (item is EquipmentData)

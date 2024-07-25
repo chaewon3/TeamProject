@@ -41,6 +41,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void Equip(int slot)
     {
+        if (item is not EquipmentData)
+            return;
         UISound.Instance.Equip();
         if (InventoryManager.Equips[slot] == null)
         {
@@ -67,7 +69,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
             EquipmentData tmepItem = item as EquipmentData;
 
-            if (slot == 0 && slot == 2)
+
+            if (slot == 0 || slot == 2)
             {
                 PlayerManager.Instance.EquipSubStats(slot, tmepItem.DataEquip.ATK + tmepItem.additionalAbility);
                 PlayerManager.Instance.EquipAddStats(slot, tmepItem.DataEquip.ATK + tmepItem.additionalAbility);

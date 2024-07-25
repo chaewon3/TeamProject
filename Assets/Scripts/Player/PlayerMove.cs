@@ -128,16 +128,8 @@ public class PlayerMove : MonoBehaviour
 
     public void MoveLimit(bool bValue)
     {
-        if(!bValue)
-        {
-            canMove = false;
-            canRotat = false;
-        }
-        else
-        {
-            canMove = true;
-            canRotat = true;
-        }
+        canMove = bValue;
+        canRotat = bValue;
     }
 
     void StateController(State state)

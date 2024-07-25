@@ -31,6 +31,7 @@ public class InventoryManager : MonoBehaviour
     {
         Set();
     }
+
     public static void AddItem(ItemData item)
     {        
         item.UniqueID = Instance.currentID;
@@ -80,6 +81,7 @@ public class InventoryManager : MonoBehaviour
         ItemData item;
         item = Items.FindLast(item => item.tableID == 101);
         item.amount -= 1;
+        Instance.Arrowcount--;
         if (item.amount <= 0)
             Items.Remove(item);
         Refresh();

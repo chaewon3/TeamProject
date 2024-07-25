@@ -12,7 +12,6 @@ public class PlayerBowAttack : MonoBehaviour
     Coroutine ArrowCoroutine;
     ArrowPool pool;
     GameObject bow;
-    int arrow;
 
     public AnimationClip shootClip;
     public TextMeshProUGUI arrowText;
@@ -33,17 +32,18 @@ public class PlayerBowAttack : MonoBehaviour
 
     void Start()
     {
-        arrow = PlayerManager.Data.ArrowCount;
-        arrowText.text = arrow.ToString();
         FindBow();
     }
 
     void Update()
     {
+        // 이렇게 하면 안됨
+        arrowText.text = InventoryManager.Instance.Arrowcount.ToString();
+
         if (bow == null && Input.GetMouseButtonDown(1))
             FindBow();
 
-        if (arrow != 0 && player.canMove && bow != null)
+        if (InventoryManager.Instance.Arrowcount != 0 && player.canMove && bow != null)
         {
             if(!bow.activeSelf)
                 FindBow();
@@ -105,11 +105,7 @@ public class PlayerBowAttack : MonoBehaviour
 
     IEnumerator Arrow()
     {
-        //arrow--;
         InventoryManager.UseArrow();
-        arrowText.text = InventoryManager.Instance.Arrowcount.ToString();
-        //PlayerManager.Data.ArrowCount--;
-        //arrowText.text = arrow.ToString();
         yield return new WaitForSeconds(shootClip.length);
 
         playerAnimator.SetBool("Charge", false);

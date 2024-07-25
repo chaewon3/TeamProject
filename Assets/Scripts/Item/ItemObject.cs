@@ -6,12 +6,15 @@ public class ItemObject : MonoBehaviour, IInteractable
 {
     public ItemDataSO itemData;
     private GameObject item;
+    private PlayerSound sound;
 
     public ItemData Item { get; set; }
 
     private void Awake()
     {
         item = transform.Find("Item").gameObject;
+        sound = FindAnyObjectByType<PlayerSound>();
+
     }
     private void Start()
     {
@@ -31,6 +34,7 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void interaction(bool OnOff)
     {
+        sound.getItem();
         StartCoroutine(Anim());
         InventoryManager.AddItem(Item);
         InventoryManager.Refresh();

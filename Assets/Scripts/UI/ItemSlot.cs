@@ -105,7 +105,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
                 case ItemType.Artifact:
                     for(int i =0; i<3;i++)
                     {
-                        if (InventoryManager.Artifact[i] == null)
+                        if (InventoryManager.Artifact[i] == null || InventoryManager.Artifact[i].tableID == 0)
                         {
                             InventoryManager.Artifact[i] = item;
                             InventoryManager.Refresh(); break;

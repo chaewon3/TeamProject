@@ -50,12 +50,6 @@ public class BossAttackState : EnemyAttackState
     {
         BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
 
-        
-
-        //bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
-
-        
-
         switch (bossPattern)
         {
             case BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK:

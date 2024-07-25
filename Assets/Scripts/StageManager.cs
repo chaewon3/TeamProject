@@ -18,6 +18,8 @@ public class StageManager : MonoBehaviour
     {   
         if(!dungeonClear && !stageBoss.activeSelf)
         {
+            SoundManager.Instance.DungeonBGM();
+
             audioSource.Play();
             dungeonClear = true;
             potal.SetActive(true);

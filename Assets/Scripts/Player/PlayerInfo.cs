@@ -51,6 +51,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
             player.canMove = false;
             player.canRotat = false;
 
+            SoundManager.Instance.VolumeDown();
             CanvasManager.Instance.PlayerDead();
 
         }

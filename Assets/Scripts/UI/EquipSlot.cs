@@ -11,8 +11,12 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
-        icon = transform.Find("Item Icon").GetComponent<Image>();
-        defaulticon = transform.Find("Default Icon").GetComponent<Image>();
+        Image[] images = GetComponentsInChildren<Image>(true);
+        icon = images[1];
+        defaulticon = images[2];
+
+        //icon = transform.Find("Item Icon").GetComponent<Image>();
+        //defaulticon = transform.Find("Default Icon").GetComponent<Image>();
     }
 
     public void setItem(ItemData item)
@@ -26,9 +30,8 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
     public void Clear()
     {
         item = null;
-        print(icon.name);
-        icon.enabled = false;
         defaulticon.enabled = true;
+        icon.enabled = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -8,6 +8,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
 {
     PlayerMove player;
     Animator playerAni;
+    PlayerSound sound;
     public float currentHealth;
     bool hit = false;
     bool isDead = false;
@@ -24,6 +25,7 @@ public class PlayerInfo : MonoBehaviour, IHitable
     {
         player = FindObjectOfType<PlayerMove>();
         playerAni = GetComponent<Animator>();
+        sound = GetComponent<PlayerSound>();
     }
 
     IEnumerator Start()
@@ -61,7 +63,8 @@ public class PlayerInfo : MonoBehaviour, IHitable
             PlayerManager.Data.experience -= PlayerManager.Data.level * 100f;
             PlayerManager.Data.level++;
             levelUpParticle.SetActive(true);
-            if(levelUpCoro == null)
+            sound.LevelUpSound();
+            if (levelUpCoro == null)
                 levelUpCoro = StartCoroutine(OffLevelUp(levelUpParticle));
 
             if (PlayerManager.Data.level % 5 == 0)

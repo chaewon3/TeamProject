@@ -901,15 +901,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6339623
-        functionName: BossMonsterAfterAttack
+      - time: 0.36357594
+        functionName: AttackSound
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 0d5ba1607cfebc347a8cd966524ce651, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.39999905
         functionName: BossMonsterOnAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6339623
+        functionName: BossMonsterAfterAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
         floatParameter: 0

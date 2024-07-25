@@ -16,7 +16,7 @@ public class MonsterRangedAttackCollider : MonoBehaviour
         attackTimes = 0;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         transform.position += transform.forward * 0.01f * speed;
     }

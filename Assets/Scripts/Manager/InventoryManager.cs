@@ -27,6 +27,10 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        Set();
+    }
     public static void AddItem(ItemData item)
     {        
         item.UniqueID = Instance.currentID;
@@ -90,5 +94,15 @@ public class InventoryManager : MonoBehaviour
         PlayerPanel.Referesh(Instance.ArtifactsSlots);
     }
 
-    
+    public void Set()
+    {
+        List<ItemData> items;
+        items = Items.FindAll(item => item.tableID == 101);
+        if (items == null)
+            return;
+        foreach(ItemData item in items)
+        {
+            Instance.Arrowcount += item.amount;
+        }
+    }
 }

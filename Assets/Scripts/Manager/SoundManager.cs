@@ -31,13 +31,14 @@ public class SoundManager : MonoBehaviour
     public void BossBGM()
     {
         audioSource.clip = clips[1];
+        audioSource.volume = 0.5f;
         audioSource.Play();
         
     }
 
     public void VolumeDown()
     {
-        audioSource.volume = 0.5f;
+        audioSource.volume = 0.3f;
     }
 
 

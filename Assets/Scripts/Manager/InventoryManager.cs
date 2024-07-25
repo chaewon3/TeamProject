@@ -29,6 +29,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.Instance.gamestart)
+            DataManager.Instance.LoadData();
         Set();
         Refresh();
     }

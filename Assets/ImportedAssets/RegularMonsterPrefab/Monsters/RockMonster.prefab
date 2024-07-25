@@ -90,6 +90,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fb5ab20dd138ef145aeb72b08c23941b, type: 3}
   - {fileID: 8300000, guid: f9fb0a1a442c0e0479d17345f88d6543, type: 3}
   - {fileID: 8300000, guid: 435eb783c458a264b8f6091ac74c75eb, type: 3}
+  startSound: {fileID: 0}
+  skillSound: {fileID: 0}
 --- !u!82 &1828412036
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2115,7 +2117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408a341f556384f4aa2ae1c603aaa39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHP: 30
+  _maxHP: 50
   _currentHP: 0
   _attackDamage: 10
   _moveSpeed: 1.5
@@ -2123,7 +2125,7 @@ MonoBehaviour:
   _returnStopRange: 2
   _MaxChasingRange: 4
   attackDurationTime: 2.5
-  exp: 22
+  exp: 35
   _IsAttacked: 0
 --- !u!114 &609499854030023841
 MonoBehaviour:

@@ -6,6 +6,7 @@ public class MonsterSoundSound : MonoBehaviour
 {
     public AudioClip walkingSound;
     public AudioClip[] attackSound;
+    public AudioClip startSound;
     AudioSource audioSource;
 
 
@@ -26,5 +27,10 @@ public class MonsterSoundSound : MonoBehaviour
 
 
         audioSource.PlayOneShot(attackSound[randValue]);
+    }
+
+    void StartSound()
+    {
+        audioSource.PlayOneShot(startSound);
     }
 }

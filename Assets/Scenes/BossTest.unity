@@ -630,7 +630,6 @@ GameObject:
   m_Component:
   - component: {fileID: 96665704}
   - component: {fileID: 96665705}
-  - component: {fileID: 96665706}
   - component: {fileID: 8138604845615575227}
   - component: {fileID: 8587214548565566512}
   m_Layer: 0
@@ -678,19 +677,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &96665706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96665703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4303d4fbabbfb844dbfea884fc0ad489, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  armCollider: {fileID: 1237555024}
 --- !u!1 &97842344
 GameObject:
   m_ObjectHideFlags: 0
@@ -3451,10 +3437,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 687020534}
-  - component: {fileID: 687020533}
-  - component: {fileID: 687020532}
-  - component: {fileID: 687020535}
-  - component: {fileID: 687020536}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -3462,58 +3444,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &687020532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687020530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 714a59156271bf546b268611a90adcde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterInfo: {fileID: 0}
-  animator: {fileID: 0}
-  monster_type: 0
-  _isMove: 0
-  _isDead: 0
-  _isHit: 0
-  _doingSomeAction: 0
-  _monsterOriginPosition: {x: 0, y: 0, z: 0}
-  _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}
-  _characterGotIntoArea: 0
-  PlayerObject: {fileID: 0}
-  _characterTransfrom: {fileID: 0}
-  currentState: {fileID: 0}
-  idleState: {fileID: 0}
-  moveState: {fileID: 0}
-  attackState: {fileID: 0}
-  deadState: {fileID: 0}
-  hitState: {fileID: 0}
---- !u!114 &687020533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687020530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4399d2559241b2b4e9b9605742bc0ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHP: 100
-  _currentHP: 0
-  _attackDamage: 0
-  _moveSpeed: 1
-  _attackDetectRange: 4
-  _returnStopRange: 1
-  _MaxChasingRange: 10
-  attackDurationTime: 2
-  exp: 300
-  _IsAttacked: 0
 --- !u!4 &687020534
 Transform:
   m_ObjectHideFlags: 0
@@ -3530,36 +3460,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &687020535
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687020530}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!136 &687020536
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687020530}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.5
-  m_Height: 6
-  m_Direction: 1
-  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &702190300
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,7 +3633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3277571988783252343, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3277571988783488855, guid: ec227d8895f293e4bbf0ceca24f4706f, type: 3}
       propertyPath: m_RootOrder
@@ -4175,7 +4075,6 @@ MonoBehaviour:
   _isMove: 0
   _isDead: 0
   _isHit: 0
-  _doingSomeAction: 0
   _monsterOriginPosition: {x: 0, y: 0, z: 0}
   _monsterOriginRotation: {x: 0, y: 0, z: 0, w: 0}
   _characterGotIntoArea: 0
@@ -7725,10 +7624,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mummy In Standing Coffin
       objectReference: {fileID: 0}
-    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7969,6 +7864,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191603518}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1199619933
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_Name
+      value: Mummy In Standing Coffin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
 --- !u!1 &1217443242
 GameObject:
   m_ObjectHideFlags: 0
@@ -11375,6 +11331,67 @@ Transform:
   m_Father: {fileID: 1649968496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1961000875
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_Name
+      value: Mummy In Standing Coffin (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
 --- !u!1 &1983544906
 GameObject:
   m_ObjectHideFlags: 0
@@ -11472,6 +11489,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983544906}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2001758144
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_Name
+      value: Mummy In Standing Coffin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701706, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266179954968701707, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b50fcae0ab462104bb8ece5e646bdb9e, type: 3}
 --- !u!1 &2016821194
 GameObject:
   m_ObjectHideFlags: 0
@@ -11517,7 +11595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7726029632717384621, guid: 59af1dd0b56956348974014d88831aeb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7726029632717551181, guid: 59af1dd0b56956348974014d88831aeb, type: 3}
       propertyPath: m_RootOrder
@@ -12365,6 +12443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameObject (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 138187802503609467, guid: 186e442325688934d87956bfd2280a8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2559926941868723559, guid: 186e442325688934d87956bfd2280a8a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -12424,7 +12506,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSound: {fileID: 8300000, guid: 0eb175268e6f7b2459c3952a4277718b, type: 3}
-  attackSound: {fileID: 0}
+  attackSound:
+  - {fileID: 8300000, guid: 9bb18756158754b4ea98f7c91744cdba, type: 3}
+  - {fileID: 8300000, guid: 3f8f9a58b85075f4baa7d01a0e9b1839, type: 3}
+  startSound: {fileID: 0}
 --- !u!82 &8587214548565566512
 AudioSource:
   m_ObjectHideFlags: 0

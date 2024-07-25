@@ -13,6 +13,8 @@ public class CanvasManager : MonoBehaviour
     private RectTransform notion;
 
     [HideInInspector]
+    public GameObject deadUI;
+    [HideInInspector]
     public GameObject BossHPBar;
 
     public static InventoryPanel inventoryPanel => Instance.InvenUI;
@@ -27,6 +29,8 @@ public class CanvasManager : MonoBehaviour
         BossHPBar = transform.Find("BossHPBarCanvas").gameObject;
         CursorUI = transform.Find("Cursor").GetComponent<RectTransform>();
         notion = transform.Find("Notification ").GetComponent<RectTransform>();
+        deadUI = transform.Find("DeadUI").gameObject;
+        print(deadUI.name);
 
         if (BossHPBar == null)
         {
@@ -95,5 +99,10 @@ public class CanvasManager : MonoBehaviour
         Instance.notion.gameObject.SetActive(false);
         Instance.PlayerUI.gameObject.SetActive(true);
         Instance.CursorUI.gameObject.SetActive(true);
+    }
+
+    public void PlayerDead()
+    {
+        deadUI.SetActive(true);
     }
 }

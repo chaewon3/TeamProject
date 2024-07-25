@@ -40,7 +40,7 @@ public class Loading : MonoBehaviour
         yield return null;
         AsyncOperation op = SceneManager.LoadSceneAsync(name);
         op.allowSceneActivation = false;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         if(name == "MainScene")
         {
             audioSource.loop = false;
@@ -54,8 +54,10 @@ public class Loading : MonoBehaviour
             audioSource.clip = audioClip[1];
             audioSource.Play();
         }
+        yield return new WaitForSecondsRealtime(3.5f);
+        audioSource.Stop();
 
-        yield return new WaitForSecondsRealtime(4.2f);
+        yield return new WaitForSecondsRealtime(1f);
         op.allowSceneActivation = true;
     }
 }

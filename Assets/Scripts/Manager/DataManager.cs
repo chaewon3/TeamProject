@@ -8,12 +8,16 @@ public class FileData
     public PlayerData PlayerData;
     public List<EquipmentData> EquipData;
     public List<ConsumableData> consumData;
+    public ItemData[] equipSlot;
+    public ItemData[] artifactSlot;
 
     public FileData()
     {
         PlayerData = new PlayerData();
         EquipData = new List<EquipmentData>();
         consumData = new List<ConsumableData>();
+        equipSlot = new ItemData[3];
+        artifactSlot = new ItemData[3];
     }
 
     public void AddItem(ItemData item)
@@ -60,6 +64,8 @@ public class DataManager : MonoBehaviour
             save.AddItem(item);
         }
         print(PlayerManager.Data.experience);
+        save.equipSlot = InventoryManager.Equips;
+        save.artifactSlot = InventoryManager.Artifact;
         save.PlayerData = PlayerManager.Data;
         File.WriteAllText(saveFilePath, JsonUtility.ToJson(save));
     }
@@ -83,6 +89,13 @@ public class DataManager : MonoBehaviour
 
         // SO리스트에서 같은 id를 찾아 대입함
         foreach (var item in InventoryManager.Items)
+            item.Data = itemSOList.Find(x => x.tableId == item.tableID);
+
+        InventoryManager.Equips = save.equipSlot;
+        InventoryManager.Artifact = save.artifactSlot;
+        foreach (var item in InventoryManager.Equips)
+            item.Data = itemSOList.Find(x => x.tableId == item.tableID);
+        foreach (var item in InventoryManager.Artifact)
             item.Data = itemSOList.Find(x => x.tableId == item.tableID);
 
         PlayerManager.Data = save.PlayerData;

@@ -19,13 +19,12 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         if (Instance == null)
         {
+            CanMove(false);
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
-
-        CanMove(false);
     }
 
     public void CanMove(bool move)

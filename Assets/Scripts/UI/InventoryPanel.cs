@@ -68,12 +68,12 @@ public class InventoryPanel : MonoBehaviour
         }
         for(int i=0;i<3;i++)
         {
-            if (equip[i] == null)
+            if (equip[i] == null || equip[i].tableID == 0)
                 equipslot[i].Clear();
             else                
                equipslot[i].setItem(equip[i]);
 
-            if (Artifact[i] == null)
+            if (Artifact[i] == null || Artifact[i].tableID == 0)
                 ArtifactSlot[i].Clear(); 
             else
                 ArtifactSlot[i].setItem(Artifact[i]);
@@ -81,6 +81,5 @@ public class InventoryPanel : MonoBehaviour
         Level.text = PlayerManager.Data.level.ToString();
         Gem.text = PlayerManager.Data.Gem.ToString();
         SP.text = PlayerManager.Data.skillPoint.ToString();
-
     }
 }

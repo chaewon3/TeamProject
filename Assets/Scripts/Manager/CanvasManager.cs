@@ -29,12 +29,6 @@ public class CanvasManager : MonoBehaviour
         CursorUI = transform.Find("Cursor").GetComponent<RectTransform>();
         notion = transform.Find("Notification ").GetComponent<RectTransform>();
         deadUI = transform.Find("DeadUI").gameObject;
-        print(deadUI.name);
-
-        if (BossHPBar == null)
-        {
-            print("캔버스 매니저에도ㅓ 없음");
-        }
     }
 
     private void Start()
@@ -45,6 +39,7 @@ public class CanvasManager : MonoBehaviour
 
         if(!GameManager.Instance.gamestart)
            MainOption.gameObject.SetActive(true);
+
     }
 
     //todo 나중에 MainScene에서 캔버스 키고 끄는 연동 다 바꾸끼

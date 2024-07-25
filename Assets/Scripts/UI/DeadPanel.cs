@@ -32,7 +32,6 @@ public class DeadPanel : MonoBehaviour
 
     IEnumerator OnPanel()
     {
-        print("¾À2313123");
         canvas.alpha = 0;
         float starttime = 0;
         while (starttime < 0.5f)
@@ -44,7 +43,6 @@ public class DeadPanel : MonoBehaviour
         }
         canvas.alpha = 1;
         yield return new WaitForSeconds(2f);
-        print("Å°´©¸£±â");
         returnTown = true;
         panel = null;
     }

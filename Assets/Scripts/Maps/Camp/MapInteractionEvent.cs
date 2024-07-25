@@ -8,16 +8,20 @@ public class MapInteractionEvent : MonoBehaviour
     public Sprite overSpr;
     public Sprite IdleSpr;
     public RectTransform Image;
+    PlayerMove player;
 
     private Button button;
 
     private void Awake()
     {
         button = GetComponent<Button>();
+        player = FindObjectOfType<PlayerMove>();
     }
 
     public void LoadGame(string scenename)
     {
+        player.canMove = true;
+        player.canRotat = true;
         GameManager.Instance.LoadScene(scenename);
     }
 

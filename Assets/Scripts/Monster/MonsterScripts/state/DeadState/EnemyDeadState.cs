@@ -48,7 +48,7 @@ public class EnemyDeadState : EnemyState
 
         DropManager.instance.RandomItemDrop(monsterController.transform);
 
-        PlayerManager.Instance.ExperienceUp(monsterController.monsterInfo.exp);//todo 경험치 값 변경
+        PlayerManager.Instance.ExperienceUp(monsterController.monsterInfo.exp);
         yield return new WaitForSeconds(5.0f);
 
         
@@ -62,7 +62,6 @@ public class EnemyDeadState : EnemyState
 
             if (time >= 3.0f)
             {
-                //Destroy(monsterController.gameObject);
                 monsterController.gameObject.SetActive(false);
                 break;
             }

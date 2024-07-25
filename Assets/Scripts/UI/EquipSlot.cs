@@ -11,12 +11,8 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
-        Image[] images = GetComponentsInChildren<Image>(true);
-        icon = images[1];
-        defaulticon = images[2];
-
-        //icon = transform.Find("Item Icon").GetComponent<Image>();
-        //defaulticon = transform.Find("Default Icon").GetComponent<Image>();
+        icon = transform.Find("Item Icon").GetComponent<Image>();
+        defaulticon = transform.Find("Default Icon").GetComponent<Image>();
     }
 
     public void setItem(ItemData item)

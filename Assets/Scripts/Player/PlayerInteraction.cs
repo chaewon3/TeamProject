@@ -32,7 +32,6 @@ public class PlayerInteraction : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-
             switch (state)
             {
                 case State.Map: interactable.interaction(false);

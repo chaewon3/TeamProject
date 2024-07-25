@@ -54,43 +54,43 @@ public class PlayerManager : MonoBehaviour
         Equips[id-1].SetActive(false);
     }
 
-    public void ExperienceUp(float value)
+    public  void ExperienceUp(float value)
     {
-        playerData.experience += value;
+        Data.experience += value;
     }
 
-    public void EquipAddStats(int slot, float value)
+    public void EquipAddStats(int slot, int value)
     {
         switch(slot)
         {
             case 0:
-                playerData.meleeDamage += value;
+                Data.meleeDamage += value;
                 break;
             case 1:
-                playerData.maxHealth += value;
+                Data.maxHealth += value;
                 playerinfo = FindObjectOfType<PlayerInfo>();
                 playerinfo.currentHealth += value;
                 break;
             case 2:
-                playerData.longDamage += value;
+                Data.longDamage += value;
                 break;
         }
     }
 
-    public void EquipSubStats(int slot, float value)
+    public void EquipSubStats(int slot, int value)
     {
         switch (slot)
         {
             case 0:
-                playerData.meleeDamage -= value;
+                Data.meleeDamage -= value;
                 break;
             case 1:
-                playerData.maxHealth -= value;
+                Data.maxHealth -= value;
                 playerinfo = FindObjectOfType<PlayerInfo>();
                 playerinfo.currentHealth -= value;
                 break;
             case 2:
-                playerData.longDamage -= value;
+                Data.longDamage -= value;
                 break;
         }
     }

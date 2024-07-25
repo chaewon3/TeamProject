@@ -44,7 +44,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         if (item is not EquipmentData)
             return;
         UISound.Instance.Equip();
-        if (InventoryManager.Equips[slot] == null)
+        if (InventoryManager.Equips[slot] == null || InventoryManager.Equips[slot].tableID == 0)
         {
             PlayerManager.Instance.EquipChange(slot, item.tableID);
             InventoryManager.Equips[slot] = item;

@@ -26,9 +26,8 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
     public void Clear()
     {
         item = null;
-        print(icon.name);
-        icon.enabled = false;
         defaulticon.enabled = true;
+        icon.enabled = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)

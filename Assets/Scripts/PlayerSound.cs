@@ -16,12 +16,12 @@ public class PlayerSound : MonoBehaviour
 
     public void FootRightSound()
     {
-        playerAudio.PlayOneShot(clip[0], 0.2f);
+        playerAudio.PlayOneShot(clip[0], 0.3f);
     }
 
     public void FootLeftSound()
     {
-        playerAudio.PlayOneShot(clip[1], 0.2f);
+        playerAudio.PlayOneShot(clip[1], 0.3f);
     }
 
     public void SwordCombo01Sound()
@@ -46,7 +46,7 @@ public class PlayerSound : MonoBehaviour
 
     public void DushSound()
     {
-        playerAudio.PlayOneShot(clip[6], 0.2f);
+        playerAudio.PlayOneShot(clip[6], 0.3f);
     }
 
     public void HitSound()

@@ -22,8 +22,6 @@ public abstract class MonsterController : MonoBehaviour, IHitable
     public bool _isDead = false;
     public bool _isHit = false;
 
-    public bool _doingSomeAction = false;
-
     // 맨 처음에 본인 참조하게
     // 얘는 굳이 상속받은 애가 건들 필요없을 것 같음
     public Vector3 _monsterOriginPosition;

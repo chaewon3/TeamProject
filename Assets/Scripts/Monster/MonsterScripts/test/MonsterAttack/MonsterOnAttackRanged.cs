@@ -12,7 +12,6 @@ public class MonsterOnAttackRanged : MonoBehaviour
 
     List<GameObject> bubblePrefabList = new List<GameObject>();
 
-
     MonsterController monsterController;
 
     private void Start()
@@ -29,15 +28,9 @@ public class MonsterOnAttackRanged : MonoBehaviour
 
     public void RangedAttack()
     {
-
-
         AcitvatingShot(bubblePrefabList, 1);
 
         AcitvatingShot(spherePrefabList, 0);
-
-
-
-
     }
 
     void AcitvatingShot(List<GameObject> spherePrefabList, int index)

@@ -16,18 +16,14 @@ public class BossAttackState : EnemyAttackState
 
         for (int i = 0; i < 10; i++)
         {
-            GameObject mummyPrefabInstance = Instantiate(mummyPrefab, Vector3.zero, Quaternion.identity);
-
-            listOfMummy.Add(mummyPrefabInstance);
+            addListInstance(listOfMummy, 0);
         }
 
         rockPrefab = Resources.Load<GameObject>("GameObject (2)");
 
         for (int i = 0; i < 2; i++)
         {
-            GameObject rockPrefabInstance = Instantiate(rockPrefab, Vector3.zero, Quaternion.identity);
-
-            listOfRock.Add(rockPrefabInstance);
+            addListInstance(listOfRock, 1);
         }
         //rockPrefab.GetComponent<RockRaycast>().SetDamage(monsterController.monsterInfo._attackDamage + 15);
 
@@ -53,12 +49,6 @@ public class BossAttackState : EnemyAttackState
     protected override void PatternCooltime(System.Enum @enum)
     {
         BOSS_MONSTER_ATTACK_BEHAVIOUR bossPattern = (BOSS_MONSTER_ATTACK_BEHAVIOUR)@enum;
-
-        
-
-        //bossPattern = BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_ATTACK;
-
-        
 
         switch (bossPattern)
         {
@@ -99,17 +89,11 @@ public class BossAttackState : EnemyAttackState
 
         yield return new WaitForSeconds(2f);
 
-        print(listOfRock.Count);
-
         foreach (var item in listOfRock)
         {
-            if (!item.activeSelf)
-            {
-                item.transform.position = monsterController._characterTransfrom.position + Vector3.up * 7;
-                item.SetActive(true);
-
-                yield return new WaitForSeconds(1.0f);
-            }
+            item.transform.position = monsterController._characterTransfrom.position + Vector3.up * 7;
+            item.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
         }
 
         
@@ -126,39 +110,75 @@ public class BossAttackState : EnemyAttackState
 
         yield return new WaitForSeconds(3f);
 
-        foreach (GameObject item in listOfMummy)
-        {
-            if (!item.activeSelf)
-            {
-                Vector3 forwardDirection = monsterController.transform.forward;
-                Vector3 positionOffset = new Vector3(0, 3, 3);
-
-                Vector3 newPosition = monsterController.transform.position + forwardDirection * positionOffset.z + Vector3.up * positionOffset.y;
-
-                item.transform.position = newPosition;
-
-                item.transform.rotation = Quaternion.LookRotation(forwardDirection);
-
-                item.SetActive(true);
-
-                break;
-            }
-        }
+        SpawnPrefab(listOfMummy, 0);
 
         monsterController.animator.SetTrigger(PatternSpellTwoShot);
-        
+
         yield return new WaitForSeconds(1.1f);
         if (!monsterController._isHit && !monsterController._isDead)
         {
             monsterController.TransitionToState(monsterController.moveState);
         }
-
     }
+
     IEnumerator BossPatternSpellOneCooltime(System.Enum @enum, float cooltime)
     {
         monsterController.monsterInfo._monsterBehaviourPool[@enum] = false;
         yield return new WaitForSeconds(cooltime);
         monsterController.monsterInfo._monsterBehaviourPool[@enum] = true;
     }
+
+    
+
+    void addListInstance(List<GameObject> listOfPrefab, int index)
+    {
+        GameObject prefabInstance;
+
+        if (index == 0)
+        {
+            prefabInstance = Instantiate(mummyPrefab, Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            prefabInstance = Instantiate(rockPrefab, Vector3.zero, Quaternion.identity);
+        }
+
+        listOfPrefab.Add(prefabInstance);
+    }
+
+    void SpawnPrefab(List<GameObject> mummyList, int index)
+    {
+        foreach (GameObject item in mummyList)
+        {
+            if (!item.activeSelf)
+            {
+                ActivatingPrefab(item);
+
+                return;
+            }
+        }
+
+        addListInstance(mummyList, index);
+        ActivatingPrefab(mummyList[mummyList.Count - 1]);
+
+    }
+
+    void ActivatingPrefab(GameObject mummy)
+    {
+        Vector3 forwardDirection = monsterController.transform.forward;
+        Vector3 positionOffset = new Vector3(0, 3, 3);
+
+        Vector3 newPosition = monsterController.transform.position + forwardDirection * positionOffset.z + Vector3.up * positionOffset.y;
+
+        mummy.transform.position = newPosition;
+
+        mummy.transform.rotation = Quaternion.LookRotation(forwardDirection);
+
+        mummy.SetActive(true);
+    }
+
+    
+
+    
 
 }

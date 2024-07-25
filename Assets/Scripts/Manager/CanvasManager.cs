@@ -11,6 +11,7 @@ public class CanvasManager : MonoBehaviour
     private RectTransform CursorUI;
     private RectTransform MainOption;
     private RectTransform notion;
+
     [HideInInspector]
     public GameObject BossHPBar;
 

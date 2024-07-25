@@ -10,7 +10,6 @@ public class MonsterSoundSound : MonoBehaviour
     public AudioClip skillSound;
     AudioSource audioSource;
 
-
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();

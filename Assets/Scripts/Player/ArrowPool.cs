@@ -10,7 +10,7 @@ public class ArrowPool : MonoBehaviour
     public GameObject spawnObj;
     
     Queue<GameObject> pool = new Queue<GameObject>();
-    //int count;
+
     int poolSize = 6;
     #endregion
 

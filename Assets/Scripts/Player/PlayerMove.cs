@@ -29,6 +29,9 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public State state;
     public GameObject[] weapon;
+
+    static readonly int BowForm = Animator.StringToHash("BowForm");
+    static readonly int SwordForm = Animator.StringToHash("SwordForm");
     #endregion
 
     void Awake()
@@ -73,14 +76,12 @@ public class PlayerMove : MonoBehaviour
             #endregion
 
             #region 대시
-            if (Input.GetKeyDown(KeyCode.Space) && dushCoroutine == null)// isground 조건 추가?
+            if (Input.GetKeyDown(KeyCode.Space) && dushCoroutine == null)
             {
                 playerAnimator.SetTrigger("Dush");
-                dushCoroutine = StartCoroutine(Dush());
-                //if (dushCoroutine == null)
-                    
+                dushCoroutine = StartCoroutine(Dush());        
             }
-            #endregion //누른 방향키에 따라 캐릭을 회전? 다른 애니메이션 찾기?
+            #endregion 
         }
 
         #region 중력 
@@ -99,16 +100,15 @@ public class PlayerMove : MonoBehaviour
             #region 마우스 방향 회전
 
             dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity / 8 * Time.deltaTime;
+            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity / 6 * Time.deltaTime;
 
-            dirY = Mathf.Clamp(dirY, -20f, 20f);
-            //transform.localRotation = Quaternion.Euler(dirY * dirSpeed, dirX * dirSpeed, 0f);
+            dirY = Mathf.Clamp(dirY, -20f, 30f);
             targetObj.transform.localRotation = Quaternion.Euler(dirY * dirSpeed, 0f, 0f);
             transform.localRotation = Quaternion.Euler(0f, dirX * dirSpeed, 0f);
             #endregion
         }
 
-        StateController(state); //이거 계속 호출하는거 뭔가 이상함 낭비 같은?
+        StateController(state); 
     }
 
     IEnumerator Dush()
@@ -117,7 +117,7 @@ public class PlayerMove : MonoBehaviour
         isDush = true;
         charCont.height = 1f;
         charCont.center = new Vector3(0, 0.54f, 0);
-        yield return new WaitForSeconds(0.8f); //AniClip.Length = 0.833f
+        yield return new WaitForSeconds(0.8f); 
 
         moveSpeed = 3;
         isDush = false;
@@ -137,22 +137,22 @@ public class PlayerMove : MonoBehaviour
         switch (state)
         {
             case State.Sword:
-                playerAnimator.SetBool("BowForm", false);
+                playerAnimator.SetBool(BowForm, false);
                 weapon[1].SetActive(false);
-                playerAnimator.SetBool("SwordForm", true);
+                playerAnimator.SetBool(SwordForm, true);
                 weapon[0].SetActive(true);
                 playerAnimator.SetLayerWeight(1, 0);
                 break;
             case State.Bow:
-                playerAnimator.SetBool("SwordForm", false);
+                playerAnimator.SetBool(SwordForm, false);
                 weapon[0].SetActive(false);
-                playerAnimator.SetBool("BowForm", true);
+                playerAnimator.SetBool(BowForm, true);
                 weapon[1].SetActive(true);
                 playerAnimator.SetLayerWeight(1, 1);
                 break;
             case State.Town:
-                playerAnimator.SetBool("BowForm", false);
-                playerAnimator.SetBool("SwordForm", false);
+                playerAnimator.SetBool(BowForm, false);
+                playerAnimator.SetBool(SwordForm, false);
                 weapon[0].SetActive(false);
                 weapon[1].SetActive(false);
                 playerAnimator.SetLayerWeight(1, 0);

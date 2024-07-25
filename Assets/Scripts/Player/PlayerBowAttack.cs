@@ -20,6 +20,9 @@ public class PlayerBowAttack : MonoBehaviour
     public Image coolTime;
     float fillAmount = 1f;
     float totalTime = 2f;
+
+    static readonly int Charge = Animator.StringToHash("Charge");
+    static readonly int Attack = Animator.StringToHash("Attack");
     #endregion
 
     void Awake()
@@ -54,7 +57,7 @@ public class PlayerBowAttack : MonoBehaviour
                     if (player.state != State.Bow)
                         player.state = State.Bow;
 
-                    playerAnimator.SetTrigger("Charge");
+                    playerAnimator.SetTrigger(Charge);
                 }
 
                 if (Input.GetMouseButtonUp(1))
@@ -62,7 +65,7 @@ public class PlayerBowAttack : MonoBehaviour
                     CanShoot = false;
                     coolTime.fillAmount = 1f;
 
-                    playerAnimator.SetTrigger("Attack");
+                    playerAnimator.SetTrigger(Attack);
                     pool.GetArrow();
 
                     if (ArrowCoroutine == null)
@@ -107,7 +110,7 @@ public class PlayerBowAttack : MonoBehaviour
         InventoryManager.UseArrow();
         yield return new WaitForSeconds(shootClip.length);
 
-        playerAnimator.SetBool("Charge", false);
+        playerAnimator.SetBool(Charge, false);
         player.state = State.Sword;
         ArrowCoroutine = null;
     }

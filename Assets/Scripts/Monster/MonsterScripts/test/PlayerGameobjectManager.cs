@@ -13,11 +13,6 @@ public class PlayerGameobjectManager : MonoBehaviour
         instance = this;
 
         playerObject = GameObject.FindWithTag("Player");
-
-        if (playerObject != null)
-        {
-            //print(playerObject.name);
-        }
     }
 
 }

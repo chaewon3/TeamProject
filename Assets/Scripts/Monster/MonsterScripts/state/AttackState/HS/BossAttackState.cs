@@ -25,9 +25,6 @@ public class BossAttackState : EnemyAttackState
         {
             addListInstance(listOfRock, 1);
         }
-        //rockPrefab.GetComponent<RockRaycast>().SetDamage(monsterController.monsterInfo._attackDamage + 15);
-
-
     }
 
     static readonly int PatternAttack = Animator.StringToHash("PatternAttack");
@@ -38,7 +35,6 @@ public class BossAttackState : EnemyAttackState
     public override void Enter()
     {
         base.Enter();
-
     }
 
     public override void Exit()
@@ -66,10 +62,6 @@ public class BossAttackState : EnemyAttackState
                 monsterController.StartCoroutine(BossPatternSpellTwo());
                 monsterController.StartCoroutine(BossPatternSpellOneCooltime(BOSS_MONSTER_ATTACK_BEHAVIOUR.BOSS_MONSTER_SKILL_2, 20));
                 break;
-            default:
-                print("default");
-                break;
-            
         }
     }
 
@@ -96,12 +88,10 @@ public class BossAttackState : EnemyAttackState
             yield return new WaitForSeconds(1.0f);
         }
 
-        
         if (!monsterController._isHit && !monsterController._isDead)
         {
             monsterController.TransitionToState(monsterController.moveState);
         }
-
     }
 
     IEnumerator BossPatternSpellTwo()
@@ -127,8 +117,6 @@ public class BossAttackState : EnemyAttackState
         yield return new WaitForSeconds(cooltime);
         monsterController.monsterInfo._monsterBehaviourPool[@enum] = true;
     }
-
-    
 
     void addListInstance(List<GameObject> listOfPrefab, int index)
     {
@@ -176,9 +164,4 @@ public class BossAttackState : EnemyAttackState
 
         mummy.SetActive(true);
     }
-
-    
-
-    
-
 }

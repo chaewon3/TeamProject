@@ -22,9 +22,7 @@ public class MonsterOnAttackRanged : MonoBehaviour
         {
             addListSphere();
         }
-
     }
-
 
     public void RangedAttack()
     {
@@ -50,14 +48,11 @@ public class MonsterOnAttackRanged : MonoBehaviour
         Shoot(spherePrefabList[spherePrefabList.Count - 1], index);
     }
 
-
     void addListSphere()
     {
         GameObject spherePrefabInstance = Instantiate(spherePrefab);
         spherePrefabInstance.GetComponent<MonsterRangedAttackCollider>().setDamage(monsterController.monsterInfo._attackDamage);
         spherePrefabList.Add(spherePrefabInstance);
-
-
 
         GameObject bubblePrefabInstance = Instantiate(bubblePrefab);
         bubblePrefabList.Add(bubblePrefabInstance);
@@ -70,7 +65,6 @@ public class MonsterOnAttackRanged : MonoBehaviour
 
         Vector3 newPosition = monsterController.transform.position + forwardDirection * positionOffset.z + Vector3.up * positionOffset.y;
 
-
         sphere.transform.position = newPosition;
 
         sphere.transform.rotation = Quaternion.LookRotation(forwardDirection);
@@ -81,7 +75,6 @@ public class MonsterOnAttackRanged : MonoBehaviour
         {
             StartCoroutine(deactivate(sphere));
         }
-
     }
 
     IEnumerator deactivate(GameObject bubble)

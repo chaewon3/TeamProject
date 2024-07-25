@@ -10,17 +10,13 @@ public class MummySpawnAnimation : MonoBehaviour
     public AudioClip audioClip;
     AudioSource audioSource;
 
-
     Vector3 rayOrigin;
     Vector3 rayDirection;
     public LayerMask groundLayer;
     
-
-
     Animator animator;
     static readonly int IsActivating = Animator.StringToHash("IsActivating");
     static readonly int open = Animator.StringToHash("open");
-
 
     MonsterController monsterController;
 
@@ -79,7 +75,6 @@ public class MummySpawnAnimation : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-
         StartCoroutine(CoffinBackMoveAnimation());
     }
 
@@ -90,7 +85,6 @@ public class MummySpawnAnimation : MonoBehaviour
 
         coffinRigidbody.isKinematic = true;
         mummyRigidbody.isKinematic = true;
-
 
         while (true)
         {
@@ -139,7 +133,6 @@ public class MummySpawnAnimation : MonoBehaviour
         monsterController._characterGotIntoArea = true;
     }
 
-
     void OnGraivtyAndDisableCollider(Rigidbody rigidbody, Collider collider)
     {
         if (collider != null)
@@ -160,5 +153,4 @@ public class MummySpawnAnimation : MonoBehaviour
 
         target.SetActive(true);
     }
-
 }

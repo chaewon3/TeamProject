@@ -6,14 +6,17 @@ public class Artipact_SpeedBook : MonoBehaviour
 {
     public GameObject particle;
     PlayerMove playerMove;
+    AudioSource audioSource;
 
     void Awake()
     {
         playerMove = FindObjectOfType<PlayerMove>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     IEnumerator Start()
     {
+        audioSource.Play();
         playerMove.moveSpeed += 2f;
         yield return new WaitForSeconds(8f);
         

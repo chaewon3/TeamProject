@@ -12,7 +12,6 @@ public class MonsterOnAttackRanged : MonoBehaviour
 
     List<GameObject> bubblePrefabList = new List<GameObject>();
 
-
     MonsterController monsterController;
 
     private void Start()

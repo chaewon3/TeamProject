@@ -34,7 +34,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             switch (state)
             {
-                case State.Map: interactable.interaction(false);
+                case State.Map:
+                    if (interactable == null)
+                        return;
+                    interactable.interaction(false);
                     UISound.Instance.Inven(); break;
                 case State.Inventory: CanvasManager.ShowPlayer();
                     UISound.Instance.Inven(); break;

@@ -7,10 +7,12 @@ public class DeadPanel : MonoBehaviour
     CanvasGroup canvas;
     Coroutine panel;
     bool returnTown = false;
+    AudioSource audioSource;
 
     void Awake()
     {
         canvas = GetComponent<CanvasGroup>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -32,7 +34,7 @@ public class DeadPanel : MonoBehaviour
 
     IEnumerator OnPanel()
     {
-        print("¾À2313123");
+        audioSource.Play();
         canvas.alpha = 0;
         float starttime = 0;
         while (starttime < 0.5f)
@@ -44,7 +46,6 @@ public class DeadPanel : MonoBehaviour
         }
         canvas.alpha = 1;
         yield return new WaitForSeconds(2f);
-        print("Å°´©¸£±â");
         returnTown = true;
         panel = null;
     }

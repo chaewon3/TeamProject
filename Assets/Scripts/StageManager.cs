@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    AudioSource audioSource;
     bool dungeonClear = false;
     public GameObject stageBoss;
     public GameObject potal;
 
-    void Update()
+    private void Awake()
     {
-       
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {   
         if(!dungeonClear && !stageBoss.activeSelf)
         {
+            audioSource.Play();
             dungeonClear = true;
             potal.SetActive(true);
         }
     }
 
-    //IEnumerator DunGeonClear()
-    //{
-    //    print("코루틴 들어옴");
-    //    yield return new WaitForSeconds(1f);
-    //    potal.SetActive(true);
-    //}
 }

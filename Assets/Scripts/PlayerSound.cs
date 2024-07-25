@@ -43,4 +43,19 @@ public class PlayerSound : MonoBehaviour
     {
         playerAudio.PlayOneShot(clip[5], 0.2f);
     }
+
+    public void DushSound()
+    {
+        playerAudio.PlayOneShot(clip[6], 0.2f);
+    }
+
+    public void HitSound()
+    {
+        playerAudio.PlayOneShot(clip[7], 0.2f);
+    }
+
+    public void LevelUpSound()
+    {
+        playerAudio.PlayOneShot(clip[8], 0.5f);
+    }
 }

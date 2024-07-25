@@ -9,10 +9,13 @@ public class Loading : MonoBehaviour
     public TextMeshProUGUI SceneName;
     public Sprite[] spr;
     public Image image;
+    AudioSource audioSource;
+    public AudioClip[] audioClip;
 
     private void Awake()
     {
         StartCoroutine(LoadScene());
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -37,7 +40,22 @@ public class Loading : MonoBehaviour
         yield return null;
         AsyncOperation op = SceneManager.LoadSceneAsync(name);
         op.allowSceneActivation = false;
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSeconds(0.8f);
+        if(name == "MainScene")
+        {
+            audioSource.loop = false;
+            audioSource.clip = audioClip[0];
+            audioSource.Play();
+        }
+        else
+        {
+
+            audioSource.loop = true;
+            audioSource.clip = audioClip[1];
+            audioSource.Play();
+        }
+
+        yield return new WaitForSecondsRealtime(4.2f);
         op.allowSceneActivation = true;
     }
 }

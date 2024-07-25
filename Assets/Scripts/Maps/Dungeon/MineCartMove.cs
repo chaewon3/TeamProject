@@ -13,6 +13,13 @@ public class MineCartMove : MonoBehaviour, IInteractable
     bool isTrigger;
     float speed = 5f;
 
+    AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     /// <summary>
     /// ±¤Â÷ ¾Ö´Ï¸ÞÀÌ¼Ç°ú Virtual Camera ÀÌº¥Æ® ÄÆ¾À Á¦¾î
     /// </summary>
@@ -21,6 +28,7 @@ public class MineCartMove : MonoBehaviour, IInteractable
         cutScenecam.Priority = 11;
         yield return new WaitForSeconds(2f);
         float time = 0;
+        audioSource.Play();
         while (time <= 2.5f)
         {
             if (time >= 0.5f)
@@ -31,7 +39,9 @@ public class MineCartMove : MonoBehaviour, IInteractable
             time += Time.deltaTime;
             yield return null;
         }
+        
         cutScenecam.enabled = false;
+        audioSource.Stop();
         MineCartCollapse.SetActive(true);
         Destroy(MineCart, 0);
     }

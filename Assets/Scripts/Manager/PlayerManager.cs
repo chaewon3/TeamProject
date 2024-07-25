@@ -12,8 +12,7 @@ public class PlayerData
     public float longDamage = 5f;
     public float experience = 0f;
     public int level = 1;
-    public int ArrowCount = 12;
-    public int skillPoint = 5;
+    public int skillPoint = 0;
     public int Gem = 0;
 }
 

@@ -65,6 +65,6 @@ public class PlayerSound : MonoBehaviour
     }
     public void getItem()
     {
-        playerAudio.PlayOneShot(clip[10], 0.5f);
+        playerAudio.PlayOneShot(clip[10], 0.3f);
     }
 }

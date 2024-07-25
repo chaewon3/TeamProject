@@ -26,9 +26,11 @@ public class PlayerInfo : MonoBehaviour, IHitable
         playerAni = GetComponent<Animator>();
     }
 
-    void Start()
+    IEnumerator Start()
     {
         currentHealth = PlayerManager.Data.maxHealth;
+        yield return new WaitForEndOfFrame();
+        InventoryManager.Refresh();
     }
 
     void Update()

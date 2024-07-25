@@ -30,6 +30,7 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         Set();
+        Refresh();
     }
 
     public static void AddItem(ItemData item)

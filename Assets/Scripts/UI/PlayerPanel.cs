@@ -10,10 +10,12 @@ public class PlayerPanel : MonoBehaviour
     {
         for(int i = 0;i<3;i++)
         {
-            if (Artifact[i] == null)
+            if (Artifact[i] == null || Artifact[i].tableID == 0)
                 ArtifactSlot[i].Clear();
             else
+            {
                 ArtifactSlot[i].setItem(Artifact[i]);
+            }
         }
     }
 }

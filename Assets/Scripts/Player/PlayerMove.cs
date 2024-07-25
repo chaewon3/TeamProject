@@ -99,9 +99,9 @@ public class PlayerMove : MonoBehaviour
             #region 마우스 방향 회전
 
             dirX += Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity / 8 * Time.deltaTime;
+            dirY -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity / 6 * Time.deltaTime;
 
-            dirY = Mathf.Clamp(dirY, -20f, 20f);
+            dirY = Mathf.Clamp(dirY, -20f, 30f);
             //transform.localRotation = Quaternion.Euler(dirY * dirSpeed, dirX * dirSpeed, 0f);
             targetObj.transform.localRotation = Quaternion.Euler(dirY * dirSpeed, 0f, 0f);
             transform.localRotation = Quaternion.Euler(0f, dirX * dirSpeed, 0f);

@@ -15,7 +15,6 @@ public class PlayerInteraction : MonoBehaviour
     enum State
     {
         Idle,
-        Map,
         Inventory
     }
     private void Update()
@@ -28,19 +27,20 @@ public class PlayerInteraction : MonoBehaviour
                 return;
             interactable.interaction(true);
             UISound.Instance.Inven();
-            state = State.Map;
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            if(interactable != null)
+            {
+                interactable.interaction(false);
+                UISound.Instance.Inven();
+                return;
+            }
             switch (state)
             {
-                case State.Map:
-                    if (interactable == null)
-                        return;
-                    interactable.interaction(false);
-                    UISound.Instance.Inven(); break;
                 case State.Inventory: CanvasManager.ShowPlayer();
-                    UISound.Instance.Inven(); break;
+                    UISound.Instance.Inven();
+                    state = State.Idle; break;
                 default: CanvasManager.Exit();
                     break;
             }

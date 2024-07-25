@@ -908,7 +908,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _attackDetectRange: 6
   _returnStopRange: 2
-  _MaxChasingRange: 5.5
+  _MaxChasingRange: 7
   attackDurationTime: 2
   exp: 25
   _IsAttacked: 0

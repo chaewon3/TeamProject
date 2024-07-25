@@ -32,12 +32,9 @@ public class EquipSlot : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (item == null)
-            return;
-        PlayerManager.Instance.TakeOFF(item.tableID);
         if(eventData.button == PointerEventData.InputButton.Right)
         {
-            int slot = 5;
+            PlayerManager.Instance.TakeOFF(item.tableID); int slot = 5;
             InventoryManager.AddItem(item);
             switch(item.Data.type)
             {

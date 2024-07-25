@@ -42,7 +42,6 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    //todo 나중에 MainScene에서 캔버스 키고 끄는 연동 다 바꾸끼
     public static void ShowInentory()
     {
         GameManager.Instance.CanMove(false);

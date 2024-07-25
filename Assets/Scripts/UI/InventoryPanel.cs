@@ -49,7 +49,6 @@ public class InventoryPanel : MonoBehaviour
 
     public void Refresh(List<ItemData> itemList, ItemData[] equip, ItemData[] Artifact)
     {
-        // 슬롯을 쭉 돌면서 아이템 리스트에 리스트가 있다면 setitem하고, 리스트가 비어 false가 반환된다면 슬롯을 clear
         IEnumerator<ItemData> itemEnum = itemList.GetEnumerator();
         foreach(ItemSlot slot in slots)
         {

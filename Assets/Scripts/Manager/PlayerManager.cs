@@ -97,4 +97,3 @@ public class PlayerManager : MonoBehaviour
 
 
 
-// , ui설정, 경험치, 레벨업, 사운드, 보스 ui, 던전 탈출

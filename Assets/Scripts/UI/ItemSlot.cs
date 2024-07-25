@@ -86,8 +86,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (item == null)
-            return;
         Description.Instance.DescriptionsON(item);
         if (eventData.clickCount == 2 && (Time.time - lastClickTime <= interval))
         {            

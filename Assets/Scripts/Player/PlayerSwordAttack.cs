@@ -70,7 +70,6 @@ public class PlayerSwordAttack : MonoBehaviour
         yield return new WaitForEndOfFrame();
         player.MoveLimit(false);
         playerAnimator.SetBool("CanAtk", false);
-        //delray = false;
         comboCount++;
         playerAnimator.SetInteger("Combo", comboCount);
         yield return new WaitForSeconds(attackClip[comboCount-2].length / 1.5f);
@@ -85,7 +84,7 @@ public class PlayerSwordAttack : MonoBehaviour
             StopCoroutine(comboCoroutine);
             comboCoroutine = null;
         }
-        yield return new WaitForSeconds(1.5f); //2F
+        yield return new WaitForSeconds(1.5f); 
 
         comboCount = 1;
         playerAnimator.SetInteger("Combo", comboCount);

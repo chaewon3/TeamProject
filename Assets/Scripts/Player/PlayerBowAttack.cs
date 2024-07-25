@@ -37,7 +37,6 @@ public class PlayerBowAttack : MonoBehaviour
 
     void Update()
     {
-        // 이렇게 하면 안됨
         arrowText.text = InventoryManager.Instance.Arrowcount.ToString();
 
         if (bow == null && Input.GetMouseButtonDown(1))

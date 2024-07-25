@@ -24,12 +24,10 @@ public class DropManager : MonoBehaviour
 
         if (dropitemSOList[randValue].ModelPrefab == null)
         {
-            print("null");
             print(dropitemSOList.Count);
         }
         else
         {
-            print("not null");
             print(dropitemSOList[randValue].name);
         }
 

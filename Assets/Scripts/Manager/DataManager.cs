@@ -37,10 +37,6 @@ public class DataManager : MonoBehaviour
     public string saveFileName;
     public string saveFilePath => $"{Application.dataPath}/{saveFileName}.json";
 
-    //지워야함
-    [HideInInspector]
-    public PlayerData playerDataTest;
-
     void Awake()
     {
         if (Instance == null)
@@ -63,7 +59,6 @@ public class DataManager : MonoBehaviour
         {
             save.AddItem(item);
         }
-        print(PlayerManager.Data.experience);
         save.equipSlot = InventoryManager.Equips;
         save.artifactSlot = InventoryManager.Artifact;
         save.PlayerData = PlayerManager.Data;

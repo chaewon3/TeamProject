@@ -19,7 +19,9 @@ public class PlayerInteraction : MonoBehaviour
         Inventory
     }
     private void Update()
-    {      
+    {
+        if (!GameManager.Instance.gamestart)
+            return;
         if(Input.GetKeyDown(KeyCode.G) && state == State.Idle)
         {
             if (interactable == null)

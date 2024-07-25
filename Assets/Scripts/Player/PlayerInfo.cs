@@ -42,10 +42,11 @@ public class PlayerInfo : MonoBehaviour, IHitable
 
         if (!isDead && currentHealth <= 0)
         {
-            player.canMove = false;
             isDead = true;
             playerAni.SetBool("isDead", true);
             playerAni.SetTrigger("Dead");
+            player.canMove = false;
+            player.canRotat = false;
         }
 
         if(PlayerManager.Data.experience >= PlayerManager.Data.level * 100f)

@@ -10,13 +10,13 @@ public class RockRaycast : MonoBehaviour
 
     public GameObject smokePrefab;
 
+    
     public LayerMask groundLayer;
     Vector3 rayOrigin;
     Vector3 rayDirection;
     private void Start()
     {
         damage = 30;
-        
     }
 
 
